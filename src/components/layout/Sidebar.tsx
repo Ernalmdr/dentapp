@@ -2,15 +2,17 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   Pencil,
   LogIn,
   LogOut,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
+import { useSidebar } from "@/lib/sidebar-context";
 
 interface NavItem {
   name: string;
@@ -34,6 +36,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { user, registeredUsers, openProfileModal, switchUser, logout } = useAuth();
+  const { isCollapsed, toggleCollapse, isMobileOpen, setIsMobileOpen } = useSidebar();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -58,7 +61,13 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="fixed left-0 top-0 z-40 flex h-screen w-[248px] flex-col justify-between overflow-hidden"
+      className={cn(
+        "fixed left-0 top-0 z-40 flex h-screen flex-col justify-between overflow-hidden transition-all duration-300 ease-in-out",
+        isCollapsed ? "w-[72px]" : "w-[248px]",
+        isMobileOpen
+          ? "translate-x-0 shadow-2xl"
+          : "max-md:-translate-x-full md:translate-x-0"
+      )}
       style={{ backgroundColor: "#121815" }}
     >
       {/* ── Figma Aside Dalga Görseli (Exact Vector Wave from Figma #11:7783) ── */}
@@ -72,22 +81,60 @@ export default function Sidebar() {
 
       {/* Top Brand Logo & Menu Items */}
       <div className="relative z-10 flex-1 overflow-y-auto overflow-x-hidden">
-        {/* Figma Logo (#11:7789) */}
-        <Link href="/" className="flex items-center gap-3.5 px-4 pt-7 pb-4 group">
-          <div className="h-[26px] w-[34px] shrink-0 flex items-center justify-center">
-            <img
-              src="/images/figma/nav-logo.svg"
-              alt="Doctrack Logo"
-              className="h-full w-full object-contain"
-            />
-          </div>
-          <span className="text-[24px] font-medium tracking-[-0.3px] text-white leading-[33.6px]">
-            Doctrack
-          </span>
-        </Link>
+        {/* Figma Logo (#11:7789) & Collapse Button */}
+        <div
+          className={cn(
+            "flex items-center pt-6 pb-4 transition-all duration-200",
+            isCollapsed
+              ? "flex-col gap-3 px-2 justify-center"
+              : "justify-between px-4"
+          )}
+        >
+          {/* Brand Logo & Title */}
+          <Link
+            href="/"
+            onClick={() => setIsMobileOpen(false)}
+            className={cn(
+              "flex items-center gap-3.5 group min-w-0",
+              isCollapsed && "justify-center"
+            )}
+            title="Doctrack Ana Sayfa"
+          >
+            <div className="h-[26px] w-[34px] shrink-0 flex items-center justify-center">
+              <img
+                src="/images/figma/nav-logo.svg"
+                alt="Doctrack Logo"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            {!isCollapsed && (
+              <span className="text-[24px] font-medium tracking-[-0.3px] text-white leading-[33.6px] truncate">
+                Doctrack
+              </span>
+            )}
+          </Link>
+
+          {/* Collapse / Expand Toggle Button */}
+          <button
+            type="button"
+            onClick={toggleCollapse}
+            className={cn(
+              "hidden md:flex size-8 items-center justify-center rounded-lg text-[#CDD5CF] hover:text-white hover:bg-[#2D3A32] transition-colors cursor-pointer",
+              isCollapsed ? "mt-1" : ""
+            )}
+            title={isCollapsed ? "Menüyü Genişlet (Ctrl+B)" : "Menüyü Daralt (Ctrl+B)"}
+            aria-label="Menü Daralt / Genişlet"
+          >
+            {isCollapsed ? (
+              <PanelLeftOpen className="size-4 text-[#9AB395]" />
+            ) : (
+              <PanelLeftClose className="size-4" />
+            )}
+          </button>
+        </div>
 
         {/* Navigation Items (#11:7794) */}
-        <nav className="space-y-1 px-4 py-2">
+        <nav className={cn("space-y-1 py-2", isCollapsed ? "px-2" : "px-4")}>
           {navItems.map((item) => {
             const isBelgelerChild = [
               "/belgeler",
@@ -111,15 +158,25 @@ export default function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
+                onClick={() => setIsMobileOpen(false)}
+                title={isCollapsed ? item.name : undefined}
                 className={cn(
-                  "flex items-center h-[46px] rounded-[10px] px-4 transition-all duration-150 group text-[15px] font-medium leading-[21px]",
+                  "relative flex items-center h-[46px] rounded-[10px] transition-all duration-150 group text-[15px] font-medium leading-[21px]",
+                  isCollapsed
+                    ? "justify-center w-[46px] mx-auto px-0"
+                    : "px-4",
                   isActive
                     ? "bg-[#2d3a32] text-white font-medium"
                     : "text-[#cdd5cf] hover:text-white hover:bg-[#2d3a32]/40"
                 )}
               >
                 {/* SVG Icon or Lucide Icon */}
-                <div className="size-[20px] shrink-0 mr-3.5 flex items-center justify-center">
+                <div
+                  className={cn(
+                    "size-[20px] shrink-0 flex items-center justify-center",
+                    !isCollapsed && "mr-3.5"
+                  )}
+                >
                   {item.iconSrc ? (
                     <img
                       src={item.iconSrc}
@@ -140,12 +197,17 @@ export default function Sidebar() {
                   ) : null}
                 </div>
 
-                <span className="truncate">{item.name}</span>
+                {!isCollapsed && <span className="truncate">{item.name}</span>}
 
                 {/* Figma Yeşil Aktif Noktası (#3f8f55) */}
                 {isActive && (
                   <span
-                    className="ml-auto h-2 w-2 rounded-full shrink-0 shadow-2xs"
+                    className={cn(
+                      "rounded-full shrink-0 shadow-2xs",
+                      isCollapsed
+                        ? "absolute right-2 top-2 size-2"
+                        : "ml-auto size-2"
+                    )}
                     style={{ backgroundColor: "#3f8f55" }}
                   />
                 )}
@@ -156,11 +218,20 @@ export default function Sidebar() {
       </div>
 
       {/* ── Figma Bottom Card (#11:7836 "Button - Klinik seç") ── */}
-      <div className="relative z-10 px-4 pb-5 pt-2" ref={menuRef}>
+      <div
+        className={cn(
+          "relative z-10 pb-5 pt-2 transition-all duration-200",
+          isCollapsed ? "px-2" : "px-4"
+        )}
+        ref={menuRef}
+      >
         {/* Profile / Switcher Popover Menu */}
         {menuOpen && (
           <div
-            className="absolute bottom-full left-4 right-4 mb-2 z-50 rounded-2xl p-2.5 shadow-2xl text-xs space-y-1.5 animate-in fade-in zoom-in-95 duration-150 text-white"
+            className={cn(
+              "absolute bottom-full mb-2 z-50 rounded-2xl p-2.5 shadow-2xl text-xs space-y-1.5 animate-in fade-in zoom-in-95 duration-150 text-white",
+              isCollapsed ? "left-2 w-[240px]" : "left-4 right-4"
+            )}
             style={{
               backgroundColor: "#16261f",
               border: "1px solid #2e3832",
@@ -238,20 +309,30 @@ export default function Sidebar() {
           </div>
         )}
 
-        {/* The Exact Figma Klinik Seç Button */}
+        {/* The Exact Figma Klinik Seç Button (Collapsible) */}
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="w-full h-[66px] rounded-[14px] flex items-center px-3 gap-3 transition-colors cursor-pointer text-left group"
+          className={cn(
+            "rounded-[14px] flex items-center transition-all cursor-pointer text-left group",
+            isCollapsed
+              ? "w-[48px] h-[48px] mx-auto justify-center p-1"
+              : "w-full h-[66px] px-3 gap-3"
+          )}
           style={{
             backgroundColor: "rgba(28, 36, 31, 0.85)",
             border: "1px solid #2e3832",
             backdropFilter: "blur(8px)",
           }}
-          title="Klinik ve Doktor Profilini Değiştir"
+          title={isCollapsed ? `${user.clinicName || "Açıkkalın Diş Kliniği"} • Profil` : "Klinik ve Doktor Profilini Değiştir"}
         >
-          {/* Clinic Logo Image from Figma (#11:7837) */}
-          <div className="size-[40px] rounded-[8px] overflow-hidden shrink-0 bg-[#0f110b]">
+          {/* Clinic Logo Image */}
+          <div
+            className={cn(
+              "rounded-[8px] overflow-hidden shrink-0 bg-[#0f110b]",
+              isCollapsed ? "size-[36px]" : "size-[40px]"
+            )}
+          >
             <img
               src="/images/figma/clinic-logo.png"
               alt="Açıkkalın Diş Kliniği"
@@ -259,26 +340,30 @@ export default function Sidebar() {
             />
           </div>
 
-          <div className="min-w-0 flex-1">
-            <p
-              suppressHydrationWarning
-              className="text-[13px] font-semibold text-white truncate leading-normal"
-            >
-              {user.clinicName || "Açıkkalın Diş Kliniği"}
-            </p>
-            <p className="text-[12px] font-normal text-[#c3ccc5] truncate leading-normal">
-              Klinik Yönetimi
-            </p>
-          </div>
+          {!isCollapsed && (
+            <>
+              <div className="min-w-0 flex-1">
+                <p
+                  suppressHydrationWarning
+                  className="text-[13px] font-semibold text-white truncate leading-normal"
+                >
+                  {user.clinicName || "Açıkkalın Diş Kliniği"}
+                </p>
+                <p className="text-[12px] font-normal text-[#c3ccc5] truncate leading-normal">
+                  Klinik Yönetimi
+                </p>
+              </div>
 
-          {/* Figma Chevron Dropdown Icon (#11:7841) */}
-          <div className="size-[18px] shrink-0 opacity-80 group-hover:opacity-100 transition-opacity">
-            <img
-              src="/images/figma/nav-chevron.svg"
-              alt="Chevron"
-              className={cn("size-full transition-transform duration-200", menuOpen ? "rotate-180" : "")}
-            />
-          </div>
+              {/* Figma Chevron Dropdown Icon */}
+              <div className="size-[18px] shrink-0 opacity-80 group-hover:opacity-100 transition-opacity">
+                <img
+                  src="/images/figma/nav-chevron.svg"
+                  alt="Chevron"
+                  className={cn("size-full transition-transform duration-200", menuOpen ? "rotate-180" : "")}
+                />
+              </div>
+            </>
+          )}
         </button>
       </div>
     </aside>

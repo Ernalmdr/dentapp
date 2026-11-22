@@ -5,11 +5,14 @@ import { usePathname } from "next/navigation";
 import Sidebar from "@/components/layout/Sidebar";
 import TopBar from "@/components/layout/TopBar";
 import { AuthProvider } from "@/lib/auth-context";
+import { SidebarProvider, useSidebar } from "@/lib/sidebar-context";
 import { DoctorProfileModal } from "@/components/modals/DoctorProfileModal";
+import { cn } from "@/lib/utils";
 
 function AppShellInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAuthPage = pathname === "/login" || pathname === "/register";
+  const { isCollapsed, isMobileOpen, toggleMobile } = useSidebar();
 
   if (isAuthPage) {
     return (
@@ -21,12 +24,27 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex h-full min-h-screen w-full bg-[#F3F0EA] dark:bg-[#0F1612]">
-      {/* Fixed Left Sidebar (248px Figma Width) */}
+      {/* Mobile Backdrop Overlay */}
+      {isMobileOpen && (
+        <div
+          onClick={toggleMobile}
+          className="fixed inset-0 z-30 bg-black/50 backdrop-blur-xs md:hidden transition-opacity"
+          aria-hidden="true"
+        />
+      )}
+
+      {/* Collapsible Left Sidebar (72px / 248px) */}
       <Sidebar />
 
-      {/* Main Content Area */}
-      <div className="flex flex-1 flex-col ml-[248px] min-w-0 app-main-content relative overflow-x-hidden min-h-screen">
-        {/* Figma Arka Plan Diş / Klinik İllüstrasyonu (Her sayfada aynı Figma koordinatında) */}
+      {/* Main Content Area with Dynamic Margin */}
+      <div
+        className={cn(
+          "flex flex-1 flex-col min-w-0 app-main-content relative overflow-x-hidden min-h-screen transition-[margin] duration-300 ease-in-out",
+          isCollapsed ? "md:ml-[72px]" : "md:ml-[248px]",
+          "ml-0"
+        )}
+      >
+        {/* Figma Arka Plan Diş / Klinik İllüstrasyonu */}
         <div className="absolute right-[220px] lg:right-[300px] top-[10px] w-[400px] h-[300px] pointer-events-none select-none z-0 opacity-90 overflow-hidden">
           <img
             src="/images/figma/banner-illustration.png"
@@ -47,18 +65,20 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
 export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <AuthProvider>
-      <Suspense
-        fallback={
-          <div className="flex h-full min-h-screen w-full bg-[#F3F0EA] dark:bg-[#0F1612]">
-            {children}
-          </div>
-        }
-      >
-        <AppShellInner>{children}</AppShellInner>
-      </Suspense>
+      <SidebarProvider>
+        <Suspense
+          fallback={
+            <div className="flex h-full min-h-screen w-full bg-[#F3F0EA] dark:bg-[#0F1612]">
+              {children}
+            </div>
+          }
+        >
+          <AppShellInner>{children}</AppShellInner>
+        </Suspense>
 
-      {/* Global Doctor Profile Modal */}
-      <DoctorProfileModal />
+        {/* Global Doctor Profile Modal */}
+        <DoctorProfileModal />
+      </SidebarProvider>
     </AuthProvider>
   );
 }

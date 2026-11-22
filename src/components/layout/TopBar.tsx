@@ -1,37 +1,64 @@
 "use client";
 
-import { Search, Bell, LayoutGrid, Plus } from "lucide-react";
+import { Search, Bell, LayoutGrid, Plus, PanelLeft, Menu } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { useModal } from "@/components/modals/ModalContext";
 import { NotificationsPopover } from "@/components/modals/NotificationsPopover";
 import { ShortcutsPopover } from "@/components/modals/ShortcutsPopover";
 import { useAuth } from "@/lib/auth-context";
+import { useSidebar } from "@/lib/sidebar-context";
 
 export default function TopBar() {
   const { openCommandPalette, toggleNotifications, toggleShortcuts, openAppointmentModal } = useModal();
   const { user, openProfileModal } = useAuth();
+  const { isCollapsed, toggleCollapse, toggleMobile } = useSidebar();
 
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between px-6 md:px-8 backdrop-blur-md transition-colors bg-[#F3F0EA]/92 dark:bg-[#0E1511]/92 border-b border-[#E6E1D8] dark:border-[#243B2F]">
-      {/* Search Bar - Styled to match Figma Neutral/Surface #FBFAF7 and Border #E6E1D8 */}
-      <div className="relative w-full max-w-md">
+      {/* Left Area: Toggle + Search Bar */}
+      <div className="flex items-center gap-3 w-full max-w-lg">
+        {/* Desktop Sidebar Toggle Button */}
         <button
           type="button"
-          onClick={openCommandPalette}
-          className="w-full flex items-center justify-between h-10 rounded-xl px-3.5 text-sm shadow-2xs hover:border-[#1F3327] dark:hover:border-[#3F8F55] transition-all cursor-pointer group bg-[#FBFAF7] dark:bg-[#15221B] border border-[#E6E1D8] dark:border-[#243B2F] text-[#5F665F] dark:text-[#ECF3EE]"
+          onClick={toggleCollapse}
+          className="hidden md:flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#FBFAF7] dark:bg-[#15221B] border border-[#E6E1D8] dark:border-[#243B2F] text-[#3F4540] dark:text-[#ECF3EE] hover:bg-[#EEEBE4] dark:hover:bg-[#1D3328] transition-colors cursor-pointer shadow-2xs"
+          title={isCollapsed ? "Menüyü Genişlet (Ctrl+B)" : "Menüyü Daralt (Ctrl+B)"}
+          aria-label="Menü Boyutu"
         >
-          <div className="flex items-center gap-2.5">
-            <Search className="h-4 w-4 text-[#8A8F89] dark:text-[#6C8578]" />
-            <span className="text-xs sm:text-sm text-[#8A8F89] dark:text-[#5E7569]">
-              Hasta, randevu veya tedavi ara...
-            </span>
-          </div>
-          <kbd
-            className="pointer-events-none rounded px-2 py-0.5 text-[10px] font-mono font-medium shadow-2xs bg-[#EEEBE4] dark:bg-[#1A2C23] border border-[#E6E1D8] dark:border-[#243B2F] text-[#5F665F] dark:text-[#A2B5A8]"
-          >
-            ⌘K
-          </kbd>
+          <PanelLeft className="h-4 w-4" />
         </button>
+
+        {/* Mobile Hamburger Toggle Button */}
+        <button
+          type="button"
+          onClick={toggleMobile}
+          className="md:hidden flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#FBFAF7] dark:bg-[#15221B] border border-[#E6E1D8] dark:border-[#243B2F] text-[#3F4540] dark:text-[#ECF3EE] hover:bg-[#EEEBE4] dark:hover:bg-[#1D3328] transition-colors cursor-pointer shadow-2xs"
+          title="Menüyü Aç"
+          aria-label="Mobil Menü"
+        >
+          <Menu className="h-4 w-4" />
+        </button>
+
+        {/* Search Bar - Styled to match Figma Neutral/Surface #FBFAF7 and Border #E6E1D8 */}
+        <div className="relative w-full">
+          <button
+            type="button"
+            onClick={openCommandPalette}
+            className="w-full flex items-center justify-between h-10 rounded-xl px-3.5 text-sm shadow-2xs hover:border-[#1F3327] dark:hover:border-[#3F8F55] transition-all cursor-pointer group bg-[#FBFAF7] dark:bg-[#15221B] border border-[#E6E1D8] dark:border-[#243B2F] text-[#5F665F] dark:text-[#ECF3EE]"
+          >
+            <div className="flex items-center gap-2.5">
+              <Search className="h-4 w-4 text-[#8A8F89] dark:text-[#6C8578]" />
+              <span className="text-xs sm:text-sm text-[#8A8F89] dark:text-[#5E7569]">
+                Hasta, randevu veya tedavi ara...
+              </span>
+            </div>
+            <kbd
+              className="pointer-events-none rounded px-2 py-0.5 text-[10px] font-mono font-medium shadow-2xs bg-[#EEEBE4] dark:bg-[#1A2C23] border border-[#E6E1D8] dark:border-[#243B2F] text-[#5F665F] dark:text-[#A2B5A8]"
+            >
+              ⌘K
+            </kbd>
+          </button>
+        </div>
       </div>
 
       {/* Right Actions */}
