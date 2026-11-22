@@ -1,0 +1,1178 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import {
+  Search,
+  Plus,
+  Calendar,
+  List,
+  LayoutGrid,
+  MoreHorizontal,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  Phone,
+  User,
+  Check,
+  Trash2,
+  Edit,
+  Eye,
+  CalendarPlus,
+  Filter,
+  FileText,
+  AlertCircle,
+} from "lucide-react";
+import { patients as initialPatients } from "@/lib/mock-data";
+import { Patient, PatientStatus } from "@/lib/types";
+import { cn, formatDate, formatPhone } from "@/lib/utils";
+import StatusBadge from "@/components/ui/StatusBadge";
+import EmptyState from "@/components/ui/EmptyState";
+import BannerHeader from "@/components/layout/BannerHeader";
+import { useModal } from "@/components/modals/ModalContext";
+
+type TabKey = "all" | "Aktif Tedavi" | "Takip" | "Arşiv";
+type ViewMode = "list" | "grid";
+
+interface TabItem {
+  key: TabKey;
+  label: string;
+  count: string;
+}
+
+const TABS: TabItem[] = [
+  { key: "all", label: "Tüm Hastalar", count: "1.248" },
+  { key: "Aktif Tedavi", label: "Aktif Tedavi", count: "312" },
+  { key: "Takip", label: "Takip", count: "164" },
+  { key: "Arşiv", label: "Arşiv", count: "72" },
+];
+
+const AVATAR_COLORS = [
+  { bg: "bg-[#E6F4EA]", text: "text-[#137333]" }, // sage/green
+  { bg: "bg-[#F3E8FD]", text: "text-[#7B1FA2]" }, // purple
+  { bg: "bg-[#E8F0FE]", text: "text-[#1967D2]" }, // blue
+  { bg: "bg-[#FEF7E0]", text: "text-[#B06000]" }, // amber
+  { bg: "bg-[#E0F2F1]", text: "text-[#00796B]" }, // teal
+  { bg: "bg-[#FCE8E6]", text: "text-[#C5221F]" }, // rose
+];
+
+function getAvatarStyle(id: string) {
+  const num = parseInt(id, 10);
+  const idx = isNaN(num) ? 0 : (num - 1) % AVATAR_COLORS.length;
+  return AVATAR_COLORS[Math.max(0, idx)];
+}
+
+function getInitials(firstName: string, lastName: string): string {
+  const f = firstName?.trim().charAt(0) || "";
+  const l = lastName?.trim().charAt(0) || "";
+  return (f + l).toLocaleUpperCase("tr-TR");
+}
+
+export default function HastalarPage() {
+  const { openAppointmentModal } = useModal();
+  const [patientList, setPatientList] = useState<Patient[]>(initialPatients);
+  const [activeTab, setActiveTab] = useState<TabKey>("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [treatmentFilter, setTreatmentFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [activeMenuId, setActiveMenuId] = useState<string | null>(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [previewPatient, setPreviewPatient] = useState<Patient | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
+
+  // New Patient Form State
+  const [newPatient, setNewPatient] = useState({
+    firstName: "",
+    lastName: "",
+    tcNo: "",
+    phone: "+90",
+    gender: "Erkek" as "Erkek" | "Kadın",
+    age: 30,
+    status: "Aktif Tedavi" as PatientStatus,
+    lastTreatment: "İmplant",
+  });
+
+  const showNotification = (msg: string) => {
+    setFeedbackMessage(msg);
+    setTimeout(() => {
+      setFeedbackMessage(null);
+    }, 3500);
+  };
+
+  // Filter Logic
+  const filteredPatients = useMemo(() => {
+    return patientList.filter((patient) => {
+      // Tab filter
+      if (activeTab !== "all" && patient.status !== activeTab) {
+        return false;
+      }
+
+      // Search Query filter
+      if (searchQuery.trim()) {
+        const query = searchQuery.trim().toLocaleLowerCase("tr-TR");
+        const fullName = `${patient.firstName} ${patient.lastName}`.toLocaleLowerCase("tr-TR");
+        const tc = patient.tcNo || "";
+        const phone = patient.phone || "";
+        const treatment = (patient.lastTreatment || "").toLocaleLowerCase("tr-TR");
+
+        const matches =
+          fullName.includes(query) ||
+          tc.includes(query) ||
+          phone.includes(query) ||
+          treatment.includes(query);
+
+        if (!matches) return false;
+      }
+
+      // Treatment Dropdown filter
+      if (treatmentFilter && patient.lastTreatment !== treatmentFilter) {
+        return false;
+      }
+
+      // Status Dropdown filter
+      if (statusFilter && patient.status !== statusFilter) {
+        return false;
+      }
+
+      // Registration Date filter
+      if (dateFilter) {
+        const regDate = patient.registrationDate; // YYYY-MM-DD
+        if (dateFilter === "eylul-2026" && !regDate.startsWith("2026-09")) {
+          return false;
+        }
+        if (dateFilter === "agustos-2026" && !regDate.startsWith("2026-08")) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }, [patientList, activeTab, searchQuery, treatmentFilter, statusFilter, dateFilter]);
+
+  // Selection handlers
+  const isAllSelected =
+    filteredPatients.length > 0 &&
+    filteredPatients.every((p) => selectedIds.includes(p.id));
+
+  const toggleSelectAll = () => {
+    if (isAllSelected) {
+      setSelectedIds([]);
+    } else {
+      setSelectedIds(filteredPatients.map((p) => p.id));
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  // Reset all filters
+  const resetFilters = () => {
+    setSearchQuery("");
+    setTreatmentFilter("");
+    setStatusFilter("");
+    setDateFilter("");
+    setActiveTab("all");
+  };
+
+  const hasActiveFilters =
+    searchQuery !== "" ||
+    treatmentFilter !== "" ||
+    statusFilter !== "" ||
+    dateFilter !== "" ||
+    activeTab !== "all";
+
+  // Create Patient Handler
+  const handleCreatePatient = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPatient.firstName.trim() || !newPatient.lastName.trim() || !newPatient.tcNo.trim()) {
+      alert("Lütfen gerekli alanları doldurunuz.");
+      return;
+    }
+
+    const created: Patient = {
+      id: String(Date.now()),
+      hsNo: `HS-${10250 + patientList.length + 1}`,
+      firstName: newPatient.firstName.trim(),
+      lastName: newPatient.lastName.trim(),
+      gender: newPatient.gender,
+      age: Number(newPatient.age) || 30,
+      birthDate: "1994-01-01",
+      tcNo: newPatient.tcNo.trim(),
+      phone: newPatient.phone.trim(),
+      status: newPatient.status,
+      lastTreatment: newPatient.lastTreatment,
+      registrationDate: new Date().toISOString().split("T")[0],
+      dentist: "Dr. Selin Yılmaz",
+      city: "İstanbul",
+      district: "Kadıköy",
+      country: "Türkiye",
+    };
+
+    setPatientList([created, ...patientList]);
+    setIsAddModalOpen(false);
+    setNewPatient({
+      firstName: "",
+      lastName: "",
+      tcNo: "",
+      phone: "+90",
+      gender: "Erkek",
+      age: 30,
+      status: "Aktif Tedavi",
+      lastTreatment: "İmplant",
+    });
+    showNotification(`${created.firstName} ${created.lastName} başarıyla hasta listesine eklendi.`);
+  };
+
+  // Delete Patient Handler
+  const handleDeletePatient = (id: string) => {
+    const p = patientList.find((item) => item.id === id);
+    if (confirm(`${p?.firstName} ${p?.lastName} kaydını silmek istediğinize emin misiniz?`)) {
+      setPatientList((prev) => prev.filter((item) => item.id !== id));
+      setSelectedIds((prev) => prev.filter((item) => item !== id));
+      setActiveMenuId(null);
+      showNotification("Hasta kaydı silindi.");
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Toast Notification */}
+      {feedbackMessage && (
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-xl bg-[#2D4A3E] px-4 py-3 text-sm font-medium text-white shadow-lg animate-in fade-in slide-in-from-bottom-3">
+          <Check className="h-4 w-4 text-[#7CC9A6]" />
+          <span>{feedbackMessage}</span>
+        </div>
+      )}
+
+      {/* 1. Banner Header */}
+      <BannerHeader
+        title="Hasta Listesi"
+        description="Klinik hastalarınızı görüntüleyin, yönetin ve hasta bilgilerine tek yerden hızlıca ulaşın."
+        breadcrumbs={[
+          { label: "Anasayfa", href: "/" },
+          { label: "Hastalar" },
+        ]}
+      />
+
+      {/* 2. Filter Tabs Row */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        {/* Horizontal Pill-style Tabs */}
+        <div className="flex flex-wrap items-center gap-2">
+          {TABS.map((tab) => {
+            const isActive = activeTab === tab.key;
+            return (
+              <button
+                key={tab.key}
+                type="button"
+                onClick={() => setActiveTab(tab.key)}
+                className={cn(
+                  "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-150",
+                  isActive
+                    ? "bg-[#2D4A3E] text-white shadow-sm ring-1 ring-[#2D4A3E]"
+                    : "border border-gray-200 bg-white text-gray-700 hover:border-gray-300 hover:bg-gray-50/80"
+                )}
+              >
+                <span>{tab.label}</span>
+                <span
+                  className={cn(
+                    "rounded-full px-2 py-0.5 text-xs font-semibold",
+                    isActive
+                      ? "bg-white/20 text-white"
+                      : "bg-gray-100 text-gray-500"
+                  )}
+                >
+                  {tab.count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Far Right: "+ Yeni Hasta Ekle" Button */}
+        <button
+          type="button"
+          onClick={() => setIsAddModalOpen(true)}
+          className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2D4A3E] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#3A5F50] hover:shadow focus:outline-none focus:ring-2 focus:ring-[#2D4A3E]/30"
+        >
+          <Plus className="h-4 w-4" strokeWidth={2.5} />
+          <span>Yeni Hasta Ekle</span>
+        </button>
+      </div>
+
+      {/* 3. Search & Filter Bar */}
+      <div className="flex flex-col gap-3 rounded-xl border border-gray-200/80 bg-white p-3 shadow-sm sm:flex-row sm:items-center">
+        {/* Search Input */}
+        <div className="relative flex-1">
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Hasta adı, TC, telefon..."
+            className="h-10 w-full rounded-lg border border-gray-200 bg-[#FAFAFA] pl-10 pr-9 text-sm text-gray-800 placeholder-gray-400 outline-none transition-colors focus:border-[#2D4A3E] focus:bg-white focus:ring-1 focus:ring-[#2D4A3E]"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
+        </div>
+
+        {/* Tedavi Türü Dropdown */}
+        <div className="w-full sm:w-44">
+          <select
+            value={treatmentFilter}
+            onChange={(e) => setTreatmentFilter(e.target.value)}
+            className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none transition-colors hover:border-gray-300 focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+          >
+            <option value="">Tedavi Türü</option>
+            <option value="İmplant">İmplant</option>
+            <option value="Ortodonti">Ortodonti</option>
+            <option value="Kanal Tedavisi">Kanal Tedavisi</option>
+            <option value="Dolgu">Dolgu</option>
+            <option value="Diş Çekimi">Diş Çekimi</option>
+          </select>
+        </div>
+
+        {/* Durum Dropdown */}
+        <div className="w-full sm:w-36">
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="h-10 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm text-gray-700 outline-none transition-colors hover:border-gray-300 focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+          >
+            <option value="">Durum</option>
+            <option value="Aktif Tedavi">Aktif Tedavi</option>
+            <option value="Takip">Takip</option>
+            <option value="Tamamlandı">Tamamlandı</option>
+            <option value="Arşiv">Arşiv</option>
+          </select>
+        </div>
+
+        {/* Kayıt Tarihi Dropdown with Calendar Icon */}
+        <div className="relative w-full sm:w-44">
+          <Calendar className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+          <select
+            value={dateFilter}
+            onChange={(e) => setDateFilter(e.target.value)}
+            className="h-10 w-full appearance-none rounded-lg border border-gray-200 bg-white pl-9 pr-7 text-sm text-gray-700 outline-none transition-colors hover:border-gray-300 focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+          >
+            <option value="">Kayıt Tarihi</option>
+            <option value="eylul-2026">Eylül 2026</option>
+            <option value="agustos-2026">Ağustos 2026</option>
+          </select>
+          <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-gray-400">
+            ▼
+          </div>
+        </div>
+
+        {/* Reset Filters Pill (if active) */}
+        {hasActiveFilters && (
+          <button
+            type="button"
+            onClick={resetFilters}
+            className="flex items-center gap-1 rounded-lg px-2.5 py-2 text-xs font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition-colors"
+            title="Filtreleri Temizle"
+          >
+            <X className="h-3.5 w-3.5" />
+            <span>Temizle</span>
+          </button>
+        )}
+
+        {/* Far Right: List View / Grid View Toggle */}
+        <div className="flex items-center rounded-lg border border-gray-200 bg-gray-50/80 p-0.5">
+          <button
+            type="button"
+            onClick={() => setViewMode("list")}
+            className={cn(
+              "rounded-md p-1.5 transition-colors",
+              viewMode === "list"
+                ? "bg-white text-[#2D4A3E] shadow-sm"
+                : "text-gray-400 hover:text-gray-600"
+            )}
+            title="Liste Görünümü"
+            aria-label="Liste Görünümü"
+          >
+            <List className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewMode("grid")}
+            className={cn(
+              "rounded-md p-1.5 transition-colors",
+              viewMode === "grid"
+                ? "bg-white text-[#2D4A3E] shadow-sm"
+                : "text-gray-400 hover:text-gray-600"
+            )}
+            title="Kart Görünümü"
+            aria-label="Kart Görünümü"
+          >
+            <LayoutGrid className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Selected Items Bulk Actions Bar (if any selected) */}
+      {selectedIds.length > 0 && (
+        <div className="flex items-center justify-between rounded-xl bg-[#2D4A3E] px-4 py-2.5 text-sm text-white shadow-sm animate-in fade-in">
+          <div className="flex items-center gap-3">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-xs font-semibold">
+              {selectedIds.length}
+            </span>
+            <span className="font-medium">hasta seçildi</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                showNotification(`${selectedIds.length} hastaya toplu SMS gönderildi.`);
+                setSelectedIds([]);
+              }}
+              className="rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+            >
+              Toplu Mesaj
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                showNotification(`${selectedIds.length} hastanın durumu güncellendi.`);
+                setSelectedIds([]);
+              }}
+              className="rounded-lg bg-white/10 px-3 py-1.5 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+            >
+              Durum Güncelle
+            </button>
+            <button
+              type="button"
+              onClick={() => setSelectedIds([])}
+              className="rounded-lg p-1 text-white/70 hover:bg-white/10 hover:text-white transition-colors"
+              title="Seçimi İptal Et"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 4. Patient Table / Grid View */}
+      {filteredPatients.length === 0 ? (
+        <div className="rounded-xl border border-gray-200/80 bg-white shadow-sm">
+          <EmptyState
+            message="Arama kriterlerinize uygun hasta bulunamadı."
+            icon="default"
+          />
+        </div>
+      ) : viewMode === "list" ? (
+        /* TABLE VIEW */
+        <div className="overflow-hidden rounded-xl border border-gray-200/80 bg-white shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-gray-100 bg-[#FAF8F5]/80 text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                  <th className="w-12 px-4 py-3.5 text-center">
+                    <input
+                      type="checkbox"
+                      checked={isAllSelected}
+                      onChange={toggleSelectAll}
+                      className="h-4 w-4 rounded border-gray-300 text-[#2D4A3E] focus:ring-[#2D4A3E] cursor-pointer"
+                    />
+                  </th>
+                  <th className="px-4 py-3.5">HASTA</th>
+                  <th className="px-4 py-3.5">TC KİMLİK NO</th>
+                  <th className="px-4 py-3.5">TELEFON</th>
+                  <th className="px-4 py-3.5">SON TEDAVİ</th>
+                  <th className="px-4 py-3.5">DURUM</th>
+                  <th className="px-4 py-3.5">KAYIT TARİHİ</th>
+                  <th className="w-12 px-4 py-3.5 text-right">
+                    <span className="sr-only">İşlemler</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 text-sm">
+                {filteredPatients.map((patient) => {
+                  const isChecked = selectedIds.includes(patient.id);
+                  const avatar = getAvatarStyle(patient.id);
+                  const initials = getInitials(patient.firstName, patient.lastName);
+                  const isMenuOpen = activeMenuId === patient.id;
+
+                  return (
+                    <tr
+                      key={patient.id}
+                      className={cn(
+                        "transition-colors group hover:bg-[#FAF8F5]/60",
+                        isChecked && "bg-[#F5F9F6]"
+                      )}
+                    >
+                      {/* Checkbox */}
+                      <td className="px-4 py-3.5 text-center">
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => toggleSelect(patient.id)}
+                          className="h-4 w-4 rounded border-gray-300 text-[#2D4A3E] focus:ring-[#2D4A3E] cursor-pointer"
+                        />
+                      </td>
+
+                      {/* Hasta Avatar & Info */}
+                      <td className="px-4 py-3.5">
+                        <div className="flex items-center gap-3">
+                          <div
+                            className={cn(
+                              "flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-bold text-xs shadow-sm",
+                              avatar.bg,
+                              avatar.text
+                            )}
+                          >
+                            {initials}
+                          </div>
+                          <div>
+                            <Link
+                              href={`/hastalar/${patient.id}`}
+                              className="block text-left font-semibold text-gray-900 group-hover:text-[#2D4A3E] transition-colors hover:underline"
+                            >
+                              {patient.firstName} {patient.lastName}
+                            </Link>
+                            <div className="text-xs text-gray-500">
+                              {patient.gender} · {patient.age}
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* TC Kimlik No */}
+                      <td className="px-4 py-3.5 font-mono text-xs text-gray-600 tracking-wide">
+                        {patient.tcNo}
+                      </td>
+
+                      {/* Telefon */}
+                      <td className="px-4 py-3.5 text-gray-600 whitespace-nowrap text-sm">
+                        {formatPhone(patient.phone)}
+                      </td>
+
+                      {/* Son Tedavi */}
+                      <td className="px-4 py-3.5 font-medium text-gray-800 text-sm">
+                        {patient.lastTreatment || "—"}
+                      </td>
+
+                      {/* Durum */}
+                      <td className="px-4 py-3.5">
+                        <StatusBadge status={patient.status} />
+                      </td>
+
+                      {/* Kayıt Tarihi */}
+                      <td className="px-4 py-3.5 text-gray-500 whitespace-nowrap text-sm">
+                        {formatDate(patient.registrationDate)}
+                      </td>
+
+                      {/* Three Dots Menu Button */}
+                      <td className="px-4 py-3.5 text-right relative">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setActiveMenuId(isMenuOpen ? null : patient.id)
+                          }
+                          className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+                          title="İşlemler"
+                          aria-label="İşlemler"
+                        >
+                          <MoreHorizontal className="h-5 w-5" />
+                        </button>
+
+                        {/* Dropdown Menu */}
+                        {isMenuOpen && (
+                          <>
+                            <div
+                              className="fixed inset-0 z-20"
+                              onClick={() => setActiveMenuId(null)}
+                            />
+                            <div className="absolute right-3 top-11 z-30 w-44 rounded-xl border border-gray-100 bg-white py-1.5 shadow-lg text-left text-xs animate-in fade-in">
+                              <Link
+                                href={`/hastalar/${patient.id}`}
+                                onClick={() => setActiveMenuId(null)}
+                                className="flex w-full items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+                              >
+                                <Eye className="h-3.5 w-3.5 text-gray-400" />
+                                <span>Hasta Kartını Aç</span>
+                              </Link>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setActiveMenuId(null);
+                                  openAppointmentModal(`${patient.firstName} ${patient.lastName}`);
+                                }}
+                                className="flex w-full items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+                              >
+                                <CalendarPlus className="h-3.5 w-3.5 text-gray-400" />
+                                <span>Yeni Randevu Ver</span>
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setActiveMenuId(null);
+                                  setPreviewPatient(patient);
+                                }}
+                                className="flex w-full items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+                              >
+                                <Edit className="h-3.5 w-3.5 text-gray-400" />
+                                <span>Düzenle</span>
+                              </button>
+                              <div className="my-1 border-t border-gray-100" />
+                              <button
+                                type="button"
+                                onClick={() => handleDeletePatient(patient.id)}
+                                className="flex w-full items-center gap-2 px-3 py-2 text-red-600 hover:bg-red-50 transition-colors"
+                              >
+                                <Trash2 className="h-3.5 w-3.5" />
+                                <span>Kaydı Sil</span>
+                              </button>
+                            </div>
+                          </>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* 5. Pagination (at bottom of table card) */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-100 px-6 py-4 bg-white">
+            {/* Left: Text */}
+            <p className="text-xs text-gray-500 font-medium">
+              1.248 hasta arasından 1 – {filteredPatients.length} görüntüleniyor
+            </p>
+
+            {/* Right: < 1 2 3 ... 250 > Navigation */}
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700 disabled:opacity-40 disabled:pointer-events-none transition-colors"
+                aria-label="Önceki Sayfa"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentPage(1)}
+                className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition-all",
+                  currentPage === 1
+                    ? "bg-[#2D4A3E] text-white shadow-sm"
+                    : "text-gray-600 hover:bg-gray-100"
+                )}
+              >
+                1
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentPage(2)}
+                className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all",
+                  currentPage === 2
+                    ? "bg-[#2D4A3E] text-white shadow-sm"
+                    : "text-gray-600 hover:bg-gray-100"
+                )}
+              >
+                2
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentPage(3)}
+                className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all",
+                  currentPage === 3
+                    ? "bg-[#2D4A3E] text-white shadow-sm"
+                    : "text-gray-600 hover:bg-gray-100"
+                )}
+              >
+                3
+              </button>
+
+              <span className="flex h-8 w-5 items-center justify-center text-xs text-gray-400">
+                ...
+              </span>
+
+              <button
+                type="button"
+                onClick={() => setCurrentPage(250)}
+                className={cn(
+                  "flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all",
+                  currentPage === 250
+                    ? "bg-[#2D4A3E] text-white shadow-sm"
+                    : "text-gray-600 hover:bg-gray-100"
+                )}
+              >
+                250
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.min(250, p + 1))}
+                disabled={currentPage === 250}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 hover:text-gray-700 disabled:opacity-40 disabled:pointer-events-none transition-colors"
+                aria-label="Sonraki Sayfa"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* GRID VIEW */
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredPatients.map((patient) => {
+              const avatar = getAvatarStyle(patient.id);
+              const initials = getInitials(patient.firstName, patient.lastName);
+              const isChecked = selectedIds.includes(patient.id);
+
+              return (
+                <div
+                  key={patient.id}
+                  className={cn(
+                    "relative flex flex-col justify-between rounded-xl border border-gray-200/80 bg-white p-5 shadow-sm transition-all hover:shadow-md",
+                    isChecked && "ring-2 ring-[#2D4A3E]"
+                  )}
+                >
+                  <div>
+                    {/* Top Header */}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={cn(
+                            "flex h-12 w-12 shrink-0 items-center justify-center rounded-full font-bold text-sm shadow-sm",
+                            avatar.bg,
+                            avatar.text
+                          )}
+                        >
+                          {initials}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900">
+                            {patient.firstName} {patient.lastName}
+                          </h3>
+                          <p className="text-xs text-gray-500">
+                            {patient.gender} · {patient.age} Yaş
+                          </p>
+                        </div>
+                      </div>
+                      <StatusBadge status={patient.status} />
+                    </div>
+
+                    {/* Meta Info */}
+                    <div className="mt-4 space-y-2 border-t border-gray-100 pt-3 text-xs text-gray-600">
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">TC Kimlik:</span>
+                        <span className="font-mono">{patient.tcNo}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Telefon:</span>
+                        <span>{formatPhone(patient.phone)}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Son Tedavi:</span>
+                        <span className="font-medium text-gray-800">
+                          {patient.lastTreatment || "—"}
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-400">Kayıt Tarihi:</span>
+                        <span>{formatDate(patient.registrationDate)}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Footer Action */}
+                  <div className="mt-4 flex items-center justify-between border-t border-gray-100 pt-3">
+                    <button
+                      type="button"
+                      onClick={() => toggleSelect(patient.id)}
+                      className="text-xs text-gray-500 hover:text-gray-700"
+                    >
+                      {isChecked ? "✓ Seçildi" : "+ Seç"}
+                    </button>
+                    <Link
+                      href={`/hastalar/${patient.id}`}
+                      className="rounded-lg bg-[#2D4A3E]/10 px-3 py-1.5 text-xs font-medium text-[#2D4A3E] hover:bg-[#2D4A3E] hover:text-white transition-colors"
+                    >
+                      Profili Görüntüle
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Pagination for Grid View */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border border-gray-200/80 bg-white px-6 py-4 shadow-sm">
+            <p className="text-xs text-gray-500 font-medium">
+              1.248 hasta arasından 1 – {filteredPatients.length} görüntüleniyor
+            </p>
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 disabled:opacity-40"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2D4A3E] text-xs font-semibold text-white shadow-sm"
+              >
+                1
+              </button>
+              <button
+                type="button"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-gray-600 hover:bg-gray-100"
+              >
+                2
+              </button>
+              <button
+                type="button"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-gray-600 hover:bg-gray-100"
+              >
+                3
+              </button>
+              <span className="flex h-8 w-5 items-center justify-center text-xs text-gray-400">
+                ...
+              </span>
+              <button
+                type="button"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-gray-600 hover:bg-gray-100"
+              >
+                250
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.min(250, p + 1))}
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: Yeni Hasta Ekle */}
+      {isAddModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs animate-in fade-in">
+          <div className="relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl animate-in zoom-in-95">
+            <div className="flex items-center justify-between border-b border-gray-100 pb-4">
+              <div>
+                <h2 className="text-lg font-bold text-gray-900">
+                  Yeni Hasta Kaydı
+                </h2>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  Klinik sistemine yeni hasta bilgilerini ekleyin.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsAddModalOpen(false)}
+                className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleCreatePatient} className="mt-4 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-gray-700">
+                    Ad *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={newPatient.firstName}
+                    onChange={(e) =>
+                      setNewPatient({ ...newPatient, firstName: e.target.value })
+                    }
+                    placeholder="Örn: Ahmet"
+                    className="mt-1 h-9 w-full rounded-lg border border-gray-200 px-3 text-sm outline-none focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700">
+                    Soyad *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={newPatient.lastName}
+                    onChange={(e) =>
+                      setNewPatient({ ...newPatient, lastName: e.target.value })
+                    }
+                    placeholder="Örn: Yılmaz"
+                    className="mt-1 h-9 w-full rounded-lg border border-gray-200 px-3 text-sm outline-none focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-gray-700">
+                    TC Kimlik No *
+                  </label>
+                  <input
+                    type="text"
+                    maxLength={11}
+                    required
+                    value={newPatient.tcNo}
+                    onChange={(e) =>
+                      setNewPatient({ ...newPatient, tcNo: e.target.value })
+                    }
+                    placeholder="11 haneli TC no"
+                    className="mt-1 h-9 w-full rounded-lg border border-gray-200 px-3 font-mono text-sm outline-none focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700">
+                    Telefon *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={newPatient.phone}
+                    onChange={(e) =>
+                      setNewPatient({ ...newPatient, phone: e.target.value })
+                    }
+                    placeholder="+905321234567"
+                    className="mt-1 h-9 w-full rounded-lg border border-gray-200 px-3 text-sm outline-none focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-gray-700">
+                    Cinsiyet
+                  </label>
+                  <select
+                    value={newPatient.gender}
+                    onChange={(e) =>
+                      setNewPatient({
+                        ...newPatient,
+                        gender: e.target.value as "Erkek" | "Kadın",
+                      })
+                    }
+                    className="mt-1 h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+                  >
+                    <option value="Erkek">Erkek</option>
+                    <option value="Kadın">Kadın</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700">
+                    Yaş
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    max={120}
+                    value={newPatient.age}
+                    onChange={(e) =>
+                      setNewPatient({
+                        ...newPatient,
+                        age: parseInt(e.target.value, 10) || 0,
+                      })
+                    }
+                    className="mt-1 h-9 w-full rounded-lg border border-gray-200 px-3 text-sm outline-none focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-gray-700">
+                    Tedavi Türü
+                  </label>
+                  <select
+                    value={newPatient.lastTreatment}
+                    onChange={(e) =>
+                      setNewPatient({
+                        ...newPatient,
+                        lastTreatment: e.target.value,
+                      })
+                    }
+                    className="mt-1 h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+                  >
+                    <option value="İmplant">İmplant</option>
+                    <option value="Ortodonti">Ortodonti</option>
+                    <option value="Kanal Tedavisi">Kanal Tedavisi</option>
+                    <option value="Dolgu">Dolgu</option>
+                    <option value="Diş Çekimi">Diş Çekimi</option>
+                    <option value="Protez">Protez</option>
+                    <option value="Kontrol">Kontrol</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-700">
+                    Durum
+                  </label>
+                  <select
+                    value={newPatient.status}
+                    onChange={(e) =>
+                      setNewPatient({
+                        ...newPatient,
+                        status: e.target.value as PatientStatus,
+                      })
+                    }
+                    className="mt-1 h-9 w-full rounded-lg border border-gray-200 bg-white px-3 text-sm outline-none focus:border-[#2D4A3E] focus:ring-1 focus:ring-[#2D4A3E]"
+                  >
+                    <option value="Aktif Tedavi">Aktif Tedavi</option>
+                    <option value="Takip">Takip</option>
+                    <option value="Tamamlandı">Tamamlandı</option>
+                    <option value="Arşiv">Arşiv</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="mt-6 flex items-center justify-end gap-3 border-t border-gray-100 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setIsAddModalOpen(false)}
+                  className="rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                >
+                  İptal
+                </button>
+                <button
+                  type="submit"
+                  className="rounded-lg bg-[#2D4A3E] px-4 py-2 text-sm font-medium text-white hover:bg-[#3A5F50] transition-colors shadow-sm"
+                >
+                  Hastayı Kaydet
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: Hasta Önizleme Kartı */}
+      {previewPatient && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs animate-in fade-in">
+          <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl animate-in zoom-in-95">
+            <button
+              type="button"
+              onClick={() => setPreviewPatient(null)}
+              className="absolute right-4 top-4 rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            {/* Profile Info */}
+            <div className="flex items-center gap-4 border-b border-gray-100 pb-4">
+              <div
+                className={cn(
+                  "flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-bold text-base shadow-sm",
+                  getAvatarStyle(previewPatient.id).bg,
+                  getAvatarStyle(previewPatient.id).text
+                )}
+              >
+                {getInitials(previewPatient.firstName, previewPatient.lastName)}
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">
+                  {previewPatient.firstName} {previewPatient.lastName}
+                </h3>
+                <p className="text-xs text-gray-500">
+                  {previewPatient.gender} · {previewPatient.age} Yaş · {previewPatient.hsNo}
+                </p>
+                <div className="mt-1">
+                  <StatusBadge status={previewPatient.status} />
+                </div>
+              </div>
+            </div>
+
+            {/* Detail Rows */}
+            <div className="mt-4 space-y-3 text-sm">
+              <div className="flex justify-between py-1 border-b border-gray-50">
+                <span className="text-gray-400 text-xs font-medium">TC Kimlik:</span>
+                <span className="font-mono text-xs font-semibold text-gray-800">
+                  {previewPatient.tcNo}
+                </span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-gray-50">
+                <span className="text-gray-400 text-xs font-medium">Telefon:</span>
+                <span className="text-xs text-gray-800">
+                  {formatPhone(previewPatient.phone)}
+                </span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-gray-50">
+                <span className="text-gray-400 text-xs font-medium">E-Posta:</span>
+                <span className="text-xs text-gray-800">
+                  {previewPatient.email || "—"}
+                </span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-gray-50">
+                <span className="text-gray-400 text-xs font-medium">Son Tedavi:</span>
+                <span className="text-xs font-semibold text-gray-800">
+                  {previewPatient.lastTreatment || "—"}
+                </span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-gray-50">
+                <span className="text-gray-400 text-xs font-medium">Sorumlu Hekim:</span>
+                <span className="text-xs text-gray-800">
+                  {previewPatient.dentist || "Dr. Selin Yılmaz"}
+                </span>
+              </div>
+              <div className="flex justify-between py-1 border-b border-gray-50">
+                <span className="text-gray-400 text-xs font-medium">Kayıt Tarihi:</span>
+                <span className="text-xs text-gray-800">
+                  {formatDate(previewPatient.registrationDate)}
+                </span>
+              </div>
+              <div className="flex justify-between py-1">
+                <span className="text-gray-400 text-xs font-medium">Şehir / İlçe:</span>
+                <span className="text-xs text-gray-800">
+                  {previewPatient.city} / {previewPatient.district || "—"}
+                </span>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="mt-6 flex items-center justify-end gap-2 border-t border-gray-100 pt-4">
+              <button
+                type="button"
+                onClick={() => setPreviewPatient(null)}
+                className="rounded-lg border border-gray-200 px-4 py-2 text-xs font-medium text-gray-700 hover:bg-gray-50"
+              >
+                Kapat
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setPreviewPatient(null);
+                  showNotification(`${previewPatient.firstName} için yeni randevu planlanıyor.`);
+                }}
+                className="rounded-lg bg-[#2D4A3E] px-4 py-2 text-xs font-medium text-white hover:bg-[#3A5F50] transition-colors shadow-sm"
+              >
+                Yeni Randevu Planla
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

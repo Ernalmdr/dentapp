@@ -1,26 +1,176 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:is(.dark, .dark *));
+
+/* ── Figma Exact Design System Tokens ── */
+:root,
+html.light {
+  color-scheme: light !important;
+
+  /* Ana yeşiller */
+  --green-900: #121815;
+  --green-800: #1F3327;
+  --green-700: #2D3A32;
+  --green-600: #34483B;
+  --green-500: #2F5A3D;
+  --green-400: #3F8F55;
+  --green-300: #B7C4B9;
+  --green-200: #C9DDC3;
+  --green-100: #DDEBD8;
+  --green-50: #E7EEE6;
+
+  /* Yan Panel (Sidebar) */
+  --sidebar-bg: #1A1B1A;
+  --sidebar-img-dark: #0F110B;
+  --sidebar-img-wave: #465C43;
+  --sidebar-img-hl: #9AB395;
+  --sidebar-text: #CDD5CF;
+  --sidebar-text-muted: #C3CCC5;
+  --sidebar-card-border: #2E3832;
+  --sidebar-card: rgba(28, 36, 31, 0.85);
+
+  /* Nötrler */
+  --neutral-bg: #F3F0EA;
+  --neutral-surface: #FBFAF7;
+  --neutral-white: #FFFFFF;
+  --neutral-soft: #EEEBE4;
+  --neutral-border: #E6E1D8;
+  --neutral-border-strong: #CFCAC0;
+  --neutral-track: #EDEAE4;
+  --neutral-grid: #ECE8E1;
+  --neutral-glass: rgba(255, 255, 255, 0.75);
+
+  /* Yazı */
+  --text-primary: #1C211E;
+  --text-secondary: #5F665F;
+  --text-body: #3F4540;
+  --text-placeholder: #8A8F89;
+  --text-icon-muted: #9AA29B;
+
+  /* Durum Renkleri */
+  --status-success-text: #2C6A3B;
+  --status-success-bg: #E2EEDD;
+  --status-success-dot: #3F8F55;
+
+  --status-warning-text: #7A5320;
+  --status-warning-bg: #F3EADB;
+  --status-warning-dot: #B07D47;
+
+  --status-neutral-text: #4F544F;
+  --status-neutral-bg: #ECEAE5;
+  --status-neutral-dot: #7C817C;
+
+  --status-info-text: #2C5282;
+  --status-info-bg: #E3ECF7;
+  --status-info-dot: #4A78B5;
+
+  --status-danger-text: #B3261E;
+  --status-danger-bg: #FBE9E7;
+  --status-danger-border: #F3D0CC;
+
+  /* Takvim Randevuları */
+  --event-yellow-bg: #F7E9C9;
+  --event-yellow-border: #E9D3A0;
+  --event-purple-bg: #E6DFF1;
+  --event-purple-border: #D3C7E6;
+  --event-green-bg: #DDE7D9;
+  --event-green-border: #C5D6C0;
+  --event-red-bg: #F4D9D6;
+  --event-red-border: #E8BFBA;
+
+  /* Diğer */
+  --highlight-price-bg: #F6EEDC;
+  --highlight-price-border: #EADFC8;
+  --canvas-bg: #D9D5CD;
+
+  /* Genel Layout Referansları */
+  --background: var(--neutral-bg);
+  --card-bg: var(--neutral-surface);
+  --foreground: var(--text-primary);
+  --text-secondary-var: var(--text-secondary);
+  --border: var(--neutral-border);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Dark Mode ── */
+html.dark {
+  color-scheme: dark !important;
+
+  --neutral-bg: #0F1612;
+  --neutral-surface: #14221A;
+  --neutral-white: #182820;
+  --neutral-soft: #1C3025;
+  --neutral-border: #233C2F;
+  --neutral-border-strong: #2D4C3C;
+  --neutral-track: #1C3025;
+  --neutral-grid: #1A2E23;
+  --neutral-glass: rgba(20, 34, 26, 0.75);
+
+  --text-primary: #F0F5F2;
+  --text-secondary: #95A89E;
+  --text-body: #CDD5CF;
+  --text-placeholder: #6F8278;
+  --text-icon-muted: #5A6D63;
+
+  --background: #0F1612;
+  --card-bg: #14221A;
+  --foreground: #F0F5F2;
+  --border: #233C2F;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Body & Main Layout ── */
+body,
+.app-main-content {
+  background-color: var(--neutral-bg) !important;
+  color: var(--text-primary) !important;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-serif,
+.font-heading {
+  font-family: var(--font-dm-serif), "DM Serif Display", Georgia, serif !important;
+}
+
+/* ── Utility Classes for Figma Design ── */
+.figma-page-bg {
+  background-color: #F3F0EA;
+}
+.figma-card {
+  background-color: #FBFAF7;
+  border: 1px solid #E6E1D8;
+}
+.figma-card-dark {
+  background-color: #1F3327;
+  border: 1px solid #1F3327;
+  color: #FFFFFF;
+}
+.figma-btn-primary {
+  background-color: #1F3327;
+  color: #FFFFFF;
+}
+.figma-btn-primary:hover {
+  background-color: #2D3A32;
+}
+.figma-btn-soft {
+  background-color: #EEEBE4;
+  color: #1C211E;
+}
+.figma-btn-soft:hover {
+  background-color: #E6E1D8;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CFCAC0;
+  border-radius: 9999px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #2D4C3C;
 }
