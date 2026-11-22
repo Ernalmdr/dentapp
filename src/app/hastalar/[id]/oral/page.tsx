@@ -489,7 +489,7 @@ export default function OralOdontogramPage() {
 
             {/* Odontogram Interactive Dental Arch Canvas */}
             <div className="overflow-x-auto py-2">
-              <div className="min-w-[620px] space-y-6">
+              <div className="min-w-[640px] space-y-6">
                 {/* Upper Jaw (Üst Çene) */}
                 <div>
                   <div className="mb-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase dark:text-[#A2B5A8]">
@@ -612,7 +612,7 @@ export default function OralOdontogramPage() {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
+              <table className="w-full min-w-[760px] text-left text-xs">
                 <thead className="border-b border-[#E6E1D8] bg-[#EEEBE4]/70 text-[11px] font-semibold uppercase tracking-wider text-[#5F665F] dark:border-[#243B2F] dark:bg-[#1A2C23] dark:text-[#A2B5A8]">
                   <tr>
                     <th className="py-3 pl-4 pr-2 w-10 text-center">
@@ -715,7 +715,7 @@ export default function OralOdontogramPage() {
         {/* ============================================================ */}
         {/* RIGHT COLUMN: Oral Bilgiler + Tedavi Listesi / Fiyatlar (4 cols) */}
         {/* ============================================================ */}
-        <div className="space-y-6 lg:col-span-4">
+        <div className="space-y-6 w-full lg:col-span-4">
           {/* Oral Bilgiler Panel */}
           <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
             <h2 className="mb-4 text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider border-b border-[#E6E1D8] pb-3 dark:text-[#ECF3EE] dark:border-[#243B2F]">

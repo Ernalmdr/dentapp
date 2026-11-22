@@ -50,11 +50,11 @@ export function CommandPalette() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-24 p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-12 sm:pt-24 p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
       onClick={closeCommandPalette}
     >
       <div
-        className="w-full max-w-xl rounded-2xl bg-white dark:bg-[#15221B] shadow-2xl border border-stone-200 dark:border-[#243B2F] overflow-hidden text-stone-900 dark:text-[#ECF3EE]"
+        className="w-[94%] max-h-[90vh] overflow-y-auto sm:max-w-lg md:max-w-xl mx-auto rounded-2xl bg-white dark:bg-[#15221B] shadow-2xl border border-stone-200 dark:border-[#243B2F] text-stone-900 dark:text-[#ECF3EE]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Bar */}

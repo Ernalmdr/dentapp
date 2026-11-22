@@ -15,6 +15,9 @@ import {
   RotateCcw,
   Check,
   AlertTriangle,
+  List,
+  CalendarDays,
+  User,
 } from "lucide-react";
 import { useModal } from "@/components/modals/ModalContext";
 import {
@@ -30,6 +33,8 @@ export default function RandevularPage() {
   const [selectedDentist, setSelectedDentist] = useState("Tüm Hekimler");
   const [selectedStatus, setSelectedStatus] = useState("Tümü");
   const [currentWeek, setCurrentWeek] = useState("24 – 29 Ekim 2026");
+  const [mobileDay, setMobileDay] = useState("Per");
+  const [mobileViewMode, setMobileViewMode] = useState<"agenda" | "grid">("agenda");
 
   // Selected Appointment for Detail / Full Edit / Delete
   const [selectedApt, setSelectedApt] = useState<CalendarAppointment | null>(null);
@@ -269,7 +274,7 @@ export default function RandevularPage() {
         className="flex flex-wrap items-center justify-between gap-4 rounded-2xl p-4 shadow-xs bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
       >
         {/* Week navigation */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <div
             className="flex items-center rounded-xl overflow-hidden shadow-2xs bg-white dark:bg-[#1A2B21] border border-[#E6E1D8] dark:border-[#243B2F]"
           >
@@ -308,6 +313,34 @@ export default function RandevularPage() {
           </button>
         </div>
 
+        {/* Mobile View Toggle Buttons (< md) */}
+        <div className="flex md:hidden items-center w-full sm:w-auto p-1 rounded-xl bg-[#EEEBE4] border border-[#E6E1D8] dark:bg-[#1A2B21] dark:border-[#243B2F]">
+          <button
+            type="button"
+            onClick={() => setMobileViewMode("agenda")}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              mobileViewMode === "agenda"
+                ? "bg-[#1F3327] text-white shadow-xs dark:bg-[#2D4C3C]"
+                : "text-[#5F665F] dark:text-[#A2B5A8] hover:text-[#1C211E] dark:hover:text-[#ECF3EE]"
+            }`}
+          >
+            <List className="h-3.5 w-3.5" />
+            <span>Ajanda (Google Takvim)</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileViewMode("grid")}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              mobileViewMode === "grid"
+                ? "bg-[#1F3327] text-white shadow-xs dark:bg-[#2D4C3C]"
+                : "text-[#5F665F] dark:text-[#A2B5A8] hover:text-[#1C211E] dark:hover:text-[#ECF3EE]"
+            }`}
+          >
+            <CalendarDays className="h-3.5 w-3.5" />
+            <span>Haftalık Izgara</span>
+          </button>
+        </div>
+
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
@@ -341,9 +374,257 @@ export default function RandevularPage() {
         </div>
       </div>
 
-      {/* Week Grid Calendar View */}
+      {/* MOBİL GÖRÜNÜM (< 768px, md öncesi) */}
+      <div className="flex md:hidden flex-col gap-4">
+        {mobileViewMode === "agenda" ? (
+          /* Google Takvim Ajanda Modu */
+          <div className="flex flex-col gap-3">
+            {/* Üstte Google Takvim tarzı yatay gün şeridi */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+              {days.map((day) => {
+                const isSelected = mobileDay === day.key;
+                const dayApts = filtered.filter((a) => a.day === day.key);
+                return (
+                  <button
+                    key={day.key}
+                    type="button"
+                    onClick={() => setMobileDay(day.key)}
+                    className={`flex flex-col items-center justify-center flex-1 min-w-[50px] py-2 px-1 rounded-2xl transition-all cursor-pointer border ${
+                      isSelected
+                        ? "bg-[#1F3327] text-white border-[#1F3327] shadow-sm dark:bg-[#2D4C3C] dark:border-[#345844]"
+                        : day.isToday
+                        ? "bg-[#DDEBD8]/60 border-[#C9DDC3] text-[#1F3327] dark:bg-[#1E3527] dark:border-[#2D4C3C] dark:text-[#9AB395]"
+                        : "bg-[#FBFAF7] border-[#E6E1D8] text-[#1C211E] dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE] hover:bg-[#EEEBE4] dark:hover:bg-[#1A2B21]"
+                    }`}
+                  >
+                    <span
+                      className={`text-[10px] font-bold uppercase tracking-wider ${
+                        isSelected ? "text-white/80" : "text-[#8A8F89] dark:text-[#A2B5A8]"
+                      }`}
+                    >
+                      {day.key}
+                    </span>
+                    <span className="text-base font-bold font-serif leading-tight mt-0.5">
+                      {day.date.split(" ")[0]}
+                    </span>
+                    <div className="flex items-center gap-1 mt-1">
+                      {day.isToday && (
+                        <span
+                          className={`text-[9px] font-bold px-1 rounded ${
+                            isSelected
+                              ? "bg-white/20 text-white"
+                              : "bg-[#2C6A3B]/10 text-[#2C6A3B] dark:text-[#4ADE80]"
+                          }`}
+                        >
+                          Bugün
+                        </span>
+                      )}
+                      {dayApts.length > 0 && !day.isToday && (
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full ${
+                            isSelected ? "bg-white" : "bg-[#2C6A3B] dark:bg-[#4ADE80]"
+                          }`}
+                        />
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Seçili Gün Başlığı & Randevu Özeti */}
+            <div className="flex items-center justify-between px-1 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="font-serif font-bold text-sm text-[#1C211E] dark:text-[#ECF3EE]">
+                  {days.find((d) => d.key === mobileDay)?.label}
+                </span>
+                <span className="text-[#8A8F89] dark:text-[#A2B5A8]">
+                  • {days.find((d) => d.key === mobileDay)?.date} 2026
+                </span>
+              </div>
+              <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#EEEBE4] border border-[#E6E1D8] text-[#5F665F] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#A2B5A8]">
+                {filtered.filter((a) => a.day === mobileDay).length} Randevu
+              </span>
+            </div>
+
+            {/* Altta seçili günün dikey saat ajandası */}
+            <div className="flex flex-col gap-2 rounded-2xl p-3 bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+              {timeSlots.map((time) => {
+                const appointment = filtered.find((a) => a.day === mobileDay && a.time === time);
+
+                return (
+                  <div key={time} className="flex items-start gap-3 py-1">
+                    {/* Sol tarafta saat damgası */}
+                    <div className="w-12 pt-2 shrink-0 text-right">
+                      <span className="font-mono text-xs font-bold text-[#8A8F89] dark:text-[#A2B5A8]">
+                        {time}
+                      </span>
+                    </div>
+
+                    {/* Sağ tarafta o saate ait randevu kartı veya boş saat dilimi */}
+                    <div className="flex-1 min-w-0">
+                      {appointment ? (
+                        <div
+                          onClick={() => handleOpenSelected(appointment)}
+                          className={`p-3 rounded-xl shadow-2xs border transition-all cursor-pointer hover:shadow-md ${getAppointmentCardClasses(
+                            appointment.status
+                          )}`}
+                        >
+                          <div className="flex items-center justify-between gap-2 mb-1">
+                            <span className="font-bold text-xs truncate">
+                              {appointment.patientName}
+                            </span>
+                            {renderStatusBadge(appointment.status)}
+                          </div>
+                          <p className="text-xs font-medium opacity-90 truncate">
+                            {appointment.treatment}
+                          </p>
+                          <div className="flex items-center justify-between mt-2 pt-1.5 border-t border-black/10 dark:border-white/10 text-[11px] opacity-80">
+                            <span className="flex items-center gap-1 font-semibold">
+                              <User className="h-3 w-3" />
+                              {appointment.dentist}
+                            </span>
+                            <span className="font-mono text-[10px]">{appointment.time}</span>
+                          </div>
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleOpenSlotCreate(mobileDay, time)}
+                          className="w-full py-2.5 px-3 rounded-xl border border-dashed border-[#E6E1D8] dark:border-[#243B2F] bg-white/50 dark:bg-[#1A2B21]/30 hover:bg-[#EEEBE4] dark:hover:bg-[#1A2B21] transition-colors flex items-center justify-between text-xs text-[#8A8F89] dark:text-[#A2B5A8] group cursor-pointer"
+                        >
+                          <span className="text-[11px] font-medium group-hover:text-[#1C211E] dark:group-hover:text-[#ECF3EE]">
+                            Boş Saat Dilimi
+                          </span>
+                          <span className="flex items-center gap-1 text-[11px] font-bold text-[#1F3327] dark:text-[#4ADE80]">
+                            <Plus className="h-3 w-3" /> Ekle
+                          </span>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ) : (
+          /* Haftalık Izgara Modu (Mobilde kaydırmalı) */
+          <div className="rounded-2xl shadow-xs overflow-x-auto bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="p-2.5 text-center text-[11px] font-medium text-[#8A8F89] dark:text-[#A2B5A8] border-b border-[#ECE8E1] dark:border-[#182A20] flex items-center justify-center gap-2">
+              <ChevronLeft className="h-3.5 w-3.5" />
+              <span>Haftalık tabloyu sağa-sola kaydırarak görüntüleyebilirsiniz</span>
+              <ChevronRight className="h-3.5 w-3.5" />
+            </div>
+            <div className="min-w-[760px]">
+              {/* Day Headers */}
+              <div
+                className="grid grid-cols-7 border-b border-[#ECE8E1] dark:border-[#182A20] bg-[#FBFAF7] dark:bg-[#15221B]"
+              >
+                <div
+                  className="p-3 text-center text-xs font-bold flex items-center justify-center border-r border-[#ECE8E1] dark:border-[#182A20] text-[#8A8F89] dark:text-[#A2B5A8]"
+                >
+                  Saat
+                </div>
+                {days.map((day) => (
+                  <div
+                    key={day.key}
+                    className={`p-3 text-center border-r border-[#ECE8E1] dark:border-[#182A20] ${
+                      day.isToday ? "bg-[rgba(221,235,216,0.4)] dark:bg-[rgba(31,51,39,0.5)]" : "bg-transparent"
+                    }`}
+                  >
+                    <p
+                      className={`text-xs ${
+                        day.isToday ? "font-serif text-sm font-bold text-[#1F3327] dark:text-[#4ADE80]" : "font-bold text-[#1C211E] dark:text-[#ECF3EE]"
+                      }`}
+                    >
+                      {day.label}
+                    </p>
+                    <p
+                      className={`text-[11px] font-medium mt-0.5 ${
+                        day.isToday ? "text-[#2F5A3D] dark:text-[#9AB395]" : "text-[#8A8F89] dark:text-[#A2B5A8]"
+                      }`}
+                    >
+                      {day.date}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Time Slots Rows */}
+              <div>
+                {timeSlots.map((time, rowIdx) => (
+                  <div
+                    key={time}
+                    className={`grid grid-cols-7 min-h-[68px] ${
+                      rowIdx < timeSlots.length - 1 ? "border-b border-[#ECE8E1] dark:border-[#182A20]" : ""
+                    }`}
+                  >
+                    {/* Time Column */}
+                    <div
+                      className="p-2.5 text-center text-xs font-mono font-semibold flex items-center justify-center select-none border-r border-[#ECE8E1] dark:border-[#182A20] text-[#8A8F89] dark:text-[#A2B5A8] bg-[#FBFAF7] dark:bg-[#15221B]"
+                    >
+                      {time}
+                    </div>
+
+                    {/* Days Columns */}
+                    {days.map((day) => {
+                      const appointment = filtered.find((a) => a.day === day.key && a.time === time);
+
+                      return (
+                        <div
+                          key={day.key}
+                          onClick={() => !appointment && handleOpenSlotCreate(day.key, time)}
+                          className={`p-1 transition-colors relative group border-r border-[#ECE8E1] dark:border-[#182A20] ${
+                            day.isToday
+                              ? "bg-[rgba(221,235,216,0.15)] dark:bg-[rgba(31,51,39,0.2)]"
+                              : "bg-transparent"
+                          }`}
+                        >
+                          {appointment ? (
+                            <div
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleOpenSelected(appointment);
+                              }}
+                              className={`h-full p-2 rounded-xl shadow-2xs flex flex-col justify-between cursor-pointer hover:shadow-md transition-all border ${getAppointmentCardClasses(
+                                appointment.status
+                              )}`}
+                            >
+                              <div>
+                                <div className="flex items-center justify-between gap-1 mb-1">
+                                  <p className="text-[11px] font-bold leading-tight truncate">
+                                    {appointment.patientName}
+                                  </p>
+                                </div>
+                                <p className="text-[10px] opacity-85 leading-tight truncate font-medium">
+                                  {appointment.treatment}
+                                </p>
+                              </div>
+                              <span className="text-[9px] font-semibold opacity-75 mt-1">
+                                {appointment.dentist.split(" ")[1]}
+                              </span>
+                            </div>
+                          ) : (
+                            <div className="h-full w-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg hover:bg-[#F3F0EA] dark:hover:bg-[#1A2B21] cursor-pointer">
+                              <span className="text-[9px] font-semibold flex items-center gap-1 text-[#5F665F] dark:text-[#A2B5A8]">
+                                <Plus className="h-2.5 w-2.5" /> Ekle
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* MASAÜSTÜ GÖRÜNÜM (md: ve üzeri) - 100% Orijinal Figma 7 Kolonlu Grid */}
       <div
-        className="rounded-2xl shadow-xs overflow-x-auto bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
+        className="hidden md:block rounded-2xl shadow-xs overflow-x-auto bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
       >
         <div className="min-w-[850px]">
           {/* Day Headers */}

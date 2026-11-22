@@ -284,7 +284,7 @@ export default function PatientRecetePage() {
 
         {/* Prescription Table */}
         <div className="overflow-x-auto rounded-xl border border-[#E6E1D8] bg-white dark:bg-[#15221B] dark:border-[#243B2F]">
-          <table className="w-full text-left text-xs sm:text-sm">
+          <table className="w-full min-w-[760px] text-left text-xs sm:text-sm">
             <thead>
               <tr className="border-b border-[#E6E1D8] bg-[#EEEBE4]/60 text-[#5F665F] dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                 <th className="py-2.5 px-3 w-8 font-semibold">#</th>

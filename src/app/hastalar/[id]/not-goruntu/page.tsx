@@ -367,8 +367,8 @@ export default function NotGoruntuPage() {
             )}
 
             {/* Notes Table */}
-            <div className="overflow-hidden rounded-xl border border-[#E6E1D8] bg-white dark:border-[#243B2F] dark:bg-[#15221B]">
-              <table className="w-full text-left text-xs">
+            <div className="overflow-x-auto rounded-xl border border-[#E6E1D8] bg-white dark:border-[#243B2F] dark:bg-[#15221B]">
+              <table className="w-full min-w-[760px] text-left text-xs">
                 <thead className="border-b border-[#E6E1D8] bg-[#EEEBE4]/60 text-[#5F665F] dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                   <tr>
                     <th className="py-2.5 px-3 w-28 font-semibold">Tarih</th>

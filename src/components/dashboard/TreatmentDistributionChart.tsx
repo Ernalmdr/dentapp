@@ -42,9 +42,9 @@ export default function TreatmentDistributionChart() {
       </h2>
 
       {/* Donut Chart + Legend */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-6 my-auto">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-6 my-auto pt-1 sm:pt-0">
         {/* Donut with Center Text: "520 Vaka" */}
-        <div className="relative h-44 w-44 flex items-center justify-center flex-shrink-0">
+        <div className="relative h-40 w-40 sm:h-44 sm:w-44 flex items-center justify-center shrink-0">
           {mounted ? (
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>

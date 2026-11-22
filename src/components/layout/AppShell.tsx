@@ -23,7 +23,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="flex h-full min-h-screen w-full bg-[#F3F0EA] dark:bg-[#0F1612]">
+    <div className="flex h-full min-h-screen w-full bg-[#F3F0EA] dark:bg-[#0F1612] overflow-x-hidden">
       {/* Mobile Backdrop Overlay */}
       {isMobileOpen && (
         <div
@@ -45,7 +45,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
         )}
       >
         {/* Figma Arka Plan Diş / Klinik İllüstrasyonu */}
-        <div className="absolute right-[220px] lg:right-[300px] top-[10px] w-[400px] h-[300px] pointer-events-none select-none z-0 opacity-90 overflow-hidden">
+        <div className="hidden sm:block absolute right-[20px] sm:right-[120px] md:right-[220px] lg:right-[300px] top-[10px] sm:w-[260px] md:w-[320px] lg:w-[400px] h-[220px] sm:h-[260px] md:h-[300px] pointer-events-none select-none z-0 opacity-90 overflow-hidden">
           <img
             src="/images/figma/banner-illustration.png"
             alt="Diş İllüstrasyonu"
@@ -54,7 +54,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
         </div>
 
         <TopBar />
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 max-w-[1600px] w-full mx-auto relative z-10">
+        <main className="flex-1 overflow-y-auto p-3.5 sm:p-5 md:p-8 max-w-[1600px] w-full mx-auto relative z-10">
           {children}
         </main>
       </div>

@@ -141,10 +141,10 @@ export function ImageUploadModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="w-full max-w-lg rounded-2xl bg-[#FBFAF7] dark:bg-[#15221B] border border-[#E6E1D8] dark:border-[#243B2F] shadow-2xl overflow-hidden flex flex-col text-[#1C211E] dark:text-[#ECF3EE]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="w-[94%] max-h-[90vh] overflow-y-auto sm:max-w-lg md:max-w-xl mx-auto rounded-2xl bg-[#FBFAF7] dark:bg-[#15221B] border border-[#E6E1D8] dark:border-[#243B2F] shadow-2xl flex flex-col text-[#1C211E] dark:text-[#ECF3EE]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E6E1D8] dark:border-[#243B2F] bg-[#EEEBE4]/60 dark:bg-[#1A2C23]">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-[#E6E1D8] dark:border-[#243B2F] bg-[#EEEBE4]/60 dark:bg-[#1A2C23]">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#E2EEDD] dark:bg-[#1D3328] text-[#1F3327] dark:text-[#7CC9A6]">
               <FileImage className="h-5 w-5" />

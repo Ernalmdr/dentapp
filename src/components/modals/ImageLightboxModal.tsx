@@ -59,46 +59,49 @@ export function ImageLightboxModal() {
       onClick={closeLightbox}
     >
       <div
-        className="relative flex flex-col w-full max-w-5xl h-[88vh] rounded-2xl bg-stone-950 border border-stone-800 text-white overflow-hidden shadow-2xl"
+        className="relative flex flex-col w-[96%] sm:w-full max-w-5xl h-[92vh] sm:h-[88vh] rounded-2xl bg-stone-950 border border-stone-800 text-white overflow-hidden shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-3.5 border-b border-stone-800 bg-stone-900/70">
-          <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+        <div className="flex items-center justify-between px-3.5 sm:px-6 py-3 sm:py-3.5 border-b border-stone-800 bg-stone-900/70">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 shrink-0">
               <Activity className="h-4 w-4" />
             </div>
-            <div>
-              <h3 className="text-sm font-bold text-white tracking-tight flex items-center gap-2">
+            <div className="min-w-0">
+              <h3 className="text-xs sm:text-sm font-bold text-white tracking-tight flex items-center gap-2 truncate">
                 {lightboxData.patientName} — {lightboxData.type}
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-stone-800 text-stone-300">
+                <span className="hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded bg-stone-800 text-stone-300">
                   DICOM 3.0
                 </span>
               </h3>
-              <p className="text-[11px] text-stone-400">
+              <p className="text-[10px] sm:text-[11px] text-stone-400 truncate">
                 Çekim Tarihi: {lightboxData.date || "Bugün"} • Radyoloji Teşhis Ekranı
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {/* AI Diagnose Button */}
             <button
               onClick={handleAiAnalysis}
               disabled={isAiAnalyzing}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-xl text-xs font-semibold shadow-sm transition-all cursor-pointer ${
                 aiDetected
                   ? "bg-emerald-600 text-white hover:bg-emerald-500"
                   : "bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white"
               }`}
             >
               <Sparkles className={`h-4 w-4 ${isAiAnalyzing ? "animate-spin" : ""}`} />
-              <span>
+              <span className="hidden sm:inline">
                 {isAiAnalyzing
                   ? "Dental Vision AI Taranıyor..."
                   : aiDetected
                   ? "AI Teşhis Katmanı Aktif"
                   : "Yapay Zeka ile Analiz Et"}
+              </span>
+              <span className="sm:hidden">
+                {isAiAnalyzing ? "Analiz..." : "AI Analiz"}
               </span>
             </button>
 

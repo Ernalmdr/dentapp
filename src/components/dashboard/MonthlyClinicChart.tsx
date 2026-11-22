@@ -107,8 +107,8 @@ export default function MonthlyClinicChart() {
       </div>
 
       {/* 3. Figma 12-Month Capsule Bar Chart (Node 7:2665) */}
-      <div className="relative pt-4 pb-1">
-        <div className="grid grid-cols-12 gap-1.5 sm:gap-2.5 items-end h-44 sm:h-48">
+      <div className="relative pt-4 pb-1 overflow-x-auto">
+        <div className="min-w-[460px] sm:min-w-0 grid grid-cols-12 gap-1.5 sm:gap-2.5 items-end h-44 sm:h-48">
           {monthlyData.map((item) => {
             const isCurrentMonth = item.month === "Eki";
             // Calculate proportional height

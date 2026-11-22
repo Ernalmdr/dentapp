@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
@@ -25,6 +25,16 @@ const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F3F0EA" },
+    { media: "(prefers-color-scheme: dark)", color: "#0E1511" },
+  ],
+};
+
 export const metadata: Metadata = {
   title: "DentaSphere — Klinik Yönetim Platformu",
   description: "Diş kliniği yönetim sistemi",
@@ -41,7 +51,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${dmSerifDisplay.variable} h-full antialiased`}
     >
-      <body className="flex h-full min-h-screen transition-colors duration-150 font-sans">
+      <body className="flex h-full min-h-screen transition-colors duration-150 font-sans overflow-x-hidden">
         <ThemeProvider>
           <ModalProvider>
             {/* AppShell handles auth pages vs dashboard layout */}

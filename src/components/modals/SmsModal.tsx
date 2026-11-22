@@ -46,11 +46,11 @@ export function SmsModal() {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150"
       onClick={closeSmsModal}
     >
       <div
-        className="w-full max-w-lg rounded-2xl bg-white dark:bg-[#15221B] p-6 shadow-2xl border border-stone-200 dark:border-[#243B2F] text-stone-900 dark:text-[#ECF3EE]"
+        className="w-[94%] max-h-[90vh] overflow-y-auto sm:max-w-lg md:max-w-xl mx-auto rounded-2xl bg-white dark:bg-[#15221B] p-4 sm:p-6 shadow-2xl border border-stone-200 dark:border-[#243B2F] text-stone-900 dark:text-[#ECF3EE]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

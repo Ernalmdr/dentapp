@@ -733,7 +733,7 @@ export default function StokPage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Malzeme Adı (Ad) */}
               <div className="lg:col-span-2 flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
@@ -883,7 +883,7 @@ export default function StokPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Alış Birimi */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
@@ -1044,7 +1044,7 @@ export default function StokPage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
               {/* Tedarikçi Firma */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
@@ -1120,7 +1120,7 @@ export default function StokPage() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 {unitConversions.map((conv, idx) => (
                   <div
                     key={idx}
@@ -1329,7 +1329,7 @@ export default function StokPage() {
           {/* Stock Table */}
           <div className="rounded-2xl bg-[#FBFAF7] border border-[#E6E1D8] overflow-hidden shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
+              <table className="w-full min-w-[800px] text-left text-xs">
                 <thead className="bg-[#EEEBE4] border-b border-[#E6E1D8] text-[#5F665F] font-semibold dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8]">
                   <tr>
                     <th className="py-3 px-4">Malzeme Adı & Kod</th>

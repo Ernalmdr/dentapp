@@ -134,7 +134,7 @@ function PatientLayoutContent({
 
         <div className="relative z-10 flex flex-col justify-between gap-5 md:flex-row md:items-center">
           {/* Left: Avatar + Name + Info Bar */}
-          <div className="flex items-center gap-5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
             {/* 76x76px Neutral Circle Avatar with Female Silhouette */}
             <div className="flex h-[76px] w-[76px] shrink-0 items-center justify-center rounded-full bg-[#E4E0D8] border border-[#D5D0C6] shadow-2xs dark:bg-[#1A2C23] dark:border-[#243B2F]">
               <FemaleAvatarIcon className="h-10 w-10 text-[#8A8F89] dark:text-[#A2B5A8]" />
@@ -143,7 +143,7 @@ function PatientLayoutContent({
             {/* Patient Name & Details */}
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-[40px] font-serif leading-[44px] text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
+                <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-serif leading-tight sm:leading-[44px] text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
                   {patient.firstName} {patient.lastName}
                 </h1>
                 <span className="inline-flex items-center rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-3 py-1 text-[13px] font-medium text-[#2C6A3B] dark:bg-[#163321] dark:border-[#285A3B] dark:text-[#76D28F]">
@@ -169,12 +169,12 @@ function PatientLayoutContent({
           </div>
 
           {/* Right Action Buttons */}
-          <div className="flex items-center gap-2.5 self-start md:self-auto">
+          <div className="flex w-full sm:w-auto items-center gap-2.5">
             {/* Düzenle (Beyaz zemin, #E6E1D8 border, kurşun kalem ikonu) */}
             <button
               type="button"
               onClick={() => showToast(`✓ ${patient.firstName} ${patient.lastName} bilgileri düzenleme moduna alındı.`, "info")}
-              className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2.5 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
+              className="flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2.5 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
             >
               <Pencil className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
               <span>Düzenle</span>
@@ -184,7 +184,7 @@ function PatientLayoutContent({
             <button
               type="button"
               onClick={() => openAppointmentModal(`${patient.firstName} ${patient.lastName}`)}
-              className="flex items-center gap-2 rounded-xl bg-[#1F3327] px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-[#2D3A32] cursor-pointer"
+              className="flex w-full sm:w-auto justify-center items-center gap-2 rounded-xl bg-[#1F3327] px-4 py-2.5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-[#2D3A32] cursor-pointer"
             >
               <Calendar className="h-4 w-4 text-white" />
               <span>Yeni Randevu</span>
@@ -195,7 +195,7 @@ function PatientLayoutContent({
               type="button"
               onClick={() => showToast(`Hasta No: ${patient.hsNo || "HS-10248"} panoya kopyalandı.`, "info")}
               aria-label="Diğer İşlemler"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E1D8] bg-white text-[#5F665F] shadow-2xs transition-colors hover:bg-[#F3F0EA] hover:text-[#1C211E] cursor-pointer dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#E6E1D8] bg-white text-[#5F665F] shadow-2xs transition-colors hover:bg-[#F3F0EA] hover:text-[#1C211E] cursor-pointer dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
             >
               <MoreHorizontal className="h-5 w-5" />
             </button>
@@ -207,7 +207,7 @@ function PatientLayoutContent({
       {/* 6 Alt Sekme (Tabs) */}
       {/* ============================================================ */}
       <div className="flex overflow-x-auto pb-1 scrollbar-none">
-        <div className="flex gap-2.5">
+        <div className="flex gap-2">
           {tabs.map((tab) => {
             const isActive = tab.exact
               ? pathname === tab.href || pathname === `${tab.href}/`

@@ -307,7 +307,7 @@ export default function HastalarPage() {
       </div>
 
       {/* 3. Search & Filter Bar */}
-      <div className="flex flex-col gap-3 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-3 shadow-xs sm:flex-row sm:items-center dark:bg-[#15221B] dark:border-[#243B2F]">
+      <div className="flex flex-col gap-2.5 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-3 shadow-xs sm:flex-row sm:items-center dark:bg-[#15221B] dark:border-[#243B2F]">
         {/* Search Input */}
         <div className="relative flex-1">
           <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
@@ -477,7 +477,7 @@ export default function HastalarPage() {
         /* TABLE VIEW */
         <div className="overflow-hidden rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full min-w-[820px] text-left border-collapse">
               <thead>
                 <tr className="border-b border-[#E6E1D8] bg-[#EEEBE4]/70 text-[11px] font-semibold text-[#5F665F] uppercase tracking-wider dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                   <th className="w-12 px-4 py-3.5 text-center">

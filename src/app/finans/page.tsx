@@ -686,7 +686,7 @@ export default function FinansPage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Firma Adı (Ad) */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
@@ -870,7 +870,7 @@ export default function FinansPage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Yetkili */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
@@ -1025,7 +1025,7 @@ export default function FinansPage() {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
               {/* Çalışma Koşulları */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
@@ -1083,7 +1083,7 @@ export default function FinansPage() {
               <span className="text-xs font-bold text-[#1C211E] mb-3 block dark:text-[#ECF3EE]">
                 İlgili Kişiler & Görevliler
               </span>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
                 {/* Yetkili */}
                 <div className="rounded-lg bg-[#FBFAF7] p-3 border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
                   <span className="font-semibold text-[#2F5A3D] block mb-2 dark:text-[#76D28F]">
@@ -1365,7 +1365,7 @@ export default function FinansPage() {
           {/* Transactions Table */}
           <div className="rounded-2xl bg-[#FBFAF7] border border-[#E6E1D8] overflow-hidden shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
+              <table className="w-full min-w-[800px] text-left text-xs">
                 <thead className="bg-[#EEEBE4] border-b border-[#E6E1D8] text-[#5F665F] font-semibold dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8]">
                   <tr>
                     <th className="py-3 px-4">Tarih</th>

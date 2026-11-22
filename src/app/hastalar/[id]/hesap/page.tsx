@@ -207,7 +207,7 @@ export default function PatientHesapPage() {
       {/* ============================================================ */}
       {/* Top Section: Summary Cards & Action Buttons Bar */}
       {/* ============================================================ */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {/* Toplam Ücret */}
         <div className="rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-2xs flex flex-col justify-between dark:bg-[#15221B] dark:border-[#243B2F]">
           <div className="flex items-center justify-between text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
@@ -388,7 +388,7 @@ export default function PatientHesapPage() {
 
             {/* Table */}
             <div className="overflow-x-auto mt-3">
-              <table className="w-full text-left text-xs sm:text-sm">
+              <table className="w-full min-w-[760px] text-left text-xs sm:text-sm">
                 <thead>
                   <tr className="border-b border-[#E6E1D8] text-[#5F665F] bg-[#EEEBE4]/60 dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                     <th className="py-2.5 px-3 w-8">
@@ -554,7 +554,7 @@ export default function PatientHesapPage() {
 
             {/* Table */}
             <div className="overflow-x-auto mt-3">
-              <table className="w-full text-left text-xs sm:text-sm">
+              <table className="w-full min-w-[760px] text-left text-xs sm:text-sm">
                 <thead>
                   <tr className="border-b border-[#E6E1D8] text-[#5F665F] bg-[#EEEBE4]/60 dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                     <th className="py-2.5 px-3 font-semibold">Tarih</th>

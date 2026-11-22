@@ -80,7 +80,7 @@ export function ShortcutsPopover() {
       <div className="fixed inset-0 z-40" onClick={closeShortcuts} />
 
       {/* Popover */}
-      <div className="absolute right-6 top-14 z-50 w-80 rounded-2xl bg-white dark:bg-[#15221B] shadow-2xl border border-stone-200 dark:border-[#243B2F] overflow-hidden text-stone-900 dark:text-[#ECF3EE] animate-in fade-in zoom-in-95 duration-150">
+      <div className="fixed sm:absolute right-2 sm:right-6 top-16 sm:top-14 z-50 w-[calc(100vw-1rem)] sm:w-80 max-w-sm rounded-2xl bg-white dark:bg-[#15221B] shadow-2xl border border-stone-200 dark:border-[#243B2F] overflow-hidden text-stone-900 dark:text-[#ECF3EE] animate-in fade-in zoom-in-95 duration-150">
         <div className="flex items-center justify-between px-4 py-3 border-b border-stone-200 dark:border-[#243B2F] bg-stone-50/70 dark:bg-[#1A2C23]">
           <h3 className="text-xs font-bold uppercase tracking-wider">Hızlı Kısayollar</h3>
           <button

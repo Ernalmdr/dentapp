@@ -32,10 +32,10 @@ export function StockOrderModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="w-full max-w-md rounded-2xl bg-white dark:bg-[#15221B] border border-stone-200 dark:border-[#243B2F] shadow-2xl overflow-hidden flex flex-col text-stone-900 dark:text-[#ECF3EE]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="w-[94%] max-h-[90vh] overflow-y-auto sm:max-w-md md:max-w-lg mx-auto rounded-2xl bg-white dark:bg-[#15221B] border border-stone-200 dark:border-[#243B2F] shadow-2xl flex flex-col text-stone-900 dark:text-[#ECF3EE]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-stone-100 dark:border-[#243B2F] bg-stone-50/50 dark:bg-[#1A2C23]">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-b border-stone-100 dark:border-[#243B2F] bg-stone-50/50 dark:bg-[#1A2C23]">
           <div className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 dark:bg-[#1D3328] text-[#2D4A3E] dark:text-[#7CC9A6]">
               <ShoppingCart className="h-5 w-5" />
