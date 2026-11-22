@@ -17,6 +17,9 @@ import {
 import { treatmentRecords as initialRecords, treatmentPrices } from "@/lib/mock-data";
 import { formatCurrency, cn } from "@/lib/utils";
 import { TreatmentRecord } from "@/lib/types";
+import { GeometricOdontogram } from "@/components/oral/GeometricOdontogram";
+import SchematicOdontogram from "@/components/oral/SchematicOdontogram";
+import RealisticOdontogramArch from "@/components/oral/RealisticOdontogramArch";
 
 // Helper to determine tooth category
 function getToothType(num: number) {
@@ -452,9 +455,10 @@ export default function OralOdontogramPage() {
                   onChange={(e) => setChartView(e.target.value)}
                   className="h-8 rounded-lg border border-[#E6E1D8] bg-white px-2.5 text-xs font-medium text-[#3F4540] outline-none transition focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
-                  <option value="Anatomik">Anatomik</option>
-                  <option value="Geometrik">Geometrik</option>
-                  <option value="Şematik">Şematik</option>
+                  <option value="Anatomik">Anatomik (2D)</option>
+                  <option value="Geometrik">Geometrik (5 Yüzey)</option>
+                  <option value="Şematik">Şematik (Klinik Blok)</option>
+                  <option value="3D Gerçekçi">3D Gerçekçi Model (Figma)</option>
                 </select>
               </div>
             </div>
@@ -488,113 +492,139 @@ export default function OralOdontogramPage() {
             </div>
 
             {/* Odontogram Interactive Dental Arch Canvas */}
-            <div className="overflow-x-auto py-2">
-              <div className="min-w-[640px] space-y-6">
-                {/* Upper Jaw (Üst Çene) */}
-                <div>
-                  <div className="mb-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase dark:text-[#A2B5A8]">
-                    Üst Çene (Maksilla)
-                  </div>
-                  <div className="flex items-center justify-center gap-3">
-                    {/* Upper Right Quadrant (18 -> 11) */}
-                    <div className="flex items-center justify-end gap-1">
-                      {upperRight.map((num) => {
-                        const status = getToothStatus(num);
-                        return (
-                          <ToothItem
-                            key={num}
-                            num={num}
-                            isUpper={true}
-                            isSelected={selectedTooth === num}
-                            onClick={setSelectedTooth}
-                            {...status}
-                          />
-                        );
-                      })}
+            {chartView === "Geometrik" ? (
+              <div className="py-2">
+                <GeometricOdontogram
+                  selectedTooth={selectedTooth}
+                  onSelectTooth={setSelectedTooth}
+                />
+              </div>
+            ) : chartView === "Şematik" ? (
+              <div className="py-2">
+                <SchematicOdontogram
+                  selectedTooth={selectedTooth}
+                  onToothSelect={setSelectedTooth}
+                  records={records}
+                  dentitionType={dentitionType}
+                  diffDiagnosis={diffDiagnosis}
+                />
+              </div>
+            ) : chartView === "3D Gerçekçi" ? (
+              <div className="py-2">
+                <RealisticOdontogramArch
+                  selectedTooth={selectedTooth}
+                  onToothSelect={setSelectedTooth}
+                />
+              </div>
+            ) : (
+              <div className="overflow-x-auto py-2">
+                <div className="min-w-[640px] space-y-6">
+                  {/* Upper Jaw (Üst Çene) */}
+                  <div>
+                    <div className="mb-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase dark:text-[#A2B5A8]">
+                      Üst Çene (Maksilla)
                     </div>
+                    <div className="flex items-center justify-center gap-3">
+                      {/* Upper Right Quadrant (18 -> 11) */}
+                      <div className="flex items-center justify-end gap-1">
+                        {upperRight.map((num) => {
+                          const status = getToothStatus(num);
+                          return (
+                            <ToothItem
+                              key={num}
+                              num={num}
+                              isUpper={true}
+                              isSelected={selectedTooth === num}
+                              onClick={setSelectedTooth}
+                              {...status}
+                            />
+                          );
+                        })}
+                      </div>
 
-                    {/* Midline Divider */}
-                    <div className="flex flex-col items-center justify-center h-20 px-1">
-                      <div className="h-full w-0.5 border-r border-dashed border-[#E6E1D8] dark:border-[#243B2F]" />
-                      <span className="text-[10px] text-[#5F665F] font-mono mt-0.5 dark:text-[#A2B5A8]">R|L</span>
-                    </div>
+                      {/* Midline Divider */}
+                      <div className="flex flex-col items-center justify-center h-20 px-1">
+                        <div className="h-full w-0.5 border-r border-dashed border-[#E6E1D8] dark:border-[#243B2F]" />
+                        <span className="text-[10px] text-[#5F665F] font-mono mt-0.5 dark:text-[#A2B5A8]">R|L</span>
+                      </div>
 
-                    {/* Upper Left Quadrant (21 -> 28) */}
-                    <div className="flex items-center justify-start gap-1">
-                      {upperLeft.map((num) => {
-                        const status = getToothStatus(num);
-                        return (
-                          <ToothItem
-                            key={num}
-                            num={num}
-                            isUpper={true}
-                            isSelected={selectedTooth === num}
-                            onClick={setSelectedTooth}
-                            {...status}
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Horizontal Jaw Separator */}
-                <div className="relative flex items-center justify-center">
-                  <div className="w-full border-t border-[#E6E1D8] dark:border-[#243B2F]" />
-                  <span className="absolute bg-[#FBFAF7] px-3 text-[10px] font-semibold text-[#5F665F] uppercase tracking-wider dark:bg-[#15221B] dark:text-[#A2B5A8]">
-                    Oklüzal Düzlem
-                  </span>
-                </div>
-
-                {/* Lower Jaw (Alt Çene) */}
-                <div>
-                  <div className="flex items-center justify-center gap-3">
-                    {/* Lower Right Quadrant (48 -> 41) */}
-                    <div className="flex items-center justify-end gap-1">
-                      {lowerRight.map((num) => {
-                        const status = getToothStatus(num);
-                        return (
-                          <ToothItem
-                            key={num}
-                            num={num}
-                            isUpper={false}
-                            isSelected={selectedTooth === num}
-                            onClick={setSelectedTooth}
-                            {...status}
-                          />
-                        );
-                      })}
-                    </div>
-
-                    {/* Midline Divider */}
-                    <div className="flex flex-col items-center justify-center h-20 px-1">
-                      <span className="text-[10px] text-[#5F665F] font-mono mb-0.5 dark:text-[#A2B5A8]">R|L</span>
-                      <div className="h-full w-0.5 border-r border-dashed border-[#E6E1D8] dark:border-[#243B2F]" />
-                    </div>
-
-                    {/* Lower Left Quadrant (31 -> 38) */}
-                    <div className="flex items-center justify-start gap-1">
-                      {lowerLeft.map((num) => {
-                        const status = getToothStatus(num);
-                        return (
-                          <ToothItem
-                            key={num}
-                            num={num}
-                            isUpper={false}
-                            isSelected={selectedTooth === num}
-                            onClick={setSelectedTooth}
-                            {...status}
-                          />
-                        );
-                      })}
+                      {/* Upper Left Quadrant (21 -> 28) */}
+                      <div className="flex items-center justify-start gap-1">
+                        {upperLeft.map((num) => {
+                          const status = getToothStatus(num);
+                          return (
+                            <ToothItem
+                              key={num}
+                              num={num}
+                              isUpper={true}
+                              isSelected={selectedTooth === num}
+                              onClick={setSelectedTooth}
+                              {...status}
+                            />
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
-                  <div className="mt-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase dark:text-[#A2B5A8]">
-                    Alt Çene (Mandibula)
+
+                  {/* Horizontal Jaw Separator */}
+                  <div className="relative flex items-center justify-center">
+                    <div className="w-full border-t border-[#E6E1D8] dark:border-[#243B2F]" />
+                    <span className="absolute bg-[#FBFAF7] px-3 text-[10px] font-semibold text-[#5F665F] uppercase tracking-wider dark:bg-[#15221B] dark:text-[#A2B5A8]">
+                      Oklüzal Düzlem
+                    </span>
+                  </div>
+
+                  {/* Lower Jaw (Alt Çene) */}
+                  <div>
+                    <div className="flex items-center justify-center gap-3">
+                      {/* Lower Right Quadrant (48 -> 41) */}
+                      <div className="flex items-center justify-end gap-1">
+                        {lowerRight.map((num) => {
+                          const status = getToothStatus(num);
+                          return (
+                            <ToothItem
+                              key={num}
+                              num={num}
+                              isUpper={false}
+                              isSelected={selectedTooth === num}
+                              onClick={setSelectedTooth}
+                              {...status}
+                            />
+                          );
+                        })}
+                      </div>
+
+                      {/* Midline Divider */}
+                      <div className="flex flex-col items-center justify-center h-20 px-1">
+                        <span className="text-[10px] text-[#5F665F] font-mono mb-0.5 dark:text-[#A2B5A8]">R|L</span>
+                        <div className="h-full w-0.5 border-r border-dashed border-[#E6E1D8] dark:border-[#243B2F]" />
+                      </div>
+
+                      {/* Lower Left Quadrant (31 -> 38) */}
+                      <div className="flex items-center justify-start gap-1">
+                        {lowerLeft.map((num) => {
+                          const status = getToothStatus(num);
+                          return (
+                            <ToothItem
+                              key={num}
+                              num={num}
+                              isUpper={false}
+                              isSelected={selectedTooth === num}
+                              onClick={setSelectedTooth}
+                              {...status}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="mt-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase dark:text-[#A2B5A8]">
+                      Alt Çene (Mandibula)
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Treatment History Table */}
@@ -718,9 +748,20 @@ export default function OralOdontogramPage() {
         <div className="space-y-6 w-full lg:col-span-4">
           {/* Oral Bilgiler Panel */}
           <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
-            <h2 className="mb-4 text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider border-b border-[#E6E1D8] pb-3 dark:text-[#ECF3EE] dark:border-[#243B2F]">
-              Oral Bilgiler
-            </h2>
+            <div className="mb-4 flex items-center justify-between border-b border-[#E6E1D8] pb-3 dark:border-[#243B2F]">
+              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider dark:text-[#ECF3EE]">
+                Oral Bilgiler
+              </h2>
+              {selectedTooth ? (
+                <span className="inline-flex items-center gap-1 rounded-md bg-[#1F3327] px-2 py-0.5 text-xs font-bold text-white shadow-2xs dark:bg-[#285A3B]">
+                  Diş #{selectedTooth}
+                </span>
+              ) : (
+                <span className="text-[11px] text-[#5F665F] dark:text-[#A2B5A8]">
+                  Diş seçilmedi
+                </span>
+              )}
+            </div>
 
             <div className="space-y-3 text-xs">
               {/* Diş Hekimi */}
