@@ -80,12 +80,12 @@ export function ShortcutsPopover() {
       <div className="fixed inset-0 z-40" onClick={closeShortcuts} />
 
       {/* Popover */}
-      <div className="absolute right-6 top-14 z-50 w-80 rounded-2xl bg-white dark:bg-[#122019] shadow-2xl border border-stone-200 dark:border-[#1E332A] overflow-hidden text-stone-900 dark:text-[#F0F5F2] animate-in fade-in zoom-in-95 duration-150">
-        <div className="flex items-center justify-between px-4 py-3 border-b border-stone-200 dark:border-[#1E332A] bg-stone-50/70 dark:bg-[#16261F]">
+      <div className="absolute right-6 top-14 z-50 w-80 rounded-2xl bg-white dark:bg-[#15221B] shadow-2xl border border-stone-200 dark:border-[#243B2F] overflow-hidden text-stone-900 dark:text-[#ECF3EE] animate-in fade-in zoom-in-95 duration-150">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-stone-200 dark:border-[#243B2F] bg-stone-50/70 dark:bg-[#1A2C23]">
           <h3 className="text-xs font-bold uppercase tracking-wider">Hızlı Kısayollar</h3>
           <button
             onClick={closeShortcuts}
-            className="text-stone-400 hover:text-stone-600 dark:hover:text-white p-1"
+            className="text-stone-400 hover:text-stone-600 dark:text-[#6C8578] dark:hover:text-[#ECF3EE] p-1"
           >
             <X className="h-4 w-4" />
           </button>
@@ -98,13 +98,13 @@ export function ShortcutsPopover() {
               <button
                 key={s.title}
                 onClick={s.action}
-                className="flex flex-col items-start p-3 rounded-xl border border-stone-100 dark:border-[#1E332A] hover:bg-stone-50 dark:hover:bg-[#182C22] hover:border-stone-300 dark:hover:border-[#2D4A3E] transition-all text-left group"
+                className="flex flex-col items-start p-3 rounded-xl border border-stone-100 dark:border-[#243B2F] hover:bg-stone-50 dark:hover:bg-[#1D3328] hover:border-stone-300 dark:hover:border-[#325040] transition-all text-left group"
               >
                 <div className={`p-2 rounded-lg ${s.color} mb-2 group-hover:scale-105 transition-transform`}>
                   <Icon className="h-4 w-4" />
                 </div>
                 <span className="text-xs font-bold leading-tight">{s.title}</span>
-                <span className="text-[10px] text-stone-400 mt-0.5 leading-tight">{s.desc}</span>
+                <span className="text-[10px] text-stone-400 dark:text-[#A2B5A8] mt-0.5 leading-tight">{s.desc}</span>
               </button>
             );
           })}

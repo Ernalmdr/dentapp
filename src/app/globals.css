@@ -95,26 +95,81 @@ html.light {
 html.dark {
   color-scheme: dark !important;
 
-  --neutral-bg: #0F1612;
-  --neutral-surface: #14221A;
-  --neutral-white: #182820;
-  --neutral-soft: #1C3025;
-  --neutral-border: #233C2F;
-  --neutral-border-strong: #2D4C3C;
-  --neutral-track: #1C3025;
-  --neutral-grid: #1A2E23;
-  --neutral-glass: rgba(20, 34, 26, 0.75);
+  /* Nötrler */
+  --neutral-bg: #0E1511;
+  --neutral-surface: #15221B;
+  --neutral-white: #1A2C23;
+  --neutral-soft: #1D3328;
+  --neutral-border: #243B2F;
+  --neutral-border-strong: #325040;
+  --neutral-track: #1A2B21;
+  --neutral-grid: #182A20;
+  --neutral-glass: rgba(18, 30, 24, 0.85);
 
-  --text-primary: #F0F5F2;
-  --text-secondary: #95A89E;
-  --text-body: #CDD5CF;
-  --text-placeholder: #6F8278;
-  --text-icon-muted: #5A6D63;
+  /* Yazı */
+  --text-primary: #ECF3EE;
+  --text-secondary: #A2B5A8;
+  --text-body: #C5D4CB;
+  --text-placeholder: #5E7569;
+  --text-icon-muted: #6C8578;
 
-  --background: #0F1612;
-  --card-bg: #14221A;
-  --foreground: #F0F5F2;
-  --border: #233C2F;
+  /* Durum Renkleri */
+  --status-success-text: #7CC9A6;
+  --status-success-bg: rgba(47, 90, 61, 0.25);
+  --status-success-dot: #4ADE80;
+
+  --status-warning-text: #FCD34D;
+  --status-warning-bg: rgba(176, 125, 71, 0.25);
+  --status-warning-dot: #F59E0B;
+
+  --status-neutral-text: #A2B5A8;
+  --status-neutral-bg: #1D3328;
+  --status-neutral-dot: #6C8578;
+
+  --status-info-text: #93C5FD;
+  --status-info-bg: rgba(74, 120, 181, 0.25);
+  --status-info-dot: #60A5FA;
+
+  --status-danger-text: #FCA5A5;
+  --status-danger-bg: rgba(179, 38, 30, 0.25);
+  --status-danger-border: #5C1D1A;
+
+  /* Takvim Randevuları */
+  --event-yellow-bg: #362A14;
+  --event-yellow-border: #523F1C;
+  --event-purple-bg: #2A1F3D;
+  --event-purple-border: #443263;
+  --event-green-bg: #1A3324;
+  --event-green-border: #28523A;
+  --event-red-bg: #3D1D1C;
+  --event-red-border: #5E2B2A;
+
+  /* Diğer */
+  --highlight-price-bg: #362B17;
+  --highlight-price-border: #544324;
+  --canvas-bg: #15221B;
+
+  /* Genel Layout Referansları */
+  --background: var(--neutral-bg);
+  --card-bg: var(--neutral-surface);
+  --foreground: var(--text-primary);
+  --text-secondary-var: var(--text-secondary);
+  --border: var(--neutral-border);
+}
+
+html.dark .figma-page-bg {
+  background-color: #0E1511 !important;
+}
+html.dark .figma-card {
+  background-color: #15221B !important;
+  border-color: #243B2F !important;
+}
+html.dark .figma-btn-soft {
+  background-color: #1D3328 !important;
+  color: #ECF3EE !important;
+}
+html.dark .figma-btn-soft:hover {
+  background-color: #243B2F !important;
 }
 
 /* ── Body & Main Layout ── */
@@ -172,5 +227,5 @@ body,
   border-radius: 9999px;
 }
 html.dark ::-webkit-scrollbar-thumb {
-  background: #2D4C3C;
+  background: #325040;
 }

@@ -50,23 +50,23 @@ export function SmsModal() {
       onClick={closeSmsModal}
     >
       <div
-        className="w-full max-w-lg rounded-2xl bg-white dark:bg-[#122019] p-6 shadow-2xl border border-stone-200 dark:border-[#1E332A] text-stone-900 dark:text-[#F0F5F2]"
+        className="w-full max-w-lg rounded-2xl bg-white dark:bg-[#15221B] p-6 shadow-2xl border border-stone-200 dark:border-[#243B2F] text-stone-900 dark:text-[#ECF3EE]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-stone-200 dark:border-[#1E332A]">
+        <div className="flex items-center justify-between pb-4 border-b border-stone-200 dark:border-[#243B2F]">
           <div className="flex items-center gap-2.5">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-700 dark:text-[#7CC9A6]">
               <MessageSquare className="h-5 w-5" />
             </div>
             <div>
               <h2 className="text-base font-bold tracking-tight">Hastaya SMS Gönder</h2>
-              <p className="text-xs text-stone-500 dark:text-[#90A199]">{smsData.patientName}</p>
+              <p className="text-xs text-stone-500 dark:text-[#A2B5A8]">{smsData.patientName}</p>
             </div>
           </div>
           <button
             onClick={closeSmsModal}
-            className="p-1.5 rounded-lg text-stone-400 hover:text-stone-700 dark:hover:text-white"
+            className="p-1.5 rounded-lg text-stone-400 hover:text-stone-700 dark:hover:text-[#ECF3EE]"
           >
             <X className="h-5 w-5" />
           </button>
@@ -76,19 +76,19 @@ export function SmsModal() {
         <form onSubmit={handleSend} className="mt-4 space-y-4 text-xs">
           {/* Phone */}
           <div>
-            <label className="block font-semibold mb-1 text-stone-700 dark:text-[#D1DDD6]">Alıcı Telefon Numarası</label>
+            <label className="block font-semibold mb-1 text-stone-700 dark:text-[#C5D4CB]">Alıcı Telefon Numarası</label>
             <input
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full h-10 rounded-xl border border-stone-200 dark:border-[#233C30] bg-stone-50 dark:bg-[#16261F] px-3 font-mono font-bold outline-none"
+              className="w-full h-10 rounded-xl border border-stone-200 dark:border-[#243B2F] bg-stone-50 dark:bg-[#1A2C23] text-stone-900 dark:text-[#ECF3EE] dark:placeholder-[#5E7569] px-3 font-mono font-bold outline-none"
               required
             />
           </div>
 
           {/* Quick Templates */}
           <div>
-            <label className="block font-semibold mb-1.5 text-stone-700 dark:text-[#D1DDD6]">Hazır SMS Şablonları</label>
+            <label className="block font-semibold mb-1.5 text-stone-700 dark:text-[#C5D4CB]">Hazır SMS Şablonları</label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
               {[
                 { key: "appointment", label: "Randevu Onayı" },
@@ -103,7 +103,7 @@ export function SmsModal() {
                   className={`py-1.5 px-2 rounded-lg font-medium border text-center transition-all ${
                     template === t.key
                       ? "bg-[#2D4A3E] text-white border-[#2D4A3E]"
-                      : "border-stone-200 dark:border-[#233C30] hover:bg-stone-50 dark:hover:bg-[#16261F]"
+                      : "border-stone-200 dark:border-[#243B2F] bg-white dark:bg-[#1A2C23] text-stone-700 dark:text-[#C5D4CB] hover:bg-stone-50 dark:hover:bg-[#1D3328]"
                   }`}
                 >
                   {t.label}
@@ -115,8 +115,8 @@ export function SmsModal() {
           {/* Message Textarea */}
           <div>
             <div className="flex justify-between items-center mb-1">
-              <label className="font-semibold text-stone-700 dark:text-[#D1DDD6]">SMS Metni</label>
-              <span className="text-[11px] font-mono text-stone-400">
+              <label className="font-semibold text-stone-700 dark:text-[#C5D4CB]">SMS Metni</label>
+              <span className="text-[11px] font-mono text-stone-400 dark:text-[#A2B5A8]">
                 {charCount} karakter ({smsUnits} SMS)
               </span>
             </div>
@@ -124,23 +124,23 @@ export function SmsModal() {
               rows={4}
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
-              className="w-full rounded-xl border border-stone-200 dark:border-[#233C30] bg-stone-50 dark:bg-[#16261F] p-3 outline-none resize-none leading-relaxed"
+              className="w-full rounded-xl border border-stone-200 dark:border-[#243B2F] bg-stone-50 dark:bg-[#1A2C23] text-stone-900 dark:text-[#ECF3EE] dark:placeholder-[#5E7569] p-3 outline-none resize-none leading-relaxed"
               required
             />
           </div>
 
           {/* SMS Header notice */}
-          <div className="p-2.5 rounded-xl bg-stone-100 dark:bg-[#16261F] flex items-center justify-between text-[11px] text-stone-500 dark:text-[#90A199]">
-            <span>Gönderen Başlığı: <strong>DENTASPHERE</strong></span>
+          <div className="p-2.5 rounded-xl bg-stone-100 dark:bg-[#1A2C23] flex items-center justify-between text-[11px] text-stone-500 dark:text-[#A2B5A8]">
+            <span>Gönderen Başlığı: <strong className="text-stone-800 dark:text-[#ECF3EE]">DENTASPHERE</strong></span>
             <span>NetGSM API Entegre</span>
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-stone-200 dark:border-[#1E332A]">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-stone-200 dark:border-[#243B2F]">
             <button
               type="button"
               onClick={closeSmsModal}
-              className="px-4 py-2 rounded-xl border border-stone-300 dark:border-[#233C30]"
+              className="px-4 py-2 rounded-xl border border-stone-300 dark:border-[#243B2F] text-stone-600 dark:text-[#A2B5A8] hover:bg-stone-50 dark:hover:bg-[#1D3328]"
             >
               Vazgeç
             </button>

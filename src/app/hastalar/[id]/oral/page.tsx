@@ -57,8 +57,8 @@ function ToothItem({
       className={cn(
         "group flex flex-col items-center justify-between p-1 rounded-lg cursor-pointer transition-all duration-150 select-none",
         isSelected
-          ? "bg-[#1F3327]/10 ring-2 ring-[#1F3327] shadow-2xs"
-          : "hover:bg-[#EEEBE4]/80"
+          ? "bg-[#1F3327]/10 ring-2 ring-[#1F3327] shadow-2xs dark:bg-[#163321] dark:ring-[#285A3B]"
+          : "hover:bg-[#EEEBE4]/80 dark:hover:bg-[#1E3026]"
       )}
       style={{ minWidth: "34px", maxWidth: "44px" }}
       title={`Diş #${num}${
@@ -181,8 +181,8 @@ function ToothItem({
             className={cn(
               "mt-1 text-[11px] font-semibold transition-colors",
               isSelected
-                ? "text-[#1F3327] font-bold"
-                : "text-[#5F665F] group-hover:text-[#1C211E]"
+                ? "text-[#1F3327] dark:text-[#76D28F] font-bold"
+                : "text-[#5F665F] dark:text-[#A2B5A8] group-hover:text-[#1C211E] dark:group-hover:text-[#ECF3EE]"
             )}
           >
             {num}
@@ -196,8 +196,8 @@ function ToothItem({
             className={cn(
               "mb-1 text-[11px] font-semibold transition-colors",
               isSelected
-                ? "text-[#1F3327] font-bold"
-                : "text-[#5F665F] group-hover:text-[#1C211E]"
+                ? "text-[#1F3327] dark:text-[#76D28F] font-bold"
+                : "text-[#5F665F] dark:text-[#A2B5A8] group-hover:text-[#1C211E] dark:group-hover:text-[#ECF3EE]"
             )}
           >
             {num}
@@ -404,19 +404,19 @@ export default function OralOdontogramPage() {
         {/* ============================================================ */}
         <div className="space-y-6 lg:col-span-8">
           {/* Tooth Chart Card */}
-          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs">
+          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
             {/* Top Toolbar: Toggles & Options */}
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-[#E6E1D8] pb-4">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-[#E6E1D8] pb-4 dark:border-[#243B2F]">
               {/* Dentition Toggle */}
-              <div className="flex items-center rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-1">
+              <div className="flex items-center rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-1 dark:bg-[#1A2C23] dark:border-[#243B2F]">
                 <button
                   type="button"
                   onClick={() => setDentitionType("daimi")}
                   className={cn(
                     "rounded-md px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer",
                     dentitionType === "daimi"
-                      ? "bg-[#2D3A32] text-white shadow-xs"
-                      : "text-[#3F4540] hover:text-[#1C211E]"
+                      ? "bg-[#2D3A32] text-white shadow-xs dark:bg-[#1F3327]"
+                      : "text-[#3F4540] hover:text-[#1C211E] dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
                   )}
                 >
                   Daimi Dişler
@@ -427,8 +427,8 @@ export default function OralOdontogramPage() {
                   className={cn(
                     "rounded-md px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer",
                     dentitionType === "sut"
-                      ? "bg-[#2D3A32] text-white shadow-xs"
-                      : "text-[#3F4540] hover:text-[#1C211E]"
+                      ? "bg-[#2D3A32] text-white shadow-xs dark:bg-[#1F3327]"
+                      : "text-[#3F4540] hover:text-[#1C211E] dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
                   )}
                 >
                   Süt Dişleri
@@ -437,12 +437,12 @@ export default function OralOdontogramPage() {
 
               {/* Right filters / controls */}
               <div className="flex flex-wrap items-center gap-4">
-                <label className="flex cursor-pointer items-center gap-2 text-xs font-medium text-[#3F4540]">
+                <label className="flex cursor-pointer items-center gap-2 text-xs font-medium text-[#3F4540] dark:text-[#ECF3EE]">
                   <input
                     type="checkbox"
                     checked={diffDiagnosis}
                     onChange={(e) => setDiffDiagnosis(e.target.checked)}
-                    className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327]"
+                    className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] dark:border-[#243B2F]"
                   />
                   <span>Diyagnozu farklı göster</span>
                 </label>
@@ -450,7 +450,7 @@ export default function OralOdontogramPage() {
                 <select
                   value={chartView}
                   onChange={(e) => setChartView(e.target.value)}
-                  className="h-8 rounded-lg border border-[#E6E1D8] bg-white px-2.5 text-xs font-medium text-[#3F4540] outline-none transition focus:border-[#1F3327]"
+                  className="h-8 rounded-lg border border-[#E6E1D8] bg-white px-2.5 text-xs font-medium text-[#3F4540] outline-none transition focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="Anatomik">Anatomik</option>
                   <option value="Geometrik">Geometrik</option>
@@ -460,18 +460,18 @@ export default function OralOdontogramPage() {
             </div>
 
             {/* Selected Tooth Info Banner (Fiyat Satırı Vurgusu rengi #F6EEDC / #EADFC8) */}
-            <div className="mb-4 flex items-center justify-between rounded-lg bg-[#F6EEDC] px-4 py-2 border border-[#EADFC8] text-xs">
+            <div className="mb-4 flex items-center justify-between rounded-lg bg-[#F6EEDC] px-4 py-2 border border-[#EADFC8] text-xs dark:bg-[#2C2415] dark:border-[#523E1E]">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-[#1C211E]">Seçili Diş:</span>
+                <span className="font-semibold text-[#1C211E] dark:text-[#E8BA73]">Seçili Diş:</span>
                 {selectedTooth ? (
                   <span className="inline-flex items-center rounded-md bg-[#1F3327] px-2 py-0.5 font-bold text-white shadow-2xs">
                     #{selectedTooth}
                   </span>
                 ) : (
-                  <span className="text-[#5F665F]">Diş seçilmedi</span>
+                  <span className="text-[#5F665F] dark:text-[#A2B5A8]">Diş seçilmedi</span>
                 )}
               </div>
-              <div className="flex items-center gap-4 text-[11px] text-[#5F665F]">
+              <div className="flex items-center gap-4 text-[11px] text-[#5F665F] dark:text-[#A2B5A8]">
                 <span className="flex items-center gap-1.5">
                   <span className="h-2 w-2 rounded-full bg-[#B07D47]" />
                   Kanal Tedavisi (36)
@@ -492,7 +492,7 @@ export default function OralOdontogramPage() {
               <div className="min-w-[620px] space-y-6">
                 {/* Upper Jaw (Üst Çene) */}
                 <div>
-                  <div className="mb-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase">
+                  <div className="mb-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase dark:text-[#A2B5A8]">
                     Üst Çene (Maksilla)
                   </div>
                   <div className="flex items-center justify-center gap-3">
@@ -515,8 +515,8 @@ export default function OralOdontogramPage() {
 
                     {/* Midline Divider */}
                     <div className="flex flex-col items-center justify-center h-20 px-1">
-                      <div className="h-full w-0.5 border-r border-dashed border-[#E6E1D8]" />
-                      <span className="text-[10px] text-[#5F665F] font-mono mt-0.5">R|L</span>
+                      <div className="h-full w-0.5 border-r border-dashed border-[#E6E1D8] dark:border-[#243B2F]" />
+                      <span className="text-[10px] text-[#5F665F] font-mono mt-0.5 dark:text-[#A2B5A8]">R|L</span>
                     </div>
 
                     {/* Upper Left Quadrant (21 -> 28) */}
@@ -540,8 +540,8 @@ export default function OralOdontogramPage() {
 
                 {/* Horizontal Jaw Separator */}
                 <div className="relative flex items-center justify-center">
-                  <div className="w-full border-t border-[#E6E1D8]" />
-                  <span className="absolute bg-[#FBFAF7] px-3 text-[10px] font-semibold text-[#5F665F] uppercase tracking-wider">
+                  <div className="w-full border-t border-[#E6E1D8] dark:border-[#243B2F]" />
+                  <span className="absolute bg-[#FBFAF7] px-3 text-[10px] font-semibold text-[#5F665F] uppercase tracking-wider dark:bg-[#15221B] dark:text-[#A2B5A8]">
                     Oklüzal Düzlem
                   </span>
                 </div>
@@ -568,8 +568,8 @@ export default function OralOdontogramPage() {
 
                     {/* Midline Divider */}
                     <div className="flex flex-col items-center justify-center h-20 px-1">
-                      <span className="text-[10px] text-[#5F665F] font-mono mb-0.5">R|L</span>
-                      <div className="h-full w-0.5 border-r border-dashed border-[#E6E1D8]" />
+                      <span className="text-[10px] text-[#5F665F] font-mono mb-0.5 dark:text-[#A2B5A8]">R|L</span>
+                      <div className="h-full w-0.5 border-r border-dashed border-[#E6E1D8] dark:border-[#243B2F]" />
                     </div>
 
                     {/* Lower Left Quadrant (31 -> 38) */}
@@ -589,7 +589,7 @@ export default function OralOdontogramPage() {
                       })}
                     </div>
                   </div>
-                  <div className="mt-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase">
+                  <div className="mt-2 text-center text-[11px] font-serif font-bold tracking-wider text-[#5F665F] uppercase dark:text-[#A2B5A8]">
                     Alt Çene (Mandibula)
                   </div>
                 </div>
@@ -598,14 +598,14 @@ export default function OralOdontogramPage() {
           </div>
 
           {/* Treatment History Table */}
-          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] shadow-xs overflow-hidden">
-            <div className="flex items-center justify-between border-b border-[#E6E1D8] px-5 py-4">
+          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] shadow-xs overflow-hidden dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="flex items-center justify-between border-b border-[#E6E1D8] px-5 py-4 dark:border-[#243B2F]">
               <div className="flex items-center gap-2">
-                <Stethoscope className="h-4 w-4 text-[#1F3327]" />
-                <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider">
+                <Stethoscope className="h-4 w-4 text-[#1F3327] dark:text-[#76D28F]" />
+                <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider dark:text-[#ECF3EE]">
                   Tedavi Geçmişi
                 </h2>
-                <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-xs font-semibold text-[#3F4540]">
+                <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-xs font-semibold text-[#3F4540] dark:bg-[#1A2C23] dark:text-[#A2B5A8]">
                   {records.length} Kayıt
                 </span>
               </div>
@@ -613,7 +613,7 @@ export default function OralOdontogramPage() {
 
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="border-b border-[#E6E1D8] bg-[#EEEBE4]/70 text-[11px] font-semibold uppercase tracking-wider text-[#5F665F]">
+                <thead className="border-b border-[#E6E1D8] bg-[#EEEBE4]/70 text-[11px] font-semibold uppercase tracking-wider text-[#5F665F] dark:border-[#243B2F] dark:bg-[#1A2C23] dark:text-[#A2B5A8]">
                   <tr>
                     <th className="py-3 pl-4 pr-2 w-10 text-center">
                       <input
@@ -623,7 +623,7 @@ export default function OralOdontogramPage() {
                           selectedRows.length === records.length
                         }
                         onChange={toggleSelectAll}
-                        className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] cursor-pointer"
+                        className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] cursor-pointer dark:border-[#243B2F]"
                       />
                     </th>
                     <th className="px-3 py-3">Tarih</th>
@@ -636,7 +636,7 @@ export default function OralOdontogramPage() {
                     <th className="px-2 py-3 pr-4 text-center w-12">Sil</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E6E1D8] text-[#3F4540]">
+                <tbody className="divide-y divide-[#E6E1D8] text-[#3F4540] dark:divide-[#243B2F] dark:text-[#ECF3EE]">
                   {records.map((record) => {
                     const isSelected = selectedRows.includes(record.id);
                     return (
@@ -645,8 +645,8 @@ export default function OralOdontogramPage() {
                         className={cn(
                           "transition-colors",
                           isSelected
-                            ? "bg-[#F6EEDC] border-b border-[#EADFC8]"
-                            : "hover:bg-[#F6EEDC]/40"
+                            ? "bg-[#F6EEDC] border-b border-[#EADFC8] dark:bg-[#2C2415] dark:border-[#523E1E]"
+                            : "hover:bg-[#F6EEDC]/40 dark:hover:bg-[#1A2C23]/60"
                         )}
                       >
                         <td className="py-3 pl-4 pr-2 text-center">
@@ -654,34 +654,34 @@ export default function OralOdontogramPage() {
                             type="checkbox"
                             checked={isSelected}
                             onChange={() => toggleSelectRow(record.id)}
-                            className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] cursor-pointer"
+                            className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] cursor-pointer dark:border-[#243B2F]"
                           />
                         </td>
-                        <td className="px-3 py-3 font-medium text-[#1C211E] whitespace-nowrap">
+                        <td className="px-3 py-3 font-medium text-[#1C211E] whitespace-nowrap dark:text-[#ECF3EE]">
                           {record.date}
                         </td>
                         <td className="px-3 py-3">
-                          <span className="inline-flex items-center justify-center rounded-md bg-[#EEEBE4] px-2 py-0.5 text-xs font-bold text-[#1C211E]">
+                          <span className="inline-flex items-center justify-center rounded-md bg-[#EEEBE4] px-2 py-0.5 text-xs font-bold text-[#1C211E] dark:bg-[#1A2C23] dark:text-[#ECF3EE]">
                             #{record.toothNo}
                           </span>
                         </td>
-                        <td className="px-3 py-3 font-medium text-[#1C211E]">
+                        <td className="px-3 py-3 font-medium text-[#1C211E] dark:text-[#ECF3EE]">
                           {record.treatment}
                         </td>
-                        <td className="px-3 py-3 text-[#5F665F] whitespace-nowrap">
+                        <td className="px-3 py-3 text-[#5F665F] whitespace-nowrap dark:text-[#A2B5A8]">
                           {record.dentist}
                         </td>
-                        <td className="px-3 py-3 text-right font-bold text-[#1C211E] whitespace-nowrap">
+                        <td className="px-3 py-3 text-right font-bold text-[#1C211E] whitespace-nowrap dark:text-[#ECF3EE]">
                           {formatCurrency(record.total)}
                         </td>
-                        <td className="px-3 py-3 font-medium text-[#5F665F]">
+                        <td className="px-3 py-3 font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                           {record.currency}
                         </td>
                         <td className="px-2 py-3 text-center">
                           <button
                             type="button"
                             title="Düzenle"
-                            className="rounded p-1 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition cursor-pointer"
+                            className="rounded p-1 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
                           >
                             <Pencil className="h-3.5 w-3.5" />
                           </button>
@@ -691,7 +691,7 @@ export default function OralOdontogramPage() {
                             type="button"
                             title="Sil"
                             onClick={() => handleDeleteRecord(record.id)}
-                            className="rounded p-1 text-[#5F665F] hover:bg-[#FBE9E7] hover:text-[#B3261E] transition cursor-pointer"
+                            className="rounded p-1 text-[#5F665F] hover:bg-[#FBE9E7] hover:text-[#B3261E] transition cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#3D1A1A] dark:hover:text-[#FF8A80]"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
@@ -701,7 +701,7 @@ export default function OralOdontogramPage() {
                   })}
                   {records.length === 0 && (
                     <tr>
-                      <td colSpan={9} className="py-8 text-center text-[#5F665F]">
+                      <td colSpan={9} className="py-8 text-center text-[#5F665F] dark:text-[#A2B5A8]">
                         Kayıtlı tedavi bulunmamaktadır.
                       </td>
                     </tr>
@@ -717,19 +717,19 @@ export default function OralOdontogramPage() {
         {/* ============================================================ */}
         <div className="space-y-6 lg:col-span-4">
           {/* Oral Bilgiler Panel */}
-          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs">
-            <h2 className="mb-4 text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider border-b border-[#E6E1D8] pb-3">
+          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <h2 className="mb-4 text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider border-b border-[#E6E1D8] pb-3 dark:text-[#ECF3EE] dark:border-[#243B2F]">
               Oral Bilgiler
             </h2>
 
             <div className="space-y-3 text-xs">
               {/* Diş Hekimi */}
               <div className="space-y-1">
-                <label className="font-medium text-[#5F665F]">Diş Hekimi</label>
+                <label className="font-medium text-[#5F665F] dark:text-[#A2B5A8]">Diş Hekimi</label>
                 <select
                   value={dentist}
                   onChange={(e) => setDentist(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="Dr. Selin Yılmaz">Dr. Selin Yılmaz</option>
                   <option value="Dr. Mahir Açıkkalın">Dr. Mahir Açıkkalın</option>
@@ -738,11 +738,11 @@ export default function OralOdontogramPage() {
 
               {/* Tarife */}
               <div className="space-y-1">
-                <label className="font-medium text-[#5F665F]">Tarife</label>
+                <label className="font-medium text-[#5F665F] dark:text-[#A2B5A8]">Tarife</label>
                 <select
                   value={tariff}
                   onChange={(e) => setTariff(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="TDB 2021">TDB 2021</option>
                   <option value="TDB 2024">TDB 2024</option>
@@ -751,11 +751,11 @@ export default function OralOdontogramPage() {
 
               {/* Diyagnoz */}
               <div className="space-y-1">
-                <label className="font-medium text-[#5F665F]">Diyagnoz</label>
+                <label className="font-medium text-[#5F665F] dark:text-[#A2B5A8]">Diyagnoz</label>
                 <select
                   value={diagnosisLang}
                   onChange={(e) => setDiagnosisLang(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="Türkçe">Türkçe</option>
                   <option value="İngilizce">İngilizce</option>
@@ -765,21 +765,21 @@ export default function OralOdontogramPage() {
 
               {/* Tarih */}
               <div className="space-y-1">
-                <label className="font-medium text-[#5F665F]">Tarih</label>
+                <label className="font-medium text-[#5F665F] dark:text-[#A2B5A8]">Tarih</label>
                 <div className="relative">
                   <input
                     type="text"
                     value={actionDate}
                     onChange={(e) => setActionDate(e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
-                  <Calendar className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F]" />
+                  <Calendar className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
                 </div>
               </div>
 
               {/* İşlemler: 4 icon buttons row (tooth, group, implant, mic) */}
               <div className="space-y-1 pt-1">
-                <label className="font-medium text-[#5F665F]">İşlemler</label>
+                <label className="font-medium text-[#5F665F] dark:text-[#A2B5A8]">İşlemler</label>
                 <div className="grid grid-cols-4 gap-2">
                   {[
                     { title: "Tek Diş", icon: Stethoscope },
@@ -798,8 +798,8 @@ export default function OralOdontogramPage() {
                         className={cn(
                           "flex h-10 items-center justify-center rounded-lg border transition-all cursor-pointer",
                           isActive
-                            ? "bg-[#2D3A32] text-white border-[#2D3A32] shadow-2xs"
-                            : "bg-[#EEEBE4] border-[#E6E1D8] text-[#3F4540] hover:bg-[#EADFC8] hover:text-[#1C211E]"
+                            ? "bg-[#2D3A32] text-white border-[#2D3A32] shadow-2xs dark:bg-[#1F3327] dark:border-[#243B2F]"
+                            : "bg-[#EEEBE4] border-[#E6E1D8] text-[#3F4540] hover:bg-[#EADFC8] hover:text-[#1C211E] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                         )}
                       >
                         <Icon className="h-4 w-4" />
@@ -812,11 +812,11 @@ export default function OralOdontogramPage() {
               {/* Tedavi & Cerrahi (Grid 2 cols) */}
               <div className="grid grid-cols-2 gap-3 pt-1">
                 <div className="space-y-1">
-                  <label className="font-medium text-[#5F665F]">Tedavi</label>
+                  <label className="font-medium text-[#5F665F] dark:text-[#A2B5A8]">Tedavi</label>
                   <select
                     value={treatmentType}
                     onChange={(e) => setTreatmentType(e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-2.5 text-xs text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-2.5 text-xs text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Kanal Tedavisi">Kanal Tedavisi</option>
                     <option value="Dolgu">Dolgu</option>
@@ -832,11 +832,11 @@ export default function OralOdontogramPage() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-medium text-[#5F665F]">Cerrahi</label>
+                  <label className="font-medium text-[#5F665F] dark:text-[#A2B5A8]">Cerrahi</label>
                   <select
                     value={isSurgical}
                     onChange={(e) => setIsSurgical(e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-2.5 text-xs text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-2.5 text-xs text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Hayır">Hayır</option>
                     <option value="Evet">Evet</option>
@@ -846,13 +846,13 @@ export default function OralOdontogramPage() {
 
               {/* Bulgu */}
               <div className="space-y-1 pt-1">
-                <label className="font-medium text-[#5F665F]">Bulgu</label>
+                <label className="font-medium text-[#5F665F] dark:text-[#A2B5A8]">Bulgu</label>
                 <input
                   type="text"
                   placeholder="Bulgu veya not giriniz..."
                   value={findings}
                   onChange={(e) => setFindings(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] dark:placeholder-[#5F665F] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 />
               </div>
 
@@ -871,28 +871,28 @@ export default function OralOdontogramPage() {
           </div>
 
           {/* Right Panel Bottom: Tedavi Listesi / Fiyatlar */}
-          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs">
-            <div className="mb-3 flex items-center justify-between border-b border-[#E6E1D8] pb-3">
-              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider">
+          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="mb-3 flex items-center justify-between border-b border-[#E6E1D8] pb-3 dark:border-[#243B2F]">
+              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider dark:text-[#ECF3EE]">
                 Tedavi Listesi / Fiyatlar
               </h2>
-              <span className="text-[11px] text-[#5F665F]">TDB 2021</span>
+              <span className="text-[11px] text-[#5F665F] dark:text-[#A2B5A8]">TDB 2021</span>
             </div>
 
             {/* Quick search */}
             <div className="relative mb-3">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#5F665F]" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
               <input
                 type="text"
                 placeholder="Tedavi ara..."
                 value={searchPrice}
                 onChange={(e) => setSearchPrice(e.target.value)}
-                className="h-9 w-full rounded-lg border border-[#E6E1D8] bg-white pl-8 pr-3 text-xs text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                className="h-9 w-full rounded-lg border border-[#E6E1D8] bg-white pl-8 pr-3 text-xs text-[#3F4540] placeholder-[#5F665F] dark:placeholder-[#5F665F] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
               />
             </div>
 
             {/* Price list */}
-            <div className="divide-y divide-[#E6E1D8] max-h-60 overflow-y-auto pr-1">
+            <div className="divide-y divide-[#E6E1D8] max-h-60 overflow-y-auto pr-1 dark:divide-[#243B2F]">
               {treatmentPrices
                 .filter((tp) =>
                   tp.name.toLowerCase().includes(searchPrice.toLowerCase())
@@ -901,12 +901,12 @@ export default function OralOdontogramPage() {
                   <div
                     key={priceItem.name}
                     onClick={() => setTreatmentType(priceItem.name)}
-                    className="flex cursor-pointer items-center justify-between py-2.5 px-2 rounded-lg hover:bg-[#F6EEDC] transition-colors group"
+                    className="flex cursor-pointer items-center justify-between py-2.5 px-2 rounded-lg hover:bg-[#F6EEDC] transition-colors group dark:hover:bg-[#1A2C23]"
                   >
-                    <span className="text-xs font-medium text-[#3F4540] group-hover:text-[#1C211E] group-hover:font-semibold">
+                    <span className="text-xs font-medium text-[#3F4540] group-hover:text-[#1C211E] group-hover:font-semibold dark:text-[#ECF3EE] dark:group-hover:text-[#76D28F]">
                       {priceItem.name}
                     </span>
-                    <span className="text-xs font-bold text-[#1F3327] whitespace-nowrap pl-2">
+                    <span className="text-xs font-bold text-[#1F3327] whitespace-nowrap pl-2 dark:text-[#76D28F]">
                       {formatCurrency(priceItem.price)} {priceItem.currency}
                     </span>
                   </div>

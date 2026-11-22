@@ -54,21 +54,21 @@ export function CommandPalette() {
       onClick={closeCommandPalette}
     >
       <div
-        className="w-full max-w-xl rounded-2xl bg-white dark:bg-[#122019] shadow-2xl border border-stone-200 dark:border-[#1E332A] overflow-hidden text-stone-900 dark:text-[#F0F5F2]"
+        className="w-full max-w-xl rounded-2xl bg-white dark:bg-[#15221B] shadow-2xl border border-stone-200 dark:border-[#243B2F] overflow-hidden text-stone-900 dark:text-[#ECF3EE]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Bar */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-stone-200 dark:border-[#1E332A]">
-          <Search className="h-5 w-5 text-stone-400" />
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-stone-200 dark:border-[#243B2F]">
+          <Search className="h-5 w-5 text-stone-400 dark:text-[#6C8578]" />
           <input
             ref={inputRef}
             type="text"
             placeholder="Hasta adı, TC, telefon veya gitmek istediğiniz sayfa..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 bg-transparent text-sm outline-none placeholder-stone-400 dark:placeholder-[#64756D]"
+            className="flex-1 bg-transparent text-sm outline-none placeholder-stone-400 dark:placeholder-[#5E7569] dark:text-[#ECF3EE]"
           />
-          <kbd className="hidden sm:inline-block rounded border border-stone-200 dark:border-[#233C30] bg-stone-100 dark:bg-[#1A2D23] px-2 py-0.5 text-[11px] font-medium text-stone-500 dark:text-[#90A199]">
+          <kbd className="hidden sm:inline-block rounded border border-stone-200 dark:border-[#243B2F] bg-stone-100 dark:bg-[#1A2C23] px-2 py-0.5 text-[11px] font-medium text-stone-500 dark:text-[#A2B5A8]">
             ESC
           </kbd>
         </div>
@@ -78,7 +78,7 @@ export function CommandPalette() {
           {/* Patients Section */}
           {filteredPatients.length > 0 && (
             <div>
-              <p className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-stone-400 dark:text-[#7A8E83]">
+              <p className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-stone-400 dark:text-[#6C8578]">
                 Hastalar ({filteredPatients.length})
               </p>
               <div className="space-y-0.5 mt-1">
@@ -86,15 +86,15 @@ export function CommandPalette() {
                   <div
                     key={p.id}
                     onClick={() => navigateTo(`/hastalar/${p.id}`)}
-                    className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-[#1A2D23] cursor-pointer transition-colors group"
+                    className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-[#1D3328] cursor-pointer transition-colors group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2D4A3E]/10 dark:bg-[#2D4A3E]/30 text-[#2D4A3E] dark:text-[#7CC9A6] text-xs font-bold">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#2D4A3E]/10 dark:bg-[#1D3328] text-[#2D4A3E] dark:text-[#7CC9A6] text-xs font-bold">
                         {p.firstName[0]}{p.lastName[0]}
                       </div>
                       <div>
                         <p className="text-xs font-semibold">{p.firstName} {p.lastName}</p>
-                        <p className="text-[11px] text-stone-500 dark:text-[#90A199]">{p.hsNo} • {p.phone}</p>
+                        <p className="text-[11px] text-stone-500 dark:text-[#A2B5A8]">{p.hsNo} • {p.phone}</p>
                       </div>
                     </div>
                     <ArrowRight className="h-4 w-4 text-stone-400 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -106,7 +106,7 @@ export function CommandPalette() {
 
           {/* Quick Actions / Links */}
           <div>
-            <p className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-stone-400 dark:text-[#7A8E83]">
+            <p className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-stone-400 dark:text-[#6C8578]">
               Hızlı Sayfalar
             </p>
             <div className="space-y-0.5 mt-1">
@@ -116,10 +116,10 @@ export function CommandPalette() {
                   <div
                     key={item.name}
                     onClick={() => navigateTo(item.href)}
-                    className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-[#1A2D23] cursor-pointer transition-colors group"
+                    className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-stone-100 dark:hover:bg-[#1D3328] cursor-pointer transition-colors group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-stone-100 dark:bg-[#1E332A] text-stone-600 dark:text-[#90A199]">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-stone-100 dark:bg-[#1A2C23] text-stone-600 dark:text-[#A2B5A8]">
                         <Icon className="h-3.5 w-3.5" />
                       </div>
                       <span className="text-xs font-medium">{item.name}</span>
@@ -133,8 +133,8 @@ export function CommandPalette() {
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2.5 bg-stone-50 dark:bg-[#0E1A14] border-t border-stone-200 dark:border-[#1E332A] flex items-center justify-between text-[11px] text-stone-500 dark:text-[#90A199]">
-          <span>Öneri: <strong className="text-stone-700 dark:text-white">Ctrl + K</strong> ile istediğiniz zaman açabilirsiniz</span>
+        <div className="px-4 py-2.5 bg-stone-50 dark:bg-[#15221B] border-t border-stone-200 dark:border-[#243B2F] flex items-center justify-between text-[11px] text-stone-500 dark:text-[#A2B5A8]">
+          <span>Öneri: <strong className="text-stone-700 dark:text-[#ECF3EE]">Ctrl + K</strong> ile istediğiniz zaman açabilirsiniz</span>
           <button
             onClick={() => {
               closeCommandPalette();

@@ -9,7 +9,7 @@ export default function QuickActions() {
   const { openAppointmentModal } = useModal();
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#17251E] via-[#1C2C24] to-[#1E3027] p-5 text-white shadow-sm border border-stone-800/40">
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#17251E] via-[#1C2C24] to-[#1E3027] dark:from-[#111C16] dark:via-[#15231C] dark:to-[#17271F] p-5 text-white shadow-sm border border-stone-800/40 dark:border-[#243B2F]">
       {/* Background X-ray Graphic on right */}
       <div className="absolute right-0 top-0 bottom-0 w-36 pointer-events-none select-none overflow-hidden">
         <Image

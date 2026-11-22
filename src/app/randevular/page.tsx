@@ -82,38 +82,21 @@ export default function RandevularPage() {
   const timeSlots = ["09:00", "09:45", "10:30", "11:15", "12:00", "13:30", "14:15", "15:00", "15:45", "16:30"];
 
   // Exact Figma Event Colors
-  const getAppointmentCardStyle = (status: string) => {
+  const getAppointmentCardClasses = (status: string) => {
     switch (status) {
       case "Tamamlandı":
-        // Event/Green: #DDE7D9 / #C5D6C0
-        return {
-          backgroundColor: "#DDE7D9",
-          border: "1px solid #C5D6C0",
-          color: "#1F3327",
-        };
+        // Event/Green: #DDE7D9 / #C5D6C0 -> dark: #173022 / #26533B
+        return "bg-[#DDE7D9] border-[#C5D6C0] text-[#1F3327] dark:bg-[#173022] dark:border-[#26533B] dark:text-[#A7F3D0]";
       case "Devam Ediyor":
-        // Event/Purple: #E6DFF1 / #D3C7E6
-        return {
-          backgroundColor: "#E6DFF1",
-          border: "1px solid #D3C7E6",
-          color: "#2C5282",
-        };
+        // Event/Purple: #E6DFF1 / #D3C7E6 -> dark: #241E38 / #3D325C
+        return "bg-[#E6DFF1] border-[#D3C7E6] text-[#2C5282] dark:bg-[#241E38] dark:border-[#3D325C] dark:text-[#C4B5FD]";
       case "İptal":
-        // Event/Red: #F4D9D6 / #E8BFBA
-        return {
-          backgroundColor: "#F4D9D6",
-          border: "1px solid #E8BFBA",
-          color: "#B3261E",
-          opacity: 0.8,
-        };
+        // Event/Red: #F4D9D6 / #E8BFBA -> dark: #341818 / #572727
+        return "bg-[#F4D9D6] border-[#E8BFBA] text-[#B3261E] dark:bg-[#341818] dark:border-[#572727] dark:text-[#FCA5A5] opacity-80";
       case "Bekliyor":
       default:
-        // Event/Yellow: #F7E9C9 / #E9D3A0
-        return {
-          backgroundColor: "#F7E9C9",
-          border: "1px solid #E9D3A0",
-          color: "#7A5320",
-        };
+        // Event/Yellow: #F7E9C9 / #E9D3A0 -> dark: #332514 / #573F22
+        return "bg-[#F7E9C9] border-[#E9D3A0] text-[#7A5320] dark:bg-[#332514] dark:border-[#573F22] dark:text-[#FDE68A]";
     }
   };
 
@@ -122,12 +105,7 @@ export default function RandevularPage() {
       case "Tamamlandı":
         return (
           <span
-            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold shadow-2xs shrink-0"
-            style={{
-              backgroundColor: "#E2EEDD",
-              color: "#2C6A3B",
-              border: "1px solid #C9DDC3",
-            }}
+            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold shadow-2xs shrink-0 bg-[#E2EEDD] text-[#2C6A3B] border border-[#C9DDC3] dark:bg-[#1A3324] dark:text-[#4ADE80] dark:border-[#2D5A3C]"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#3F8F55] shrink-0" />
             Tamamlandı
@@ -136,12 +114,7 @@ export default function RandevularPage() {
       case "Devam Ediyor":
         return (
           <span
-            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold shadow-2xs shrink-0"
-            style={{
-              backgroundColor: "#E3ECF7",
-              color: "#2C5282",
-              border: "1px solid #C5D6E8",
-            }}
+            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold shadow-2xs shrink-0 bg-[#E3ECF7] text-[#2C5282] border border-[#C5D6E8] dark:bg-[#172B3C] dark:text-[#7BAEF0] dark:border-[#23425E]"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#4A78B5] animate-pulse shrink-0" />
             Devam Ediyor
@@ -150,12 +123,7 @@ export default function RandevularPage() {
       case "İptal":
         return (
           <span
-            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold shrink-0"
-            style={{
-              backgroundColor: "#FBE9E7",
-              color: "#B3261E",
-              border: "1px solid #F3D0CC",
-            }}
+            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold shrink-0 bg-[#FBE9E7] text-[#B3261E] border border-[#F3D0CC] dark:bg-[#3B1C1B] dark:text-[#F87171] dark:border-[#5A2422]"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#B3261E] shrink-0" />
             İptal
@@ -165,12 +133,7 @@ export default function RandevularPage() {
       default:
         return (
           <span
-            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold shadow-2xs shrink-0"
-            style={{
-              backgroundColor: "#F3EADB",
-              color: "#7A5320",
-              border: "1px solid #EADFC8",
-            }}
+            className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-bold shadow-2xs shrink-0 bg-[#F3EADB] text-[#7A5320] border border-[#EADFC8] dark:bg-[#342817] dark:text-[#E2B77A] dark:border-[#523E23]"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-[#B07D47] shrink-0" />
             Bekliyor
@@ -292,10 +255,7 @@ export default function RandevularPage() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => handleOpenSlotCreate("Per", "10:30")}
-              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white transition-all shadow-xs hover:shadow-md cursor-pointer"
-              style={{
-                backgroundColor: "#1F3327", // Green/800
-              }}
+              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white transition-all shadow-xs hover:shadow-md cursor-pointer bg-[#1F3327] hover:bg-[#2D3A32] dark:bg-[#2D4C3C] dark:hover:bg-[#345844]"
             >
               <Plus className="h-4 w-4" />
               + Yeni Randevu
@@ -306,50 +266,34 @@ export default function RandevularPage() {
 
       {/* Calendar Controls */}
       <div
-        className="flex flex-wrap items-center justify-between gap-4 rounded-2xl p-4 shadow-xs"
-        style={{
-          backgroundColor: "#FBFAF7",
-          border: "1px solid #E6E1D8",
-        }}
+        className="flex flex-wrap items-center justify-between gap-4 rounded-2xl p-4 shadow-xs bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
       >
         {/* Week navigation */}
         <div className="flex items-center gap-3">
           <div
-            className="flex items-center rounded-xl overflow-hidden shadow-2xs"
-            style={{
-              backgroundColor: "#FFFFFF",
-              border: "1px solid #E6E1D8",
-            }}
+            className="flex items-center rounded-xl overflow-hidden shadow-2xs bg-white dark:bg-[#1A2B21] border border-[#E6E1D8] dark:border-[#243B2F]"
           >
             <button
               onClick={() => setCurrentWeek("17 – 22 Ekim 2026")}
-              className="p-2 transition-colors cursor-pointer hover:bg-[#EEEBE4]"
-              style={{ color: "#1C211E" }}
+              className="p-2 transition-colors cursor-pointer hover:bg-[#EEEBE4] dark:hover:bg-[#243B2F] text-[#1C211E] dark:text-[#ECF3EE]"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <span
-              className="px-3 text-xs font-bold select-none"
-              style={{ color: "#1C211E" }}
+              className="px-3 text-xs font-bold select-none text-[#1C211E] dark:text-[#ECF3EE]"
             >
               {currentWeek}
             </span>
             <button
               onClick={() => setCurrentWeek("31 Ekim – 5 Kasım 2026")}
-              className="p-2 transition-colors cursor-pointer hover:bg-[#EEEBE4]"
-              style={{ color: "#1C211E" }}
+              className="p-2 transition-colors cursor-pointer hover:bg-[#EEEBE4] dark:hover:bg-[#243B2F] text-[#1C211E] dark:text-[#ECF3EE]"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
 
           <span
-            className="text-xs font-bold px-3 py-1.5 rounded-xl"
-            style={{
-              backgroundColor: "#DDEBD8", // Green/100
-              border: "1px solid #C9DDC3", // Green/200
-              color: "#1F3327", // Green/800
-            }}
+            className="text-xs font-bold px-3 py-1.5 rounded-xl bg-[#DDEBD8] border border-[#C9DDC3] text-[#1F3327] dark:bg-[#1E3527] dark:border-[#2D4C3C] dark:text-[#9AB395]"
           >
             Aktif Hafta
           </span>
@@ -357,12 +301,7 @@ export default function RandevularPage() {
           <button
             onClick={handleResetDefaults}
             title="Varsayılan Randevu Listesine Sıfırla"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer"
-            style={{
-              backgroundColor: "#EEEBE4",
-              border: "1px solid #E6E1D8",
-              color: "#1C211E",
-            }}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer bg-[#EEEBE4] border border-[#E6E1D8] text-[#1C211E] hover:bg-[#E6E1D8] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#243B2F]"
           >
             <RotateCcw className="h-3 w-3" />
             Sıfırla
@@ -371,18 +310,13 @@ export default function RandevularPage() {
 
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 text-xs font-medium" style={{ color: "#5F665F" }}>
+          <div className="flex items-center gap-2 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
             <Filter className="h-3.5 w-3.5" />
             <span>Hekim:</span>
             <select
               value={selectedDentist}
               onChange={(e) => setSelectedDentist(e.target.value)}
-              className="h-9 rounded-xl px-3 text-xs font-semibold outline-none"
-              style={{
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #E6E1D8",
-                color: "#1C211E",
-              }}
+              className="h-9 rounded-xl px-3 text-xs font-semibold outline-none bg-white dark:bg-[#1A2B21] border border-[#E6E1D8] dark:border-[#243B2F] text-[#1C211E] dark:text-[#ECF3EE]"
             >
               <option value="Tüm Hekimler">Tüm Hekimler</option>
               <option value="Dr. Selin Yılmaz">Dr. Selin Yılmaz</option>
@@ -390,17 +324,12 @@ export default function RandevularPage() {
             </select>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-medium" style={{ color: "#5F665F" }}>
+          <div className="flex items-center gap-2 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
             <span>Durum:</span>
             <select
               value={selectedStatus}
               onChange={(e) => setSelectedStatus(e.target.value)}
-              className="h-9 rounded-xl px-3 text-xs font-semibold outline-none"
-              style={{
-                backgroundColor: "#FFFFFF",
-                border: "1px solid #E6E1D8",
-                color: "#1C211E",
-              }}
+              className="h-9 rounded-xl px-3 text-xs font-semibold outline-none bg-white dark:bg-[#1A2B21] border border-[#E6E1D8] dark:border-[#243B2F] text-[#1C211E] dark:text-[#ECF3EE]"
             >
               <option value="Tümü">Tüm Durumlar</option>
               <option value="Bekliyor">Bekliyor</option>
@@ -414,54 +343,36 @@ export default function RandevularPage() {
 
       {/* Week Grid Calendar View */}
       <div
-        className="rounded-2xl shadow-xs overflow-x-auto"
-        style={{
-          backgroundColor: "#FBFAF7",
-          border: "1px solid #E6E1D8",
-        }}
+        className="rounded-2xl shadow-xs overflow-x-auto bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
       >
         <div className="min-w-[850px]">
           {/* Day Headers */}
           <div
-            className="grid grid-cols-7"
-            style={{
-              borderBottom: "1px solid #ECE8E1", // Takvim çizgileri: #ECE8E1
-              backgroundColor: "#FBFAF7",
-            }}
+            className="grid grid-cols-7 border-b border-[#ECE8E1] dark:border-[#182A20] bg-[#FBFAF7] dark:bg-[#15221B]"
           >
             <div
-              className="p-3 text-center text-xs font-bold flex items-center justify-center"
-              style={{
-                borderRight: "1px solid #ECE8E1",
-                color: "#8A8F89",
-              }}
+              className="p-3 text-center text-xs font-bold flex items-center justify-center border-r border-[#ECE8E1] dark:border-[#182A20] text-[#8A8F89] dark:text-[#A2B5A8]"
             >
               Saat
             </div>
             {days.map((day) => (
               <div
                 key={day.key}
-                className="p-3 text-center"
-                style={{
-                  borderRight: "1px solid #ECE8E1",
-                  backgroundColor: day.isToday ? "rgba(221, 235, 216, 0.4)" : "transparent",
-                }}
+                className={`p-3 text-center border-r border-[#ECE8E1] dark:border-[#182A20] ${
+                  day.isToday ? "bg-[rgba(221,235,216,0.4)] dark:bg-[rgba(31,51,39,0.5)]" : "bg-transparent"
+                }`}
               >
                 <p
                   className={`text-xs ${
-                    day.isToday ? "font-serif text-sm font-bold" : "font-bold"
+                    day.isToday ? "font-serif text-sm font-bold text-[#1F3327] dark:text-[#4ADE80]" : "font-bold text-[#1C211E] dark:text-[#ECF3EE]"
                   }`}
-                  style={{
-                    color: day.isToday ? "#1F3327" : "#1C211E",
-                  }}
                 >
                   {day.label}
                 </p>
                 <p
-                  className="text-[11px] font-medium mt-0.5"
-                  style={{
-                    color: day.isToday ? "#2F5A3D" : "#8A8F89",
-                  }}
+                  className={`text-[11px] font-medium mt-0.5 ${
+                    day.isToday ? "text-[#2F5A3D] dark:text-[#9AB395]" : "text-[#8A8F89] dark:text-[#A2B5A8]"
+                  }`}
                 >
                   {day.date}
                 </p>
@@ -470,23 +381,17 @@ export default function RandevularPage() {
           </div>
 
           {/* Time Slots Rows */}
-          <div style={{ borderColor: "#ECE8E1" }}>
+          <div>
             {timeSlots.map((time, rowIdx) => (
               <div
                 key={time}
-                className="grid grid-cols-7 min-h-[72px]"
-                style={{
-                  borderBottom: rowIdx < timeSlots.length - 1 ? "1px solid #ECE8E1" : "none",
-                }}
+                className={`grid grid-cols-7 min-h-[72px] ${
+                  rowIdx < timeSlots.length - 1 ? "border-b border-[#ECE8E1] dark:border-[#182A20]" : ""
+                }`}
               >
                 {/* Time Column */}
                 <div
-                  className="p-3 text-center text-xs font-mono font-semibold flex items-center justify-center select-none"
-                  style={{
-                    borderRight: "1px solid #ECE8E1",
-                    color: "#8A8F89",
-                    backgroundColor: "#FBFAF7",
-                  }}
+                  className="p-3 text-center text-xs font-mono font-semibold flex items-center justify-center select-none border-r border-[#ECE8E1] dark:border-[#182A20] text-[#8A8F89] dark:text-[#A2B5A8] bg-[#FBFAF7] dark:bg-[#15221B]"
                 >
                   {time}
                 </div>
@@ -499,13 +404,11 @@ export default function RandevularPage() {
                     <div
                       key={day.key}
                       onClick={() => !appointment && handleOpenSlotCreate(day.key, time)}
-                      className="p-1.5 transition-colors relative group"
-                      style={{
-                        borderRight: "1px solid #ECE8E1",
-                        backgroundColor: day.isToday
-                          ? "rgba(221, 235, 216, 0.15)"
-                          : "transparent",
-                      }}
+                      className={`p-1.5 transition-colors relative group border-r border-[#ECE8E1] dark:border-[#182A20] ${
+                        day.isToday
+                          ? "bg-[rgba(221,235,216,0.15)] dark:bg-[rgba(31,51,39,0.2)]"
+                          : "bg-transparent"
+                      }`}
                     >
                       {appointment ? (
                         <div
@@ -513,8 +416,9 @@ export default function RandevularPage() {
                             e.stopPropagation();
                             handleOpenSelected(appointment);
                           }}
-                          className="h-full p-2.5 rounded-xl shadow-2xs flex flex-col justify-between cursor-pointer hover:shadow-md transition-all"
-                          style={getAppointmentCardStyle(appointment.status)}
+                          className={`h-full p-2.5 rounded-xl shadow-2xs flex flex-col justify-between cursor-pointer hover:shadow-md transition-all border ${getAppointmentCardClasses(
+                            appointment.status
+                          )}`}
                         >
                           <div>
                             <div className="flex items-center justify-between gap-1 mb-1">
@@ -532,10 +436,9 @@ export default function RandevularPage() {
                           </span>
                         </div>
                       ) : (
-                        <div className="h-full w-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg hover:bg-[#F3F0EA] cursor-pointer">
+                        <div className="h-full w-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg hover:bg-[#F3F0EA] dark:hover:bg-[#1A2B21] cursor-pointer">
                           <span
-                            className="text-[10px] font-semibold flex items-center gap-1"
-                            style={{ color: "#5F665F" }}
+                            className="text-[10px] font-semibold flex items-center gap-1 text-[#5F665F] dark:text-[#A2B5A8]"
                           >
                             <Plus className="h-3 w-3" /> Ekle
                           </span>
@@ -553,41 +456,30 @@ export default function RandevularPage() {
       {/* Appointment Detail / Edit / Status Modal */}
       {selectedApt && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200"
           onClick={() => setSelectedApt(null)}
         >
           <div
-            className="w-full max-w-md rounded-[20px] p-6 shadow-2xl space-y-4"
-            style={{
-              backgroundColor: "#FBFAF7",
-              border: "1px solid #E6E1D8",
-            }}
+            className="w-full max-w-md rounded-[20px] p-6 shadow-2xl space-y-4 bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <div
-              className="flex items-center justify-between pb-3"
-              style={{ borderBottom: "1px solid #E6E1D8" }}
+              className="flex items-center justify-between pb-3 border-b border-[#E6E1D8] dark:border-[#243B2F]"
             >
               <div className="flex items-center gap-3">
                 <div
-                  className="h-9 w-9 rounded-xl flex items-center justify-center shadow-2xs"
-                  style={{
-                    backgroundColor: "#E7EEE6", // Green/50
-                    border: "1px solid #C9DDC3", // Green/200
-                    color: "#1F3327",
-                  }}
+                  className="h-9 w-9 rounded-xl flex items-center justify-center shadow-2xs bg-[#E7EEE6] border border-[#C9DDC3] text-[#1F3327] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#9AB395]"
                 >
                   <CalendarIcon className="h-4 w-4" />
                 </div>
                 <div>
                   <h3
-                    className="text-base font-normal tracking-tight font-serif"
-                    style={{ color: "#1C211E" }}
+                    className="text-base font-normal tracking-tight font-serif text-[#1C211E] dark:text-[#ECF3EE]"
                   >
                     Randevu Kartı & Durumu
                   </h3>
-                  <p className="text-xs font-mono font-medium" style={{ color: "#5F665F" }}>
+                  <p className="text-xs font-mono font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     {selectedApt.day} {selectedApt.time} • {selectedApt.dentist}
                   </p>
                 </div>
@@ -595,7 +487,7 @@ export default function RandevularPage() {
               <button
                 type="button"
                 onClick={() => setSelectedApt(null)}
-                className="p-1 rounded-lg text-stone-400 hover:text-stone-800 transition-colors cursor-pointer"
+                className="p-1 rounded-lg text-stone-400 hover:text-stone-800 dark:hover:text-[#ECF3EE] transition-colors cursor-pointer"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -603,65 +495,35 @@ export default function RandevularPage() {
 
             {/* Quick 1-Click Status Switcher */}
             <div>
-              <label className="block text-xs font-bold mb-2" style={{ color: "#3F4540" }}>
+              <label className="block text-xs font-bold mb-2 text-[#3F4540] dark:text-[#CDD5CF]">
                 Randevu Durumu:
               </label>
               <div className="grid grid-cols-2 gap-2">
                 {(["Bekliyor", "Devam Ediyor", "Tamamlandı", "İptal"] as const).map((st) => {
                   const isSelected = selectedApt.status === st;
-                  let bg = "#FBFAF7";
-                  let border = "#E6E1D8";
-                  let color = "#3F4540";
-
-                  if (isSelected) {
-                    if (st === "Tamamlandı") {
-                      bg = "#2C6A3B";
-                      border = "#2C6A3B";
-                      color = "#FFFFFF";
-                    } else if (st === "Devam Ediyor") {
-                      bg = "#2C5282";
-                      border = "#2C5282";
-                      color = "#FFFFFF";
-                    } else if (st === "Bekliyor") {
-                      bg = "#7A5320";
-                      border = "#7A5320";
-                      color = "#FFFFFF";
-                    } else if (st === "İptal") {
-                      bg = "#B3261E";
-                      border = "#B3261E";
-                      color = "#FFFFFF";
-                    }
-                  } else {
-                    if (st === "Tamamlandı") {
-                      bg = "#E2EEDD";
-                      border = "#C9DDC3";
-                      color = "#2C6A3B";
-                    } else if (st === "Devam Ediyor") {
-                      bg = "#E3ECF7";
-                      border = "#C5D6E8";
-                      color = "#2C5282";
-                    } else if (st === "Bekliyor") {
-                      bg = "#F3EADB";
-                      border = "#EADFC8";
-                      color = "#7A5320";
-                    } else if (st === "İptal") {
-                      bg = "#FBE9E7";
-                      border = "#F3D0CC";
-                      color = "#B3261E";
-                    }
-                  }
 
                   return (
                     <button
                       key={st}
                       type="button"
                       onClick={() => handleUpdateStatus(selectedApt.id, st)}
-                      className="py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-2xs"
-                      style={{
-                        backgroundColor: bg,
-                        border: `1px solid ${border}`,
-                        color: color,
-                      }}
+                      className={`py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5 shadow-2xs border ${
+                        isSelected
+                          ? st === "Tamamlandı"
+                            ? "bg-[#2C6A3B] border-[#2C6A3B] text-white dark:bg-[#2C6A3B] dark:border-[#3F8F55]"
+                            : st === "Devam Ediyor"
+                            ? "bg-[#2C5282] border-[#2C5282] text-white dark:bg-[#2C5282] dark:border-[#4A78B5]"
+                            : st === "Bekliyor"
+                            ? "bg-[#7A5320] border-[#7A5320] text-white dark:bg-[#7A5320] dark:border-[#B07D47]"
+                            : "bg-[#B3261E] border-[#B3261E] text-white dark:bg-[#B3261E] dark:border-[#E53E3E]"
+                          : st === "Tamamlandı"
+                          ? "bg-[#E2EEDD] border-[#C9DDC3] text-[#2C6A3B] dark:bg-[#1A3324] dark:border-[#2D5A3C] dark:text-[#4ADE80]"
+                          : st === "Devam Ediyor"
+                          ? "bg-[#E3ECF7] border-[#C5D6E8] text-[#2C5282] dark:bg-[#172B3C] dark:border-[#23425E] dark:text-[#7BAEF0]"
+                          : st === "Bekliyor"
+                          ? "bg-[#F3EADB] border-[#EADFC8] text-[#7A5320] dark:bg-[#342817] dark:border-[#523E23] dark:text-[#E2B77A]"
+                          : "bg-[#FBE9E7] border-[#F3D0CC] text-[#B3261E] dark:bg-[#3B1C1B] dark:border-[#5A2422] dark:text-[#F87171]"
+                      }`}
                     >
                       {st === "Tamamlandı" && <CheckCircle2 className="h-3.5 w-3.5" />}
                       {st === "Devam Ediyor" && (
@@ -682,18 +544,16 @@ export default function RandevularPage() {
             {/* Editable Details Form */}
             <form
               onSubmit={handleSaveSelected}
-              className="space-y-3 pt-2 text-xs"
-              style={{ borderTop: "1px solid #E6E1D8" }}
+              className="space-y-3 pt-2 text-xs border-t border-[#E6E1D8] dark:border-[#243B2F]"
             >
               <span
-                className="block font-bold uppercase tracking-wider text-[10px]"
-                style={{ color: "#8A8F89" }}
+                className="block font-bold uppercase tracking-wider text-[10px] text-[#8A8F89] dark:text-[#A2B5A8]"
               >
                 Randevu Bilgilerini Düzenle
               </span>
 
               <div>
-                <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                   Hasta Adı Soyadı
                 </label>
                 <input
@@ -701,18 +561,13 @@ export default function RandevularPage() {
                   required
                   value={editPatient}
                   onChange={(e) => setEditPatient(e.target.value)}
-                  className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327]"
-                  style={{
-                    backgroundColor: "#FFFFFF",
-                    border: "1px solid #E6E1D8",
-                    color: "#1C211E",
-                  }}
+                  className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                  <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                     Tedavi / İşlem
                   </label>
                   <input
@@ -720,28 +575,18 @@ export default function RandevularPage() {
                     required
                     value={editTreatment}
                     onChange={(e) => setEditTreatment(e.target.value)}
-                    className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327]"
-                    style={{
-                      backgroundColor: "#FFFFFF",
-                      border: "1px solid #E6E1D8",
-                      color: "#1C211E",
-                    }}
+                    className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 <div>
-                  <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                  <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                     Diş Hekimi
                   </label>
                   <select
                     value={editDentist}
                     onChange={(e) => setEditDentist(e.target.value)}
-                    className="w-full h-10 rounded-xl px-2.5 outline-none transition-all focus:ring-1 focus:ring-[#1F3327]"
-                    style={{
-                      backgroundColor: "#FFFFFF",
-                      border: "1px solid #E6E1D8",
-                      color: "#1C211E",
-                    }}
+                    className="w-full h-10 rounded-xl px-2.5 outline-none transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Dr. Selin Yılmaz">Dr. Selin Yılmaz</option>
                     <option value="Dr. Mahir Açıkkalın">Dr. Mahir Açıkkalın</option>
@@ -751,18 +596,13 @@ export default function RandevularPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                  <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                     Gün
                   </label>
                   <select
                     value={editDay}
                     onChange={(e) => setEditDay(e.target.value)}
-                    className="w-full h-10 rounded-xl px-2.5 outline-none font-bold transition-all focus:ring-1 focus:ring-[#1F3327]"
-                    style={{
-                      backgroundColor: "#FFFFFF",
-                      border: "1px solid #E6E1D8",
-                      color: "#1C211E",
-                    }}
+                    className="w-full h-10 rounded-xl px-2.5 outline-none font-bold transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     {days.map((d) => (
                       <option key={d.key} value={d.key}>
@@ -773,18 +613,13 @@ export default function RandevularPage() {
                 </div>
 
                 <div>
-                  <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                  <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                     Saat
                   </label>
                   <select
                     value={editTime}
                     onChange={(e) => setEditTime(e.target.value)}
-                    className="w-full h-10 rounded-xl px-2.5 outline-none font-mono font-bold transition-all focus:ring-1 focus:ring-[#1F3327]"
-                    style={{
-                      backgroundColor: "#FFFFFF",
-                      border: "1px solid #E6E1D8",
-                      color: "#1C211E",
-                    }}
+                    className="w-full h-10 rounded-xl px-2.5 outline-none font-mono font-bold transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     {timeSlots.map((ts) => (
                       <option key={ts} value={ts}>
@@ -796,7 +631,7 @@ export default function RandevularPage() {
               </div>
 
               <div>
-                <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                   Klinik Notu / Detay
                 </label>
                 <input
@@ -804,25 +639,18 @@ export default function RandevularPage() {
                   value={editNotes}
                   onChange={(e) => setEditNotes(e.target.value)}
                   placeholder="Seans açıklaması..."
-                  className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327]"
-                  style={{
-                    backgroundColor: "#FFFFFF",
-                    border: "1px solid #E6E1D8",
-                    color: "#1C211E",
-                  }}
+                  className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 />
               </div>
 
               {/* Action Buttons */}
               <div
-                className="flex items-center justify-between pt-3"
-                style={{ borderTop: "1px solid #E6E1D8" }}
+                className="flex items-center justify-between pt-3 border-t border-[#E6E1D8] dark:border-[#243B2F]"
               >
                 <button
                   type="button"
                   onClick={() => setAptToDelete(selectedApt)}
-                  className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer"
-                  style={{ color: "#B3261E" }}
+                  className="flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer text-[#B3261E] dark:text-[#F87171] hover:bg-[#FBE9E7] dark:hover:bg-[#3B1C1B]"
                 >
                   <Trash2 className="h-3.5 w-3.5" /> Randevuyu Sil
                 </button>
@@ -830,20 +658,13 @@ export default function RandevularPage() {
                   <button
                     type="button"
                     onClick={() => setSelectedApt(null)}
-                    className="px-4 py-2 rounded-xl text-xs font-medium transition-colors cursor-pointer"
-                    style={{
-                      backgroundColor: "#EEEBE4",
-                      color: "#1C211E",
-                    }}
+                    className="px-4 py-2 rounded-xl text-xs font-medium transition-colors cursor-pointer bg-[#EEEBE4] border border-[#E6E1D8] text-[#1C211E] hover:bg-[#E6E1D8] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#243B2F]"
                   >
                     Kapat
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 rounded-xl text-white text-xs font-bold transition-colors cursor-pointer shadow-xs"
-                    style={{
-                      backgroundColor: "#1F3327",
-                    }}
+                    className="px-5 py-2 rounded-xl text-white text-xs font-bold transition-colors cursor-pointer shadow-xs bg-[#1F3327] hover:bg-[#2D3A32] dark:bg-[#2D4C3C] dark:hover:bg-[#345844]"
                   >
                     Güncelle
                   </button>
@@ -857,36 +678,30 @@ export default function RandevularPage() {
       {/* Direct Slot Create Modal */}
       {isCreateOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200"
           onClick={() => setIsCreateOpen(false)}
         >
           <div
-            className="w-full max-w-sm rounded-[20px] p-6 shadow-2xl space-y-4"
-            style={{
-              backgroundColor: "#FBFAF7",
-              border: "1px solid #E6E1D8",
-            }}
+            className="w-full max-w-sm rounded-[20px] p-6 shadow-2xl space-y-4 bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
             onClick={(e) => e.stopPropagation()}
           >
             <div
-              className="flex items-center justify-between pb-3"
-              style={{ borderBottom: "1px solid #E6E1D8" }}
+              className="flex items-center justify-between pb-3 border-b border-[#E6E1D8] dark:border-[#243B2F]"
             >
               <div>
                 <h3
-                  className="text-base font-normal tracking-tight font-serif"
-                  style={{ color: "#1C211E" }}
+                  className="text-base font-normal tracking-tight font-serif text-[#1C211E] dark:text-[#ECF3EE]"
                 >
                   Yeni Randevu Ekle
                 </h3>
-                <p className="text-xs font-mono font-medium" style={{ color: "#5F665F" }}>
+                <p className="text-xs font-mono font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                   {days.find((d) => d.key === createDay)?.label} • {createTime}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsCreateOpen(false)}
-                className="p-1 rounded-lg text-stone-400 hover:text-stone-800 transition-colors cursor-pointer"
+                className="p-1 rounded-lg text-stone-400 hover:text-stone-800 dark:hover:text-[#ECF3EE] transition-colors cursor-pointer"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -894,8 +709,8 @@ export default function RandevularPage() {
 
             <form onSubmit={handleCreateAppointment} className="space-y-3.5 text-xs">
               <div>
-                <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
-                  Hasta Adı Soyadı <span style={{ color: "#B3261E" }}>*</span>
+                <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
+                  Hasta Adı Soyadı <span className="text-[#B3261E] dark:text-[#F87171]">*</span>
                 </label>
                 <input
                   type="text"
@@ -903,29 +718,19 @@ export default function RandevularPage() {
                   placeholder="Örn: Tuğçe Üngör..."
                   value={createPatient}
                   onChange={(e) => setCreatePatient(e.target.value)}
-                  className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327]"
-                  style={{
-                    backgroundColor: "#FFFFFF",
-                    border: "1px solid #E6E1D8",
-                    color: "#1C211E",
-                  }}
+                  className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   autoFocus
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                   Tedavi / İşlem
                 </label>
                 <select
                   value={createTreatment}
                   onChange={(e) => setCreateTreatment(e.target.value)}
-                  className="w-full h-10 rounded-xl px-2.5 outline-none transition-all focus:ring-1 focus:ring-[#1F3327]"
-                  style={{
-                    backgroundColor: "#FFFFFF",
-                    border: "1px solid #E6E1D8",
-                    color: "#1C211E",
-                  }}
+                  className="w-full h-10 rounded-xl px-2.5 outline-none transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="Kontrol & Muayene">Kontrol & Muayene</option>
                   <option value="Kompozit Dolgu">Kompozit Dolgu</option>
@@ -939,18 +744,13 @@ export default function RandevularPage() {
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                  <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                     Diş Hekimi
                   </label>
                   <select
                     value={createDentist}
                     onChange={(e) => setCreateDentist(e.target.value)}
-                    className="w-full h-10 rounded-xl px-2.5 outline-none transition-all focus:ring-1 focus:ring-[#1F3327]"
-                    style={{
-                      backgroundColor: "#FFFFFF",
-                      border: "1px solid #E6E1D8",
-                      color: "#1C211E",
-                    }}
+                    className="w-full h-10 rounded-xl px-2.5 outline-none transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Dr. Selin Yılmaz">Dr. Selin Yılmaz</option>
                     <option value="Dr. Mahir Açıkkalın">Dr. Mahir Açıkkalın</option>
@@ -958,44 +758,31 @@ export default function RandevularPage() {
                 </div>
 
                 <div>
-                  <label className="block font-semibold mb-1" style={{ color: "#3F4540" }}>
+                  <label className="block font-semibold mb-1 text-[#3F4540] dark:text-[#CDD5CF]">
                     Telefon No
                   </label>
                   <input
                     type="text"
                     value={createPhone}
                     onChange={(e) => setCreatePhone(e.target.value)}
-                    className="w-full h-10 rounded-xl px-3 outline-none transition-all focus:ring-1 focus:ring-[#1F3327]"
-                    style={{
-                      backgroundColor: "#FFFFFF",
-                      border: "1px solid #E6E1D8",
-                      color: "#1C211E",
-                    }}
+                    className="w-full h-10 rounded-xl px-3 outline-none font-mono transition-all focus:ring-1 focus:ring-[#1F3327] dark:focus:ring-[#3F8F55] bg-white border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
               </div>
 
               <div
-                className="flex items-center justify-end gap-2 pt-3"
-                style={{ borderTop: "1px solid #E6E1D8" }}
+                className="flex items-center justify-end gap-2 pt-3 border-t border-[#E6E1D8] dark:border-[#243B2F]"
               >
                 <button
                   type="button"
                   onClick={() => setIsCreateOpen(false)}
-                  className="px-4 py-2 rounded-xl font-medium transition-colors cursor-pointer"
-                  style={{
-                    backgroundColor: "#EEEBE4",
-                    color: "#1C211E",
-                  }}
+                  className="px-4 py-2 rounded-xl font-medium transition-colors cursor-pointer bg-[#EEEBE4] border border-[#E6E1D8] text-[#1C211E] hover:bg-[#E6E1D8] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#243B2F]"
                 >
                   İptal
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl text-white font-bold transition-colors cursor-pointer shadow-xs"
-                  style={{
-                    backgroundColor: "#1F3327",
-                  }}
+                  className="px-5 py-2 rounded-xl text-white font-bold transition-colors cursor-pointer shadow-xs bg-[#1F3327] hover:bg-[#2D3A32] dark:bg-[#2D4C3C] dark:hover:bg-[#345844]"
                 >
                   Randevuyu Kaydet
                 </button>
@@ -1008,72 +795,50 @@ export default function RandevularPage() {
       {/* Delete Confirmation Modal */}
       {aptToDelete && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200"
           onClick={() => setAptToDelete(null)}
         >
           <div
-            className="w-full max-w-sm rounded-[20px] p-6 shadow-2xl space-y-4"
-            style={{
-              backgroundColor: "#FBFAF7",
-              border: "1px solid #E6E1D8",
-            }}
+            className="w-full max-w-sm rounded-[20px] p-6 shadow-2xl space-y-4 bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
           >
             <div className="flex items-center gap-3">
               <div
-                className="flex h-10 w-10 items-center justify-center rounded-xl"
-                style={{
-                  backgroundColor: "#FBE9E7",
-                  color: "#B3261E",
-                }}
+                className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FBE9E7] dark:bg-[#3B1C1B] text-[#B3261E] dark:text-[#F87171]"
               >
                 <AlertTriangle className="h-5 w-5" />
               </div>
               <div>
                 <h3
-                  className="text-base font-normal tracking-tight font-serif"
-                  style={{ color: "#1C211E" }}
+                  className="text-base font-normal tracking-tight font-serif text-[#1C211E] dark:text-[#ECF3EE]"
                 >
                   Randevuyu Silmek İstiyor musunuz?
                 </h3>
-                <p className="text-xs" style={{ color: "#5F665F" }}>
+                <p className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                   Bu randevu takvimden kalıcı olarak kaldırılacaktır.
                 </p>
               </div>
             </div>
 
             <p
-              className="text-xs font-semibold p-3 rounded-xl"
-              style={{
-                backgroundColor: "#EEEBE4",
-                border: "1px solid #E6E1D8",
-                color: "#1C211E",
-              }}
+              className="text-xs font-semibold p-3 rounded-xl bg-[#EEEBE4] border border-[#E6E1D8] text-[#1C211E] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE]"
             >
               {aptToDelete.patientName} — {aptToDelete.treatment} ({aptToDelete.day} {aptToDelete.time})
             </p>
 
             <div
-              className="flex items-center justify-end gap-2 pt-3"
-              style={{ borderTop: "1px solid #E6E1D8" }}
+              className="flex items-center justify-end gap-2 pt-3 border-t border-[#E6E1D8] dark:border-[#243B2F]"
             >
               <button
                 type="button"
                 onClick={() => setAptToDelete(null)}
-                className="px-4 py-2 rounded-xl text-xs font-medium transition-colors cursor-pointer"
-                style={{
-                  backgroundColor: "#EEEBE4",
-                  color: "#1C211E",
-                }}
+                className="px-4 py-2 rounded-xl text-xs font-medium transition-colors cursor-pointer bg-[#EEEBE4] border border-[#E6E1D8] text-[#1C211E] hover:bg-[#E6E1D8] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#243B2F]"
               >
                 Vazgeç
               </button>
               <button
                 type="button"
                 onClick={confirmDelete}
-                className="px-5 py-2 rounded-xl text-white text-xs font-bold transition-colors cursor-pointer shadow-xs"
-                style={{
-                  backgroundColor: "#B3261E",
-                }}
+                className="px-5 py-2 rounded-xl text-white text-xs font-bold transition-colors cursor-pointer shadow-xs bg-[#B3261E] hover:bg-[#991B1B] dark:bg-[#C53030] dark:hover:bg-[#9B2C2C]"
               >
                 Evet, Sil
               </button>

@@ -276,7 +276,7 @@ export default function HastalarPage() {
                   "flex items-center gap-2.5 h-[48px] rounded-[14px] px-5 py-2 text-[15px] font-medium transition-all duration-150 cursor-pointer border",
                   isActive
                     ? "bg-[#1F3327] border-[#1F3327] text-white shadow-xs"
-                    : "bg-[rgba(255,255,255,0.75)] border-[#E6E1D8] text-[#1C211E] hover:bg-white"
+                    : "bg-[rgba(255,255,255,0.75)] border-[#E6E1D8] text-[#1C211E] hover:bg-white dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 )}
               >
                 <span>{tab.label}</span>
@@ -285,7 +285,7 @@ export default function HastalarPage() {
                     "rounded-full px-2.5 py-0.5 text-[12px] font-medium",
                     isActive
                       ? "bg-[#34483B] text-white"
-                      : "bg-[#EEEBE4] text-[#5F665F]"
+                      : "bg-[#EEEBE4] text-[#5F665F] dark:bg-[#1A2C23] dark:text-[#A2B5A8]"
                   )}
                 >
                   {tab.count}
@@ -307,22 +307,22 @@ export default function HastalarPage() {
       </div>
 
       {/* 3. Search & Filter Bar */}
-      <div className="flex flex-col gap-3 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-3 shadow-xs sm:flex-row sm:items-center">
+      <div className="flex flex-col gap-3 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-3 shadow-xs sm:flex-row sm:items-center dark:bg-[#15221B] dark:border-[#243B2F]">
         {/* Search Input */}
         <div className="relative flex-1">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F]" />
+          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Hasta adı, TC, telefon..."
-            className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white pl-10 pr-9 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none transition-colors focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+            className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white pl-10 pr-9 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none transition-colors focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#A2B5A8]"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5F665F] hover:text-[#1C211E]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5F665F] hover:text-[#1C211E] dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
             >
               <X className="h-4 w-4" />
             </button>
@@ -334,7 +334,7 @@ export default function HastalarPage() {
           <select
             value={treatmentFilter}
             onChange={(e) => setTreatmentFilter(e.target.value)}
-            className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition-colors hover:border-[#EADFC8] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+            className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition-colors hover:border-[#EADFC8] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
           >
             <option value="">Tedavi Türü</option>
             <option value="İmplant">İmplant</option>
@@ -350,7 +350,7 @@ export default function HastalarPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition-colors hover:border-[#EADFC8] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+            className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition-colors hover:border-[#EADFC8] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
           >
             <option value="">Durum</option>
             <option value="Aktif Tedavi">Aktif Tedavi</option>
@@ -362,17 +362,17 @@ export default function HastalarPage() {
 
         {/* Kayıt Tarihi Dropdown with Calendar Icon */}
         <div className="relative w-full sm:w-44">
-          <Calendar className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F]" />
+          <Calendar className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
           <select
             value={dateFilter}
             onChange={(e) => setDateFilter(e.target.value)}
-            className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white pl-9 pr-7 text-sm text-[#3F4540] outline-none transition-colors hover:border-[#EADFC8] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+            className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white pl-9 pr-7 text-sm text-[#3F4540] outline-none transition-colors hover:border-[#EADFC8] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
           >
             <option value="">Kayıt Tarihi</option>
             <option value="eylul-2026">Eylül 2026</option>
             <option value="agustos-2026">Ağustos 2026</option>
           </select>
-          <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-[#5F665F]">
+          <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-[#5F665F] dark:text-[#A2B5A8]">
             ▼
           </div>
         </div>
@@ -382,7 +382,7 @@ export default function HastalarPage() {
           <button
             type="button"
             onClick={resetFilters}
-            className="flex items-center gap-1 rounded-lg px-2.5 py-2 text-xs font-medium text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer"
+            className="flex items-center gap-1 rounded-lg px-2.5 py-2 text-xs font-medium text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
             title="Filtreleri Temizle"
           >
             <X className="h-3.5 w-3.5" />
@@ -391,15 +391,15 @@ export default function HastalarPage() {
         )}
 
         {/* Far Right: List View / Grid View Toggle */}
-        <div className="flex items-center rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-0.5">
+        <div className="flex items-center rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-0.5 dark:border-[#243B2F] dark:bg-[#1A2C23]">
           <button
             type="button"
             onClick={() => setViewMode("list")}
             className={cn(
               "rounded-md p-1.5 transition-colors cursor-pointer",
               viewMode === "list"
-                ? "bg-[#FBFAF7] text-[#1F3327] shadow-xs"
-                : "text-[#5F665F] hover:text-[#1C211E]"
+                ? "bg-[#FBFAF7] text-[#1F3327] shadow-xs dark:bg-[#15221B] dark:text-[#ECF3EE]"
+                : "text-[#5F665F] hover:text-[#1C211E] dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
             )}
             title="Liste Görünümü"
             aria-label="Liste Görünümü"
@@ -412,8 +412,8 @@ export default function HastalarPage() {
             className={cn(
               "rounded-md p-1.5 transition-colors cursor-pointer",
               viewMode === "grid"
-                ? "bg-[#FBFAF7] text-[#1F3327] shadow-xs"
-                : "text-[#5F665F] hover:text-[#1C211E]"
+                ? "bg-[#FBFAF7] text-[#1F3327] shadow-xs dark:bg-[#15221B] dark:text-[#ECF3EE]"
+                : "text-[#5F665F] hover:text-[#1C211E] dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
             )}
             title="Kart Görünümü"
             aria-label="Kart Görünümü"
@@ -467,7 +467,7 @@ export default function HastalarPage() {
 
       {/* 4. Patient Table / Grid View */}
       {filteredPatients.length === 0 ? (
-        <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] shadow-xs">
+        <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
           <EmptyState
             message="Arama kriterlerinize uygun hasta bulunamadı."
             icon="default"
@@ -475,17 +475,17 @@ export default function HastalarPage() {
         </div>
       ) : viewMode === "list" ? (
         /* TABLE VIEW */
-        <div className="overflow-hidden rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] shadow-xs">
+        <div className="overflow-hidden rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-[#E6E1D8] bg-[#EEEBE4]/70 text-[11px] font-semibold text-[#5F665F] uppercase tracking-wider">
+                <tr className="border-b border-[#E6E1D8] bg-[#EEEBE4]/70 text-[11px] font-semibold text-[#5F665F] uppercase tracking-wider dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                   <th className="w-12 px-4 py-3.5 text-center">
                     <input
                       type="checkbox"
                       checked={isAllSelected}
                       onChange={toggleSelectAll}
-                      className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327] focus:ring-[#1F3327] cursor-pointer"
+                      className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327] focus:ring-[#1F3327] cursor-pointer dark:border-[#243B2F]"
                     />
                   </th>
                   <th className="px-4 py-3.5">HASTA</th>
@@ -499,7 +499,7 @@ export default function HastalarPage() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E6E1D8] text-sm">
+              <tbody className="divide-y divide-[#E6E1D8] text-sm dark:divide-[#243B2F]">
                 {filteredPatients.map((patient) => {
                   const isChecked = selectedIds.includes(patient.id);
                   const avatar = getAvatarStyle(patient.id);
@@ -510,8 +510,8 @@ export default function HastalarPage() {
                     <tr
                       key={patient.id}
                       className={cn(
-                        "transition-colors group hover:bg-[#F3F0EA]/60",
-                        isChecked && "bg-[#F6EEDC]/50"
+                        "transition-colors group hover:bg-[#F3F0EA]/60 dark:hover:bg-[#1E3026]/60",
+                        isChecked && "bg-[#F6EEDC]/50 dark:bg-[#1E3026]"
                       )}
                     >
                       {/* Checkbox */}
@@ -520,7 +520,7 @@ export default function HastalarPage() {
                           type="checkbox"
                           checked={isChecked}
                           onChange={() => toggleSelect(patient.id)}
-                          className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327] focus:ring-[#1F3327] cursor-pointer"
+                          className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327] focus:ring-[#1F3327] cursor-pointer dark:border-[#243B2F]"
                         />
                       </td>
 
@@ -539,11 +539,11 @@ export default function HastalarPage() {
                           <div>
                             <Link
                               href={`/hastalar/${patient.id}`}
-                              className="block text-left font-serif font-bold text-[#1C211E] group-hover:text-[#1F3327] transition-colors hover:underline"
+                              className="block text-left font-serif font-bold text-[#1C211E] group-hover:text-[#1F3327] transition-colors hover:underline dark:text-[#ECF3EE] dark:group-hover:text-[#76D28F]"
                             >
                               {patient.firstName} {patient.lastName}
                             </Link>
-                            <div className="text-xs text-[#5F665F]">
+                            <div className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                               {patient.gender} · {patient.age}
                             </div>
                           </div>
@@ -551,17 +551,17 @@ export default function HastalarPage() {
                       </td>
 
                       {/* TC Kimlik No */}
-                      <td className="px-4 py-3.5 font-mono text-xs text-[#3F4540] tracking-wide">
+                      <td className="px-4 py-3.5 font-mono text-xs text-[#3F4540] tracking-wide dark:text-[#ECF3EE]">
                         {patient.tcNo}
                       </td>
 
                       {/* Telefon */}
-                      <td className="px-4 py-3.5 text-[#3F4540] whitespace-nowrap text-sm">
+                      <td className="px-4 py-3.5 text-[#3F4540] whitespace-nowrap text-sm dark:text-[#ECF3EE]">
                         {formatPhone(patient.phone)}
                       </td>
 
                       {/* Son Tedavi */}
-                      <td className="px-4 py-3.5 font-medium text-[#1C211E] text-sm">
+                      <td className="px-4 py-3.5 font-medium text-[#1C211E] text-sm dark:text-[#ECF3EE]">
                         {patient.lastTreatment || "—"}
                       </td>
 
@@ -571,7 +571,7 @@ export default function HastalarPage() {
                       </td>
 
                       {/* Kayıt Tarihi */}
-                      <td className="px-4 py-3.5 text-[#5F665F] whitespace-nowrap text-sm">
+                      <td className="px-4 py-3.5 text-[#5F665F] whitespace-nowrap text-sm dark:text-[#A2B5A8]">
                         {formatDate(patient.registrationDate)}
                       </td>
 
@@ -582,7 +582,7 @@ export default function HastalarPage() {
                           onClick={() =>
                             setActiveMenuId(isMenuOpen ? null : patient.id)
                           }
-                          className="rounded-lg p-1.5 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer"
+                          className="rounded-lg p-1.5 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
                           title="İşlemler"
                           aria-label="İşlemler"
                         >
@@ -596,13 +596,13 @@ export default function HastalarPage() {
                               className="fixed inset-0 z-20"
                               onClick={() => setActiveMenuId(null)}
                             />
-                            <div className="absolute right-3 top-11 z-30 w-44 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] py-1.5 shadow-lg text-left text-xs animate-in fade-in">
+                            <div className="absolute right-3 top-11 z-30 w-44 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] py-1.5 shadow-lg text-left text-xs animate-in fade-in dark:border-[#243B2F] dark:bg-[#15221B]">
                               <Link
                                 href={`/hastalar/${patient.id}`}
                                 onClick={() => setActiveMenuId(null)}
-                                className="flex w-full items-center gap-2 px-3 py-2 text-[#3F4540] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors"
+                                className="flex w-full items-center gap-2 px-3 py-2 text-[#3F4540] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
                               >
-                                <Eye className="h-3.5 w-3.5 text-[#5F665F]" />
+                                <Eye className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                                 <span>Hasta Kartını Aç</span>
                               </Link>
                               <button
@@ -611,9 +611,9 @@ export default function HastalarPage() {
                                   setActiveMenuId(null);
                                   openAppointmentModal(`${patient.firstName} ${patient.lastName}`);
                                 }}
-                                className="flex w-full items-center gap-2 px-3 py-2 text-[#3F4540] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer"
+                                className="flex w-full items-center gap-2 px-3 py-2 text-[#3F4540] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
                               >
-                                <CalendarPlus className="h-3.5 w-3.5 text-[#5F665F]" />
+                                <CalendarPlus className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                                 <span>Yeni Randevu Ver</span>
                               </button>
                               <button
@@ -622,16 +622,16 @@ export default function HastalarPage() {
                                   setActiveMenuId(null);
                                   setPreviewPatient(patient);
                                 }}
-                                className="flex w-full items-center gap-2 px-3 py-2 text-[#3F4540] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer"
+                                className="flex w-full items-center gap-2 px-3 py-2 text-[#3F4540] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
                               >
-                                <Edit className="h-3.5 w-3.5 text-[#5F665F]" />
+                                <Edit className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                                 <span>Düzenle</span>
                               </button>
-                              <div className="my-1 border-t border-[#E6E1D8]" />
+                              <div className="my-1 border-t border-[#E6E1D8] dark:border-[#243B2F]" />
                               <button
                                 type="button"
                                 onClick={() => handleDeletePatient(patient.id)}
-                                className="flex w-full items-center gap-2 px-3 py-2 text-[#B3261E] hover:bg-[#FBE9E7] transition-colors cursor-pointer"
+                                className="flex w-full items-center gap-2 px-3 py-2 text-[#B3261E] hover:bg-[#FBE9E7] transition-colors cursor-pointer dark:text-[#FF8B8B] dark:hover:bg-[#2C1919]"
                               >
                                 <Trash2 className="h-3.5 w-3.5" />
                                 <span>Kaydı Sil</span>
@@ -648,9 +648,9 @@ export default function HastalarPage() {
           </div>
 
           {/* 5. Pagination (at bottom of table card) */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#E6E1D8] px-6 py-4 bg-[#FBFAF7]">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#E6E1D8] px-6 py-4 bg-[#FBFAF7] dark:border-[#243B2F] dark:bg-[#15221B]">
             {/* Left: Text */}
-            <p className="text-xs text-[#5F665F] font-medium">
+            <p className="text-xs text-[#5F665F] font-medium dark:text-[#A2B5A8]">
               1.248 hasta arasından 1 – {filteredPatients.length} görüntüleniyor
             </p>
 
@@ -660,7 +660,7 @@ export default function HastalarPage() {
                 type="button"
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
                 aria-label="Önceki Sayfa"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -673,7 +673,7 @@ export default function HastalarPage() {
                   "flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold transition-all cursor-pointer",
                   currentPage === 1
                     ? "bg-[#1F3327] text-white shadow-xs"
-                    : "text-[#3F4540] hover:bg-[#EEEBE4]"
+                    : "text-[#3F4540] hover:bg-[#EEEBE4] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
                 )}
               >
                 1
@@ -686,7 +686,7 @@ export default function HastalarPage() {
                   "flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all cursor-pointer",
                   currentPage === 2
                     ? "bg-[#1F3327] text-white shadow-xs"
-                    : "text-[#3F4540] hover:bg-[#EEEBE4]"
+                    : "text-[#3F4540] hover:bg-[#EEEBE4] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
                 )}
               >
                 2
@@ -699,13 +699,13 @@ export default function HastalarPage() {
                   "flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all cursor-pointer",
                   currentPage === 3
                     ? "bg-[#1F3327] text-white shadow-xs"
-                    : "text-[#3F4540] hover:bg-[#EEEBE4]"
+                    : "text-[#3F4540] hover:bg-[#EEEBE4] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
                 )}
               >
                 3
               </button>
 
-              <span className="flex h-8 w-5 items-center justify-center text-xs text-[#5F665F]">
+              <span className="flex h-8 w-5 items-center justify-center text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                 ...
               </span>
 
@@ -716,7 +716,7 @@ export default function HastalarPage() {
                   "flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium transition-all cursor-pointer",
                   currentPage === 250
                     ? "bg-[#1F3327] text-white shadow-xs"
-                    : "text-[#3F4540] hover:bg-[#EEEBE4]"
+                    : "text-[#3F4540] hover:bg-[#EEEBE4] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
                 )}
               >
                 250
@@ -726,7 +726,7 @@ export default function HastalarPage() {
                 type="button"
                 onClick={() => setCurrentPage((p) => Math.min(250, p + 1))}
                 disabled={currentPage === 250}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
                 aria-label="Sonraki Sayfa"
               >
                 <ChevronRight className="h-4 w-4" />
@@ -747,7 +747,7 @@ export default function HastalarPage() {
                 <div
                   key={patient.id}
                   className={cn(
-                    "relative flex flex-col justify-between rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs transition-all hover:shadow-md",
+                    "relative flex flex-col justify-between rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs transition-all hover:shadow-md dark:bg-[#15221B] dark:border-[#243B2F]",
                     isChecked && "ring-2 ring-[#1F3327]"
                   )}
                 >
@@ -765,10 +765,10 @@ export default function HastalarPage() {
                           {initials}
                         </div>
                         <div>
-                          <h3 className="font-serif font-bold text-[#1C211E]">
+                          <h3 className="font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                             {patient.firstName} {patient.lastName}
                           </h3>
-                          <p className="text-xs text-[#5F665F]">
+                          <p className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                             {patient.gender} · {patient.age} Yaş
                           </p>
                         </div>
@@ -777,40 +777,40 @@ export default function HastalarPage() {
                     </div>
 
                     {/* Meta Info */}
-                    <div className="mt-4 space-y-2 border-t border-[#E6E1D8] pt-3 text-xs text-[#3F4540]">
+                    <div className="mt-4 space-y-2 border-t border-[#E6E1D8] pt-3 text-xs text-[#3F4540] dark:border-[#243B2F] dark:text-[#ECF3EE]">
                       <div className="flex justify-between">
-                        <span className="text-[#5F665F]">TC Kimlik:</span>
+                        <span className="text-[#5F665F] dark:text-[#A2B5A8]">TC Kimlik:</span>
                         <span className="font-mono">{patient.tcNo}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-[#5F665F]">Telefon:</span>
+                        <span className="text-[#5F665F] dark:text-[#A2B5A8]">Telefon:</span>
                         <span>{formatPhone(patient.phone)}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-[#5F665F]">Son Tedavi:</span>
-                        <span className="font-semibold text-[#1C211E]">
+                        <span className="text-[#5F665F] dark:text-[#A2B5A8]">Son Tedavi:</span>
+                        <span className="font-semibold text-[#1C211E] dark:text-[#ECF3EE]">
                           {patient.lastTreatment || "—"}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-[#5F665F]">Kayıt Tarihi:</span>
+                        <span className="text-[#5F665F] dark:text-[#A2B5A8]">Kayıt Tarihi:</span>
                         <span>{formatDate(patient.registrationDate)}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Footer Action */}
-                  <div className="mt-4 flex items-center justify-between border-t border-[#E6E1D8] pt-3">
+                  <div className="mt-4 flex items-center justify-between border-t border-[#E6E1D8] pt-3 dark:border-[#243B2F]">
                     <button
                       type="button"
                       onClick={() => toggleSelect(patient.id)}
-                      className="text-xs text-[#5F665F] hover:text-[#1C211E] cursor-pointer"
+                      className="text-xs text-[#5F665F] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
                     >
                       {isChecked ? "✓ Seçildi" : "+ Seç"}
                     </button>
                     <Link
                       href={`/hastalar/${patient.id}`}
-                      className="rounded-lg bg-[#1F3327]/10 px-3 py-1.5 text-xs font-semibold text-[#1F3327] hover:bg-[#1F3327] hover:text-white transition-colors"
+                      className="rounded-lg bg-[#1F3327]/10 px-3 py-1.5 text-xs font-semibold text-[#1F3327] hover:bg-[#1F3327] hover:text-white transition-colors dark:bg-[#1A2C23] dark:text-[#76D28F] dark:hover:bg-[#1F3327] dark:hover:text-white"
                     >
                       Profili Görüntüle
                     </Link>
@@ -821,8 +821,8 @@ export default function HastalarPage() {
           </div>
 
           {/* Pagination for Grid View */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-6 py-4 shadow-xs">
-            <p className="text-xs text-[#5F665F] font-medium">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-6 py-4 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <p className="text-xs text-[#5F665F] font-medium dark:text-[#A2B5A8]">
               1.248 hasta arasından 1 – {filteredPatients.length} görüntüleniyor
             </p>
             <div className="flex items-center gap-1">
@@ -830,7 +830,7 @@ export default function HastalarPage() {
                 type="button"
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] disabled:opacity-40 cursor-pointer"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] disabled:opacity-40 cursor-pointer dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23]"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
@@ -842,29 +842,29 @@ export default function HastalarPage() {
               </button>
               <button
                 type="button"
-                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-[#3F4540] hover:bg-[#EEEBE4]"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-[#3F4540] hover:bg-[#EEEBE4] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
               >
                 2
               </button>
               <button
                 type="button"
-                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-[#3F4540] hover:bg-[#EEEBE4]"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-[#3F4540] hover:bg-[#EEEBE4] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
               >
                 3
               </button>
-              <span className="flex h-8 w-5 items-center justify-center text-xs text-[#5F665F]">
+              <span className="flex h-8 w-5 items-center justify-center text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                 ...
               </span>
               <button
                 type="button"
-                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-[#3F4540] hover:bg-[#EEEBE4]"
+                className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-medium text-[#3F4540] hover:bg-[#EEEBE4] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
               >
                 250
               </button>
               <button
                 type="button"
                 onClick={() => setCurrentPage((p) => Math.min(250, p + 1))}
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] cursor-pointer"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] cursor-pointer dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23]"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
@@ -876,20 +876,20 @@ export default function HastalarPage() {
       {/* MODAL: Yeni Hasta Ekle */}
       {isAddModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs animate-in fade-in">
-          <div className="relative w-full max-w-lg rounded-2xl border border-[#E6E1D8] bg-[#FBFAF7] p-6 shadow-2xl animate-in zoom-in-95">
-            <div className="flex items-center justify-between border-b border-[#E6E1D8] pb-4">
+          <div className="relative w-full max-w-lg rounded-2xl border border-[#E6E1D8] bg-[#FBFAF7] p-6 shadow-2xl animate-in zoom-in-95 dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE]">
+            <div className="flex items-center justify-between border-b border-[#E6E1D8] pb-4 dark:border-[#243B2F]">
               <div>
-                <h2 className="text-lg font-serif font-bold text-[#1C211E]">
+                <h2 className="text-lg font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                   Yeni Hasta Kaydı
                 </h2>
-                <p className="text-xs text-[#5F665F] mt-0.5">
+                <p className="text-xs text-[#5F665F] mt-0.5 dark:text-[#A2B5A8]">
                   Klinik sistemine yeni hasta bilgilerini ekleyin.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setIsAddModalOpen(false)}
-                className="rounded-lg p-1.5 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer"
+                className="rounded-lg p-1.5 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -898,7 +898,7 @@ export default function HastalarPage() {
             <form onSubmit={handleCreatePatient} className="mt-4 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-[#5F665F]">
+                  <label className="block text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Ad *
                   </label>
                   <input
@@ -909,11 +909,11 @@ export default function HastalarPage() {
                       setNewPatient({ ...newPatient, firstName: e.target.value })
                     }
                     placeholder="Örn: Ahmet"
-                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-[#5F665F]">
+                  <label className="block text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Soyad *
                   </label>
                   <input
@@ -924,14 +924,14 @@ export default function HastalarPage() {
                       setNewPatient({ ...newPatient, lastName: e.target.value })
                     }
                     placeholder="Örn: Yılmaz"
-                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-[#5F665F]">
+                  <label className="block text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     TC Kimlik No *
                   </label>
                   <input
@@ -943,11 +943,11 @@ export default function HastalarPage() {
                       setNewPatient({ ...newPatient, tcNo: e.target.value })
                     }
                     placeholder="11 haneli TC no"
-                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 font-mono text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 font-mono text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-[#5F665F]">
+                  <label className="block text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Telefon *
                   </label>
                   <input
@@ -958,14 +958,14 @@ export default function HastalarPage() {
                       setNewPatient({ ...newPatient, phone: e.target.value })
                     }
                     placeholder="+905321234567"
-                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-[#5F665F]">
+                  <label className="block text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Cinsiyet
                   </label>
                   <select
@@ -976,14 +976,14 @@ export default function HastalarPage() {
                         gender: e.target.value as "Erkek" | "Kadın",
                       })
                     }
-                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Erkek">Erkek</option>
                     <option value="Kadın">Kadın</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-[#5F665F]">
+                  <label className="block text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Yaş
                   </label>
                   <input
@@ -997,14 +997,14 @@ export default function HastalarPage() {
                         age: parseInt(e.target.value, 10) || 0,
                       })
                     }
-                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-[#5F665F]">
+                  <label className="block text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Tedavi Türü
                   </label>
                   <select
@@ -1015,7 +1015,7 @@ export default function HastalarPage() {
                         lastTreatment: e.target.value,
                       })
                     }
-                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="İmplant">İmplant</option>
                     <option value="Ortodonti">Ortodonti</option>
@@ -1027,7 +1027,7 @@ export default function HastalarPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-[#5F665F]">
+                  <label className="block text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Durum
                   </label>
                   <select
@@ -1038,7 +1038,7 @@ export default function HastalarPage() {
                         status: e.target.value as PatientStatus,
                       })
                     }
-                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="mt-1 h-9 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Aktif Tedavi">Aktif Tedavi</option>
                     <option value="Takip">Takip</option>
@@ -1048,11 +1048,11 @@ export default function HastalarPage() {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center justify-end gap-3 border-t border-[#E6E1D8] pt-4">
+              <div className="mt-6 flex items-center justify-end gap-3 border-t border-[#E6E1D8] pt-4 dark:border-[#243B2F]">
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] px-4 py-2 text-sm font-medium text-[#3F4540] hover:bg-[#EADFC8] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] px-4 py-2 text-sm font-medium text-[#3F4540] hover:bg-[#EADFC8] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   İptal
                 </button>
@@ -1071,17 +1071,17 @@ export default function HastalarPage() {
       {/* MODAL: Hasta Önizleme Kartı */}
       {previewPatient && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-xs animate-in fade-in">
-          <div className="relative w-full max-w-md rounded-2xl border border-[#E6E1D8] bg-[#FBFAF7] p-6 shadow-2xl animate-in zoom-in-95">
+          <div className="relative w-full max-w-md rounded-2xl border border-[#E6E1D8] bg-[#FBFAF7] p-6 shadow-2xl animate-in zoom-in-95 dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE]">
             <button
               type="button"
               onClick={() => setPreviewPatient(null)}
-              className="absolute right-4 top-4 rounded-lg p-1 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer"
+              className="absolute right-4 top-4 rounded-lg p-1 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
             >
               <X className="h-5 w-5" />
             </button>
 
             {/* Profile Info */}
-            <div className="flex items-center gap-4 border-b border-[#E6E1D8] pb-4">
+            <div className="flex items-center gap-4 border-b border-[#E6E1D8] pb-4 dark:border-[#243B2F]">
               <div
                 className={cn(
                   "flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-serif font-bold text-base shadow-2xs",
@@ -1092,10 +1092,10 @@ export default function HastalarPage() {
                 {getInitials(previewPatient.firstName, previewPatient.lastName)}
               </div>
               <div>
-                <h3 className="text-lg font-serif font-bold text-[#1C211E]">
+                <h3 className="text-lg font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                   {previewPatient.firstName} {previewPatient.lastName}
                 </h3>
-                <p className="text-xs text-[#5F665F]">
+                <p className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                   {previewPatient.gender} · {previewPatient.age} Yaş · {previewPatient.hsNo}
                 </p>
                 <div className="mt-1">
@@ -1106,56 +1106,56 @@ export default function HastalarPage() {
 
             {/* Detail Rows */}
             <div className="mt-4 space-y-3 text-sm">
-              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60">
-                <span className="text-[#5F665F] text-xs font-medium">TC Kimlik:</span>
-                <span className="font-mono text-xs font-semibold text-[#1C211E]">
+              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60 dark:border-[#243B2F]/60">
+                <span className="text-[#5F665F] text-xs font-medium dark:text-[#A2B5A8]">TC Kimlik:</span>
+                <span className="font-mono text-xs font-semibold text-[#1C211E] dark:text-[#ECF3EE]">
                   {previewPatient.tcNo}
                 </span>
               </div>
-              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60">
-                <span className="text-[#5F665F] text-xs font-medium">Telefon:</span>
-                <span className="text-xs text-[#3F4540]">
+              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60 dark:border-[#243B2F]/60">
+                <span className="text-[#5F665F] text-xs font-medium dark:text-[#A2B5A8]">Telefon:</span>
+                <span className="text-xs text-[#3F4540] dark:text-[#ECF3EE]">
                   {formatPhone(previewPatient.phone)}
                 </span>
               </div>
-              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60">
-                <span className="text-[#5F665F] text-xs font-medium">E-Posta:</span>
-                <span className="text-xs text-[#3F4540]">
+              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60 dark:border-[#243B2F]/60">
+                <span className="text-[#5F665F] text-xs font-medium dark:text-[#A2B5A8]">E-Posta:</span>
+                <span className="text-xs text-[#3F4540] dark:text-[#ECF3EE]">
                   {previewPatient.email || "—"}
                 </span>
               </div>
-              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60">
-                <span className="text-[#5F665F] text-xs font-medium">Son Tedavi:</span>
-                <span className="text-xs font-semibold text-[#1C211E]">
+              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60 dark:border-[#243B2F]/60">
+                <span className="text-[#5F665F] text-xs font-medium dark:text-[#A2B5A8]">Son Tedavi:</span>
+                <span className="text-xs font-semibold text-[#1C211E] dark:text-[#ECF3EE]">
                   {previewPatient.lastTreatment || "—"}
                 </span>
               </div>
-              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60">
-                <span className="text-[#5F665F] text-xs font-medium">Sorumlu Hekim:</span>
-                <span className="text-xs text-[#3F4540]">
+              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60 dark:border-[#243B2F]/60">
+                <span className="text-[#5F665F] text-xs font-medium dark:text-[#A2B5A8]">Sorumlu Hekim:</span>
+                <span className="text-xs text-[#3F4540] dark:text-[#ECF3EE]">
                   {previewPatient.dentist || "Dr. Selin Yılmaz"}
                 </span>
               </div>
-              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60">
-                <span className="text-[#5F665F] text-xs font-medium">Kayıt Tarihi:</span>
-                <span className="text-xs text-[#3F4540]">
+              <div className="flex justify-between py-1 border-b border-[#E6E1D8]/60 dark:border-[#243B2F]/60">
+                <span className="text-[#5F665F] text-xs font-medium dark:text-[#A2B5A8]">Kayıt Tarihi:</span>
+                <span className="text-xs text-[#3F4540] dark:text-[#ECF3EE]">
                   {formatDate(previewPatient.registrationDate)}
                 </span>
               </div>
               <div className="flex justify-between py-1">
-                <span className="text-[#5F665F] text-xs font-medium">Şehir / İlçe:</span>
-                <span className="text-xs text-[#3F4540]">
+                <span className="text-[#5F665F] text-xs font-medium dark:text-[#A2B5A8]">Şehir / İlçe:</span>
+                <span className="text-xs text-[#3F4540] dark:text-[#ECF3EE]">
                   {previewPatient.city} / {previewPatient.district || "—"}
                 </span>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="mt-6 flex items-center justify-end gap-2 border-t border-[#E6E1D8] pt-4">
+            <div className="mt-6 flex items-center justify-end gap-2 border-t border-[#E6E1D8] pt-4 dark:border-[#243B2F]">
               <button
                 type="button"
                 onClick={() => setPreviewPatient(null)}
-                className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] px-4 py-2 text-xs font-medium text-[#3F4540] hover:bg-[#EADFC8] cursor-pointer"
+                className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] px-4 py-2 text-xs font-medium text-[#3F4540] hover:bg-[#EADFC8] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
               >
                 Kapat
               </button>

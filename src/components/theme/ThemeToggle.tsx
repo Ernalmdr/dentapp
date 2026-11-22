@@ -12,26 +12,20 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  const isDark = theme === "dark";
+  const isDark = mounted && theme === "dark";
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      className="relative flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 shadow-xs transition-all hover:bg-gray-50 hover:text-gray-900 active:scale-95 dark:border-[#284236] dark:bg-[#16261F] dark:text-[#E2ECE7] dark:hover:bg-[#1E352B] dark:hover:text-white cursor-pointer"
-      title={isDark ? "Aydınlık Temaya Geç (Orijinal Tasarım)" : "Koyu Temaya Geç"}
+      className="h-9 w-9 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-2xs bg-[#FBFAF7] border border-[#E6E1D8] text-[#3F4540] hover:bg-[#EEEBE4] hover:text-[#1C211E] dark:bg-[#16221B] dark:border-[#263D30] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE] active:scale-95"
+      title={isDark ? "Aydınlık Temaya Geç" : "Koyu Temaya Geç"}
       aria-label="Temayı Değiştir"
     >
-      {mounted && isDark ? (
-        <>
-          <Sun className="h-4 w-4 text-amber-400" />
-          <span>Aydınlık Mod</span>
-        </>
+      {isDark ? (
+        <Sun className="h-4 w-4 text-[#E5B374] transition-transform duration-200 rotate-0 hover:rotate-45" />
       ) : (
-        <>
-          <Moon className="h-4 w-4 text-[#2D4A3E]" />
-          <span>Koyu Mod</span>
-        </>
+        <Moon className="h-4 w-4 text-[#2F5A3D] transition-transform duration-200 -rotate-12 hover:rotate-0" />
       )}
     </button>
   );

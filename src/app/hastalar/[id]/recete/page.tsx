@@ -181,15 +181,15 @@ export default function PatientRecetePage() {
       {/* ========================================================= */}
       {/* LEFT PANEL: Reçete Tablosu ve Detayları (8 cols) */}
       {/* ========================================================= */}
-      <div className="lg:col-span-8 flex flex-col rounded-[16px] bg-[#FBFAF7] p-6 shadow-xs border border-[#E6E1D8] space-y-5">
+      <div className="lg:col-span-8 flex flex-col rounded-[16px] bg-[#FBFAF7] p-6 shadow-xs border border-[#E6E1D8] space-y-5 dark:bg-[#15221B] dark:border-[#243B2F]">
         {/* Header: Title + Toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8]">
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8] dark:border-[#243B2F]">
           <div className="flex items-center gap-2.5">
-            <Pill className="h-5 w-5 text-[#1F3327]" />
-            <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#1C211E] tracking-tight">
+            <Pill className="h-5 w-5 text-[#1F3327] dark:text-[#76D28F]" />
+            <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
               Reçete
             </h2>
-            <span className="rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-2.5 py-0.5 text-xs font-semibold text-[#2C6A3B]">
+            <span className="rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-2.5 py-0.5 text-xs font-semibold text-[#2C6A3B] dark:bg-[#163321] dark:border-[#285A3B] dark:text-[#76D28F]">
               {prescriptionItems.length} / 7 İlaç
             </span>
           </div>
@@ -203,9 +203,9 @@ export default function PatientRecetePage() {
                 setPrescriptionItems([]);
                 showToast("Reçete temizlendi.", "info");
               }}
-              className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+              className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
             >
-              <RotateCcw className="h-4 w-4 text-[#5F665F]" />
+              <RotateCcw className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             </button>
             <button
               type="button"
@@ -219,74 +219,74 @@ export default function PatientRecetePage() {
               type="button"
               title="Önceki Reçete"
               onClick={() => showToast("Önceki reçete dökümü yüklendi.", "info")}
-              className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+              className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
             >
-              <ArrowLeft className="h-4 w-4 text-[#5F665F]" />
+              <ArrowLeft className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             </button>
             <button
               type="button"
               title="Sonraki Reçete"
               onClick={() => showToast("Sonraki reçeteye geçildi.", "info")}
-              className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+              className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
             >
-              <ArrowRight className="h-4 w-4 text-[#5F665F]" />
+              <ArrowRight className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             </button>
             <button
               type="button"
               title="Yazdır"
               onClick={handlePrint}
-              className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+              className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
             >
-              <Printer className="h-4 w-4 text-[#5F665F]" />
+              <Printer className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             </button>
           </div>
         </div>
 
         {/* Prescription Metadata Info Bar */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 rounded-xl border border-[#E6E1D8] bg-white/70 p-3 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 rounded-xl border border-[#E6E1D8] bg-white/70 p-3 text-xs dark:bg-[#1A2C23] dark:border-[#243B2F]">
           <div>
-            <span className="block text-[#5F665F] font-medium">Protokol No</span>
+            <span className="block text-[#5F665F] font-medium dark:text-[#A2B5A8]">Protokol No</span>
             <input
               type="text"
               value={protokolNo}
               onChange={(e) => setProtokolNo(e.target.value)}
-              className="mt-0.5 font-serif font-bold text-[#1C211E] bg-transparent outline-none w-full"
+              className="mt-0.5 font-serif font-bold text-[#1C211E] bg-transparent outline-none w-full dark:text-[#ECF3EE]"
             />
           </div>
           <div>
-            <span className="block text-[#5F665F] font-medium">Reçete Tarihi</span>
+            <span className="block text-[#5F665F] font-medium dark:text-[#A2B5A8]">Reçete Tarihi</span>
             <input
               type="date"
               value={tarih}
               onChange={(e) => setTarih(e.target.value)}
-              className="mt-0.5 font-medium text-[#1C211E] bg-transparent outline-none w-full"
+              className="mt-0.5 font-medium text-[#1C211E] bg-transparent outline-none w-full dark:text-[#ECF3EE]"
             />
           </div>
           <div>
-            <span className="block text-[#5F665F] font-medium">Yazan Dişhekimi</span>
+            <span className="block text-[#5F665F] font-medium dark:text-[#A2B5A8]">Yazan Dişhekimi</span>
             <input
               type="text"
               value={dishekimi}
               onChange={(e) => setDishekimi(e.target.value)}
-              className="mt-0.5 font-medium text-[#1C211E] bg-transparent outline-none w-full"
+              className="mt-0.5 font-medium text-[#1C211E] bg-transparent outline-none w-full dark:text-[#ECF3EE]"
             />
           </div>
           <div>
-            <span className="block text-[#5F665F] font-medium">Endikasyon / Tanı</span>
+            <span className="block text-[#5F665F] font-medium dark:text-[#A2B5A8]">Endikasyon / Tanı</span>
             <input
               type="text"
               value={endikasyon}
               onChange={(e) => setEndikasyon(e.target.value)}
-              className="mt-0.5 font-medium text-[#1C211E] bg-transparent outline-none w-full truncate"
+              className="mt-0.5 font-medium text-[#1C211E] bg-transparent outline-none w-full truncate dark:text-[#ECF3EE]"
             />
           </div>
         </div>
 
         {/* Prescription Table */}
-        <div className="overflow-x-auto rounded-xl border border-[#E6E1D8] bg-white">
+        <div className="overflow-x-auto rounded-xl border border-[#E6E1D8] bg-white dark:bg-[#15221B] dark:border-[#243B2F]">
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-[#E6E1D8] bg-[#EEEBE4]/60 text-[#5F665F]">
+              <tr className="border-b border-[#E6E1D8] bg-[#EEEBE4]/60 text-[#5F665F] dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                 <th className="py-2.5 px-3 w-8 font-semibold">#</th>
                 <th className="py-2.5 px-3 font-semibold">İlaç Adı</th>
                 <th className="py-2.5 px-3 font-semibold w-24">Dozaj / Adet</th>
@@ -300,12 +300,12 @@ export default function PatientRecetePage() {
                 prescriptionItems.map((item, idx) => (
                   <tr
                     key={item.id}
-                    className="border-b border-[#E6E1D8] hover:bg-[#F6EEDC]/40 transition-colors"
+                    className="border-b border-[#E6E1D8] hover:bg-[#F6EEDC]/40 transition-colors dark:border-[#243B2F] dark:hover:bg-[#1E3026]/50"
                   >
-                    <td className="py-2.5 px-3 font-semibold text-[#8A8F89]">
+                    <td className="py-2.5 px-3 font-semibold text-[#8A8F89] dark:text-[#A2B5A8]">
                       {idx + 1}
                     </td>
-                    <td className="py-2.5 px-3 font-medium text-[#1C211E]">
+                    <td className="py-2.5 px-3 font-medium text-[#1C211E] dark:text-[#ECF3EE]">
                       {item.medicine}
                     </td>
                     <td className="py-2.5 px-3">
@@ -313,7 +313,7 @@ export default function PatientRecetePage() {
                         type="text"
                         value={item.dosage}
                         onChange={(e) => updateItem(item.id, "dosage", e.target.value)}
-                        className="w-full rounded-lg border border-[#E6E1D8] bg-white px-2 py-1 text-xs text-[#3F4540] outline-none focus:border-[#1F3327]"
+                        className="w-full rounded-lg border border-[#E6E1D8] bg-white px-2 py-1 text-xs text-[#3F4540] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                       />
                     </td>
                     <td className="py-2.5 px-3">
@@ -321,7 +321,7 @@ export default function PatientRecetePage() {
                         type="text"
                         value={item.usage}
                         onChange={(e) => updateItem(item.id, "usage", e.target.value)}
-                        className="w-full rounded-lg border border-[#E6E1D8] bg-white px-2 py-1 text-xs text-[#3F4540] outline-none focus:border-[#1F3327]"
+                        className="w-full rounded-lg border border-[#E6E1D8] bg-white px-2 py-1 text-xs text-[#3F4540] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                       />
                     </td>
                     <td className="py-2.5 px-3">
@@ -329,14 +329,14 @@ export default function PatientRecetePage() {
                         type="text"
                         value={item.description}
                         onChange={(e) => updateItem(item.id, "description", e.target.value)}
-                        className="w-full rounded-lg border border-[#E6E1D8] bg-white px-2 py-1 text-xs text-[#3F4540] outline-none focus:border-[#1F3327]"
+                        className="w-full rounded-lg border border-[#E6E1D8] bg-white px-2 py-1 text-xs text-[#3F4540] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                       />
                     </td>
                     <td className="py-2.5 px-2 text-center">
                       <button
                         type="button"
                         onClick={() => removePrescriptionItem(item.id)}
-                        className="text-[#8A8F89] hover:text-[#B3261E] transition-colors cursor-pointer"
+                        className="text-[#8A8F89] hover:text-[#B3261E] transition-colors cursor-pointer dark:hover:text-[#FF8B8B]"
                       >
                         <Trash2 className="h-4 w-4 inline" />
                       </button>
@@ -358,21 +358,21 @@ export default function PatientRecetePage() {
         </div>
 
         {/* Bilgilendirme Notu ("En fazla 6-7 ilaç ekleyiniz") */}
-        <div className="flex items-center gap-2.5 rounded-xl bg-[#F6EEDC] border border-[#EADFC8] p-3.5 text-xs text-[#7A5320] font-medium">
-          <Info className="h-4 w-4 text-[#7A5320] shrink-0" />
+        <div className="flex items-center gap-2.5 rounded-xl bg-[#F6EEDC] border border-[#EADFC8] p-3.5 text-xs text-[#7A5320] font-medium dark:bg-[#2C2415] dark:border-[#523E1E] dark:text-[#E8BA73]">
+          <Info className="h-4 w-4 text-[#7A5320] dark:text-[#E8BA73] shrink-0" />
           <span>
             En fazla 6-7 ilaç ekleyiniz. Günde kaç defa ve nasıl kullanılacağını (aç/tok) reçete tablosu üzerinde düzenleyebilirsiniz.
           </span>
         </div>
 
         {/* Alt Butonlar: Reçete Yazdır ve Kaydet */}
-        <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#E6E1D8]">
+        <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#E6E1D8] dark:border-[#243B2F]">
           <button
             type="button"
             onClick={handlePrint}
-            className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-5 py-2.5 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer"
+            className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-5 py-2.5 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
-            <Printer className="h-4 w-4 text-[#5F665F]" />
+            <Printer className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             <span>Reçete Yazdır</span>
           </button>
 
@@ -390,26 +390,26 @@ export default function PatientRecetePage() {
       {/* ========================================================= */}
       {/* RIGHT PANEL: İlaç Listesi Hızlı Arama & Seçim Kartı (4 cols) */}
       {/* ========================================================= */}
-      <div className="lg:col-span-4 flex flex-col rounded-[16px] bg-[#FBFAF7] p-6 shadow-xs border border-[#E6E1D8] space-y-4">
+      <div className="lg:col-span-4 flex flex-col rounded-[16px] bg-[#FBFAF7] p-6 shadow-xs border border-[#E6E1D8] space-y-4 dark:bg-[#15221B] dark:border-[#243B2F]">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-[#E6E1D8]">
-          <h3 className="text-lg font-serif font-bold text-[#1C211E] tracking-tight">
+        <div className="flex items-center justify-between pb-3 border-b border-[#E6E1D8] dark:border-[#243B2F]">
+          <h3 className="text-lg font-serif font-bold text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
             İlaç Listesi
           </h3>
-          <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-xs font-semibold text-[#3F4540]">
+          <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-xs font-semibold text-[#3F4540] dark:bg-[#1A2C23] dark:text-[#ECF3EE]">
             {medicines.length} İlaç
           </span>
         </div>
 
         {/* Search Input */}
         <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F]" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
           <input
             type="text"
             placeholder="İlaç ara..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white pl-9 pr-3 text-xs sm:text-sm text-[#1C211E] placeholder-[#8A8F89] outline-none transition focus:border-[#1F3327]"
+            className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white pl-9 pr-3 text-xs sm:text-sm text-[#1C211E] placeholder-[#8A8F89] outline-none transition focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#A2B5A8]"
           />
         </div>
 
@@ -423,7 +423,7 @@ export default function PatientRecetePage() {
               className={`rounded-lg px-2.5 py-1 text-xs font-medium transition-colors cursor-pointer ${
                 selectedCategory === cat
                   ? "bg-[#1F3327] text-white"
-                  : "bg-white border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4]"
+                  : "bg-white border border-[#E6E1D8] text-[#5F665F] hover:bg-[#EEEBE4] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026]"
               }`}
             >
               {cat}
@@ -443,15 +443,15 @@ export default function PatientRecetePage() {
                 onClick={() => !isAdded && addMedicineToPrescription(med)}
                 className={`group flex items-center justify-between gap-2 rounded-xl border p-2.5 transition-all cursor-pointer ${
                   isAdded
-                    ? "border-[#C5D6C0] bg-[#E2EEDD]/50 text-[#2C6A3B]"
-                    : "border-[#E6E1D8] bg-white hover:border-[#1F3327]/30 hover:bg-[#F3F0EA]/60"
+                    ? "border-[#C5D6C0] bg-[#E2EEDD]/50 text-[#2C6A3B] dark:border-[#285A3B] dark:bg-[#163321]/50 dark:text-[#76D28F]"
+                    : "border-[#E6E1D8] bg-white hover:border-[#1F3327]/30 hover:bg-[#F3F0EA]/60 dark:border-[#243B2F] dark:bg-[#1A2C23] dark:hover:bg-[#1E3026]"
                 }`}
               >
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-xs sm:text-sm font-medium text-[#1C211E] group-hover:text-[#1F3327]">
+                  <p className="truncate text-xs sm:text-sm font-medium text-[#1C211E] group-hover:text-[#1F3327] dark:text-[#ECF3EE] dark:group-hover:text-[#76D28F]">
                     {med}
                   </p>
-                  <span className="inline-block mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#8A8F89]">
+                  <span className="inline-block mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-[#8A8F89] dark:text-[#A2B5A8]">
                     {cat}
                   </span>
                 </div>
@@ -462,7 +462,7 @@ export default function PatientRecetePage() {
                   className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors cursor-pointer ${
                     isAdded
                       ? "bg-[#2C6A3B] text-white"
-                      : "bg-[#EEEBE4] text-[#3F4540] group-hover:bg-[#1F3327] group-hover:text-white"
+                      : "bg-[#EEEBE4] text-[#3F4540] group-hover:bg-[#1F3327] group-hover:text-white dark:bg-[#15221B] dark:text-[#A2B5A8]"
                   }`}
                 >
                   {isAdded ? (
@@ -476,7 +476,7 @@ export default function PatientRecetePage() {
           })}
 
           {filteredMedicines.length === 0 && (
-            <div className="py-8 text-center text-xs text-[#5F665F]">
+            <div className="py-8 text-center text-xs text-[#5F665F] dark:text-[#A2B5A8]">
               Aranan kriterlere uygun ilaç bulunamadı.
             </div>
           )}

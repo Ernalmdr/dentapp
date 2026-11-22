@@ -20,18 +20,18 @@ export function PrintPreviewModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/70 backdrop-blur-xs animate-in fade-in duration-200 overflow-y-auto">
-      <div className="w-full max-w-3xl my-6 rounded-2xl bg-stone-100 dark:bg-[#0E1712] border border-stone-200 dark:border-[#1E332A] shadow-2xl overflow-hidden flex flex-col">
+      <div className="w-full max-w-3xl my-6 rounded-2xl bg-stone-100 dark:bg-[#0E1511] border border-stone-200 dark:border-[#243B2F] shadow-2xl overflow-hidden flex flex-col">
         {/* Top Floating Control Bar */}
-        <div className="flex items-center justify-between px-6 py-3.5 border-b border-stone-200 dark:border-[#1E332A] bg-white dark:bg-[#122019] print:hidden">
+        <div className="flex items-center justify-between px-6 py-3.5 border-b border-stone-200 dark:border-[#243B2F] bg-white dark:bg-[#15221B] print:hidden">
           <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2D4A3E]/10 dark:bg-[#7CC9A6]/10 text-[#2D4A3E] dark:text-[#7CC9A6]">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#2D4A3E]/10 dark:bg-[#1D3328] text-[#2D4A3E] dark:text-[#7CC9A6]">
               <FileText className="h-4 w-4" />
             </div>
             <div>
-              <h2 className="text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100">
+              <h2 className="text-xs sm:text-sm font-bold text-stone-900 dark:text-[#ECF3EE]">
                 Resmi Belge Yazdırma Önizleme
               </h2>
-              <p className="text-[11px] text-stone-500 dark:text-stone-400">
+              <p className="text-[11px] text-stone-500 dark:text-[#A2B5A8]">
                 {printData.title || "Resmi Klinik Dökümü"}
               </p>
             </div>
@@ -49,7 +49,7 @@ export function PrintPreviewModal() {
             <button
               type="button"
               onClick={closePrintPreview}
-              className="flex h-8 w-8 items-center justify-center rounded-lg text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 hover:bg-stone-100 dark:hover:bg-[#1A2D23] transition-colors"
+              className="flex h-8 w-8 items-center justify-center rounded-lg text-stone-400 hover:text-stone-700 dark:hover:text-[#ECF3EE] hover:bg-stone-100 dark:hover:bg-[#1D3328] transition-colors"
             >
               <X className="h-4 w-4" />
             </button>

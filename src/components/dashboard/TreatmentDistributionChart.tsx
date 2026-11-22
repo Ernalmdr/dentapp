@@ -32,16 +32,11 @@ export default function TreatmentDistributionChart() {
 
   return (
     <div
-      className="flex flex-col justify-between rounded-[20px] p-6 shadow-xs h-full"
-      style={{
-        backgroundColor: neutral.surface, // #FBFAF7
-        border: `1px solid ${neutral.border}`, // #E6E1D8
-      }}
+      className="flex flex-col justify-between rounded-[20px] p-6 shadow-xs h-full bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
     >
       {/* Title */}
       <h2
-        className="text-xl md:text-[22px] font-normal tracking-tight font-serif mb-4"
-        style={{ color: "#1C211E" }}
+        className="text-xl md:text-[22px] font-normal tracking-tight font-serif mb-4 text-[#1C211E] dark:text-[#ECF3EE]"
       >
         Tedavi Dağılımı
       </h2>
@@ -78,8 +73,7 @@ export default function TreatmentDistributionChart() {
             </ResponsiveContainer>
           ) : (
             <div
-              className="h-full w-full flex items-center justify-center text-xs"
-              style={{ color: "#8A8F89" }}
+              className="h-full w-full flex items-center justify-center text-xs text-[#8A8F89] dark:text-[#6F8278]"
             >
               Yükleniyor...
             </div>
@@ -88,14 +82,12 @@ export default function TreatmentDistributionChart() {
           {/* Donut Center Text: Figma Node 7:2709 Total Case Count */}
           <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
             <span
-              className="text-3xl font-normal font-serif leading-none transition-all"
-              style={{ color: "#1C211E" }}
+              className="text-3xl font-normal font-serif leading-none transition-all text-[#1C211E] dark:text-[#ECF3EE]"
             >
               {activeIndex !== null ? treatmentDistribution[activeIndex].value : totalCases}
             </span>
             <span
-              className="text-xs font-medium mt-1.5 transition-colors"
-              style={{ color: "#5F665F" }}
+              className="text-xs font-medium mt-1.5 transition-colors text-[#5F665F] dark:text-[#A2B5A8]"
             >
               {activeIndex !== null ? treatmentDistribution[activeIndex].name : "520 Vaka"}
             </span>
@@ -112,7 +104,9 @@ export default function TreatmentDistributionChart() {
                 onMouseEnter={() => setActiveIndex(index)}
                 onMouseLeave={() => setActiveIndex(null)}
                 className={`flex items-center justify-between text-xs p-1.5 rounded-xl transition-all cursor-pointer ${
-                  isHovered ? "bg-[#EEEBE4]/60 scale-[1.02]" : "hover:bg-[#EEEBE4]/40"
+                  isHovered
+                    ? "bg-[#EEEBE4]/60 dark:bg-[#1A2B21] scale-[1.02]"
+                    : "hover:bg-[#EEEBE4]/40 dark:hover:bg-[#1A2B21]/60"
                 }`}
               >
                 <div className="flex items-center gap-2.5">
@@ -128,24 +122,23 @@ export default function TreatmentDistributionChart() {
                     }}
                   />
                   <span
-                    className="font-medium"
-                    style={{
-                      color: isHovered ? "#1C211E" : "#3F4540",
-                      fontWeight: isHovered ? "600" : "500",
-                    }}
+                    className={`font-medium transition-colors ${
+                      isHovered
+                        ? "text-[#1C211E] dark:text-[#ECF3EE] font-semibold"
+                        : "text-[#3F4540] dark:text-[#A2B5A8]"
+                    }`}
                   >
                     {item.name}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span
-                    className="text-[11px] font-mono text-[#8A8F89]"
+                    className="text-[11px] font-mono text-[#8A8F89] dark:text-[#6F8278]"
                   >
                     {item.value} vaka
                   </span>
                   <span
-                    className="font-bold min-w-[32px] text-right"
-                    style={{ color: "#1C211E" }}
+                    className="font-bold min-w-[32px] text-right text-[#1C211E] dark:text-[#ECF3EE]"
                   >
                     %{item.percentage}
                   </span>

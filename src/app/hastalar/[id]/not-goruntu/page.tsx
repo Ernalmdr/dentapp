@@ -188,16 +188,16 @@ export default function NotGoruntuPage() {
       {/* ============================================================ */}
       {/* 1. ÜST KISIM: AI Analiz Bilgilendirme Banner'ı */}
       {/* ============================================================ */}
-      <div className="rounded-[16px] border border-[#C5D6C0] bg-[#E2EEDD] p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div className="rounded-[16px] border border-[#C5D6C0] bg-[#E2EEDD] p-5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 dark:bg-[#163321] dark:border-[#285A3B]">
         <div className="flex items-start gap-4">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2C6A3B] text-white shadow-xs">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#2C6A3B] text-white shadow-xs dark:bg-[#1F3327] dark:text-[#76D28F]">
             <Sparkles className="h-5 w-5" />
           </div>
           <div className="space-y-1">
-            <h3 className="font-serif font-bold text-base sm:text-lg text-[#1F3327]">
+            <h3 className="font-serif font-bold text-base sm:text-lg text-[#1F3327] dark:text-[#76D28F]">
               Yapay Zeka Destekli Radyoloji Analizi
             </h3>
-            <p className="text-xs sm:text-sm text-[#2C6A3B] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#2C6A3B] leading-relaxed dark:text-[#ECF3EE]">
               Panoramik, Bitewing, Periapikal ve Sefalometrik filmlerinizin yapay zeka ile otomatik analizini yapabilirsiniz.
             </p>
           </div>
@@ -229,16 +229,16 @@ export default function NotGoruntuPage() {
         {/* ========================================================= */}
         {/* SOL PANEL: Notlar Tablosu (5 cols) */}
         {/* ========================================================= */}
-        <div className="lg:col-span-5 flex flex-col justify-between rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs min-h-[560px]">
+        <div className="lg:col-span-5 flex flex-col justify-between rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs min-h-[560px] dark:bg-[#15221B] dark:border-[#243B2F]">
           <div>
             {/* Header: Title + Toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8]">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8] dark:border-[#243B2F]">
               <div className="flex items-center gap-2.5">
-                <FileText className="h-5 w-5 text-[#1F3327]" />
-                <h3 className="text-xl font-serif font-bold text-[#1C211E] tracking-tight">
+                <FileText className="h-5 w-5 text-[#1F3327] dark:text-[#76D28F]" />
+                <h3 className="text-xl font-serif font-bold text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
                   Notlar
                 </h3>
-                <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-xs font-semibold text-[#3F4540]">
+                <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-xs font-semibold text-[#3F4540] dark:bg-[#1A2C23] dark:text-[#ECF3EE]">
                   {notes.length}
                 </span>
               </div>
@@ -259,16 +259,16 @@ export default function NotGoruntuPage() {
                   title="Seçili Notu Düzenle"
                   onClick={startEditNote}
                   disabled={!selectedNoteId}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] disabled:opacity-40 transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] disabled:opacity-40 transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Pencil className="h-3.5 w-3.5 text-[#5F665F]" />
+                  <Pencil className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                 </button>
                 <button
                   type="button"
                   title="Seçili Notu Sil"
                   onClick={() => handleDeleteNote(selectedNoteId)}
                   disabled={!selectedNoteId}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#B3261E] shadow-2xs hover:bg-[#FBE9E7] disabled:opacity-40 transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#B3261E] shadow-2xs hover:bg-[#FBE9E7] disabled:opacity-40 transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#FF8B8B] dark:hover:bg-[#2C1919]"
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
@@ -277,24 +277,24 @@ export default function NotGoruntuPage() {
 
             {/* Search Input */}
             <div className="relative mt-3 mb-4">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F]" />
+              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
               <input
                 type="text"
                 placeholder="Notlarda ara..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white pl-9 pr-3 text-xs sm:text-sm text-[#1C211E] placeholder-[#8A8F89] outline-none transition focus:border-[#1F3327]"
+                className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white pl-9 pr-3 text-xs sm:text-sm text-[#1C211E] placeholder-[#8A8F89] outline-none transition focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#A2B5A8]"
               />
             </div>
 
             {/* Add Note Inline Form */}
             {isAddingNote && (
-              <div className="mb-4 rounded-xl border border-[#EADFC8] bg-[#F6EEDC] p-3.5 space-y-2.5">
-                <div className="flex items-center justify-between text-xs font-serif font-bold text-[#1C211E]">
+              <div className="mb-4 rounded-xl border border-[#EADFC8] bg-[#F6EEDC] p-3.5 space-y-2.5 dark:bg-[#2C2415] dark:border-[#523E1E]">
+                <div className="flex items-center justify-between text-xs font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                   <span>Yeni Klinik Not Ekle</span>
                   <button
                     onClick={() => setIsAddingNote(false)}
-                    className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer"
+                    className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -304,14 +304,14 @@ export default function NotGoruntuPage() {
                   value={newNoteContent}
                   onChange={(e) => setNewNoteContent(e.target.value)}
                   placeholder="Not metnini giriniz (ör. 11 NOLU DİŞ KANALA GİDEBİLİR...)"
-                  className="w-full rounded-lg border border-[#E6E1D8] bg-white p-2.5 text-xs text-[#1C211E] outline-none focus:border-[#1F3327]"
+                  className="w-full rounded-lg border border-[#E6E1D8] bg-white p-2.5 text-xs text-[#1C211E] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   autoFocus
                 />
                 <div className="flex justify-end gap-2">
                   <button
                     type="button"
                     onClick={() => setIsAddingNote(false)}
-                    className="rounded-lg border border-[#E6E1D8] bg-white px-3 py-1 text-xs font-medium text-[#3F4540] hover:bg-[#F3F0EA] cursor-pointer"
+                    className="rounded-lg border border-[#E6E1D8] bg-white px-3 py-1 text-xs font-medium text-[#3F4540] hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     Vazgeç
                   </button>
@@ -329,12 +329,12 @@ export default function NotGoruntuPage() {
 
             {/* Edit Note Inline Form */}
             {isEditingNote && (
-              <div className="mb-4 rounded-xl border border-[#CFCAC0] bg-white p-3.5 space-y-2.5 shadow-2xs">
-                <div className="flex items-center justify-between text-xs font-serif font-bold text-[#1C211E]">
+              <div className="mb-4 rounded-xl border border-[#CFCAC0] bg-white p-3.5 space-y-2.5 shadow-2xs dark:bg-[#15221B] dark:border-[#243B2F]">
+                <div className="flex items-center justify-between text-xs font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                   <span>Notu Düzenle</span>
                   <button
                     onClick={() => setIsEditingNote(false)}
-                    className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer"
+                    className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -343,14 +343,14 @@ export default function NotGoruntuPage() {
                   rows={3}
                   value={editNoteContent}
                   onChange={(e) => setEditNoteContent(e.target.value)}
-                  className="w-full rounded-lg border border-[#E6E1D8] bg-white p-2.5 text-xs text-[#1C211E] outline-none focus:border-[#1F3327]"
+                  className="w-full rounded-lg border border-[#E6E1D8] bg-white p-2.5 text-xs text-[#1C211E] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   autoFocus
                 />
                 <div className="flex justify-end gap-2">
                   <button
                     type="button"
                     onClick={() => setIsEditingNote(false)}
-                    className="rounded-lg border border-[#E6E1D8] bg-white px-3 py-1 text-xs font-medium text-[#3F4540] hover:bg-[#F3F0EA] cursor-pointer"
+                    className="rounded-lg border border-[#E6E1D8] bg-white px-3 py-1 text-xs font-medium text-[#3F4540] hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     Vazgeç
                   </button>
@@ -367,15 +367,15 @@ export default function NotGoruntuPage() {
             )}
 
             {/* Notes Table */}
-            <div className="overflow-hidden rounded-xl border border-[#E6E1D8] bg-white">
+            <div className="overflow-hidden rounded-xl border border-[#E6E1D8] bg-white dark:border-[#243B2F] dark:bg-[#15221B]">
               <table className="w-full text-left text-xs">
-                <thead className="border-b border-[#E6E1D8] bg-[#EEEBE4]/60 text-[#5F665F]">
+                <thead className="border-b border-[#E6E1D8] bg-[#EEEBE4]/60 text-[#5F665F] dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                   <tr>
                     <th className="py-2.5 px-3 w-28 font-semibold">Tarih</th>
                     <th className="py-2.5 px-3 font-semibold">Klinik Notu</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E6E1D8]">
+                <tbody className="divide-y divide-[#E6E1D8] dark:divide-[#243B2F]">
                   {filteredNotes.map((note) => {
                     const isSelected = selectedNoteId === note.id;
                     return (
@@ -385,11 +385,11 @@ export default function NotGoruntuPage() {
                         className={cn(
                           "cursor-pointer transition-colors",
                           isSelected
-                            ? "bg-[#F6EEDC] text-[#1C211E]"
-                            : "hover:bg-[#F3F0EA]/60 text-[#3F4540]"
+                            ? "bg-[#F6EEDC] text-[#1C211E] dark:bg-[#2A3F33] dark:text-[#ECF3EE]"
+                            : "hover:bg-[#F3F0EA]/60 text-[#3F4540] dark:hover:bg-[#1E3026]/50 dark:text-[#ECF3EE]"
                         )}
                       >
-                        <td className="py-3 px-3 font-semibold text-[#1C211E] whitespace-nowrap align-top">
+                        <td className="py-3 px-3 font-semibold text-[#1C211E] whitespace-nowrap align-top dark:text-[#ECF3EE]">
                           {note.date}
                         </td>
                         <td className="py-3 px-3 leading-relaxed">
@@ -400,7 +400,7 @@ export default function NotGoruntuPage() {
                   })}
                   {filteredNotes.length === 0 && (
                     <tr>
-                      <td colSpan={2} className="py-8 text-center text-[#5F665F]">
+                      <td colSpan={2} className="py-8 text-center text-[#5F665F] dark:text-[#A2B5A8]">
                         Aramaya uygun not bulunamadı.
                       </td>
                     </tr>
@@ -410,7 +410,7 @@ export default function NotGoruntuPage() {
             </div>
           </div>
 
-          <div className="pt-3 border-t border-[#E6E1D8] text-xs text-[#5F665F]">
+          <div className="pt-3 border-t border-[#E6E1D8] text-xs text-[#5F665F] dark:border-[#243B2F] dark:text-[#A2B5A8]">
             Toplam {notes.length} klinik not kayıtlıdır.
           </div>
         </div>
@@ -418,19 +418,19 @@ export default function NotGoruntuPage() {
         {/* ========================================================= */}
         {/* SAĞ PANEL: Görüntüleme & Radyoloji (7 cols) */}
         {/* ========================================================= */}
-        <div className="lg:col-span-7 flex flex-col justify-between rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs min-h-[560px]">
+        <div className="lg:col-span-7 flex flex-col justify-between rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs min-h-[560px] dark:bg-[#15221B] dark:border-[#243B2F]">
           <div>
             {/* Görüntüleme Üst Araç Çubuğu */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8]">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8] dark:border-[#243B2F]">
               {/* Sol: Başlık & Aksiyon Butonları (Fotoğraf Çek, Yükle, İndir, Karşılaştır, Izgara) */}
               <div className="flex flex-wrap items-center gap-1.5">
                 <button
                   type="button"
                   onClick={() => showToast("Klinik kamera bağlantısı başlatılıyor...", "info")}
                   title="Fotoğraf Çek"
-                  className="flex items-center gap-1.5 rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs font-medium text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs font-medium text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Camera className="h-3.5 w-3.5 text-[#5F665F]" />
+                  <Camera className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                   <span>Fotoğraf Çek</span>
                 </button>
 
@@ -438,9 +438,9 @@ export default function NotGoruntuPage() {
                   type="button"
                   onClick={handleUploadClick}
                   title="Görüntü Yükle"
-                  className="flex items-center gap-1.5 rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs font-medium text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs font-medium text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Upload className="h-3.5 w-3.5 text-[#5F665F]" />
+                  <Upload className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                   <span>Görüntü Yükle</span>
                 </button>
 
@@ -448,9 +448,9 @@ export default function NotGoruntuPage() {
                   type="button"
                   onClick={handleDownloadImage}
                   title="İndir"
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Download className="h-3.5 w-3.5 text-[#5F665F]" />
+                  <Download className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                 </button>
 
                 <button
@@ -461,7 +461,7 @@ export default function NotGoruntuPage() {
                     "flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium shadow-2xs transition-colors cursor-pointer",
                     viewMode === "compare"
                       ? "border-[#1F3327] bg-[#1F3327] text-white"
-                      : "border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA]"
+                      : "border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                   )}
                 >
                   <Columns2 className="h-3.5 w-3.5" />
@@ -476,7 +476,7 @@ export default function NotGoruntuPage() {
                     "flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium shadow-2xs transition-colors cursor-pointer",
                     viewMode === "grid"
                       ? "border-[#1F3327] bg-[#1F3327] text-white"
-                      : "border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA]"
+                      : "border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                   )}
                 >
                   <Grid className="h-3.5 w-3.5" />
@@ -490,7 +490,7 @@ export default function NotGoruntuPage() {
                   type="button"
                   onClick={() => setZoomLevel((z) => Math.max(0.75, z - 0.25))}
                   title="Küçült"
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-1.5 text-[#5F665F] hover:bg-[#F3F0EA] cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-1.5 text-[#5F665F] hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026]"
                 >
                   <ZoomOut className="h-3.5 w-3.5" />
                 </button>
@@ -498,22 +498,22 @@ export default function NotGoruntuPage() {
                   type="button"
                   onClick={() => setZoomLevel((z) => Math.min(2, z + 0.25))}
                   title="Büyüt"
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-1.5 text-[#5F665F] hover:bg-[#F3F0EA] cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-1.5 text-[#5F665F] hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026]"
                 >
                   <ZoomIn className="h-3.5 w-3.5" />
                 </button>
 
-                <div className="flex items-center gap-1 pl-1 border-l border-[#E6E1D8]">
+                <div className="flex items-center gap-1 pl-1 border-l border-[#E6E1D8] dark:border-[#243B2F]">
                   <button
                     type="button"
                     onClick={() => setImageIndex(Math.max(0, imageIndex - 1))}
                     disabled={imageIndex === 0}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#E6E1D8] bg-white text-[#5F665F] hover:bg-[#F3F0EA] disabled:opacity-30 cursor-pointer"
+                    className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#E6E1D8] bg-white text-[#5F665F] hover:bg-[#F3F0EA] disabled:opacity-30 cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026]"
                   >
                     <ChevronLeft className="h-3.5 w-3.5" />
                   </button>
 
-                  <span className="text-xs font-mono font-bold text-[#1C211E] px-1">
+                  <span className="text-xs font-mono font-bold text-[#1C211E] px-1 dark:text-[#ECF3EE]">
                     {images.length > 0 ? `${imageIndex + 1} / ${images.length}` : "0 / 0"}
                   </span>
 
@@ -521,7 +521,7 @@ export default function NotGoruntuPage() {
                     type="button"
                     onClick={() => setImageIndex(Math.min(images.length - 1, imageIndex + 1))}
                     disabled={imageIndex >= images.length - 1}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#E6E1D8] bg-white text-[#5F665F] hover:bg-[#F3F0EA] disabled:opacity-30 cursor-pointer"
+                    className="flex h-7 w-7 items-center justify-center rounded-lg border border-[#E6E1D8] bg-white text-[#5F665F] hover:bg-[#F3F0EA] disabled:opacity-30 cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026]"
                   >
                     <ChevronRight className="h-3.5 w-3.5" />
                   </button>
@@ -530,7 +530,7 @@ export default function NotGoruntuPage() {
             </div>
 
             {/* Main Image Viewer Canvas */}
-            <div className="mt-4 relative overflow-hidden rounded-xl border border-[#E6E1D8] bg-[#121815] min-h-[360px] flex items-center justify-center p-4">
+            <div className="mt-4 relative overflow-hidden rounded-xl border border-[#E6E1D8] bg-[#121815] min-h-[360px] flex items-center justify-center p-4 dark:border-[#243B2F]">
               {viewMode === "single" && (
                 <div
                   className="relative transition-transform duration-200"
@@ -616,15 +616,15 @@ export default function NotGoruntuPage() {
           </div>
 
           {/* Bottom Actions Bar */}
-          <div className="mt-4 pt-3 border-t border-[#E6E1D8] flex flex-wrap items-center justify-between gap-3">
+          <div className="mt-4 pt-3 border-t border-[#E6E1D8] flex flex-wrap items-center justify-between gap-3 dark:border-[#243B2F]">
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => setShowAiBoxes(!showAiBoxes)}
                 className={`text-xs px-3 py-1.5 rounded-lg border transition-colors cursor-pointer ${
                   showAiBoxes
-                    ? "bg-[#E2EEDD] border-[#C5D6C0] text-[#2C6A3B] font-semibold"
-                    : "bg-white border-[#E6E1D8] text-[#5F665F]"
+                    ? "bg-[#E2EEDD] border-[#C5D6C0] text-[#2C6A3B] font-semibold dark:bg-[#163321] dark:border-[#285A3B] dark:text-[#76D28F]"
+                    : "bg-white border-[#E6E1D8] text-[#5F665F] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8]"
                 }`}
               >
                 {showAiBoxes ? "✓ AI İşaretçileri Açık" : "AI İşaretçilerini Göster"}
@@ -643,9 +643,9 @@ export default function NotGoruntuPage() {
                     type: "Dental Röntgen",
                   })
                 }
-                className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-white px-3.5 py-2 text-xs font-medium text-[#1C211E] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-white px-3.5 py-2 text-xs font-medium text-[#1C211E] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
               >
-                <Maximize2 className="h-3.5 w-3.5 text-[#5F665F]" />
+                <Maximize2 className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                 <span>Tam Ekran İncele</span>
               </button>
 

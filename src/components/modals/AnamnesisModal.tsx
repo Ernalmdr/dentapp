@@ -43,23 +43,23 @@ export function AnamnesisModal() {
       onClick={closeAnamnesisModal}
     >
       <div
-        className="w-full max-w-2xl rounded-2xl bg-white dark:bg-[#122019] p-6 shadow-2xl border border-stone-200 dark:border-[#1E332A] text-stone-900 dark:text-[#F0F5F2] max-h-[90vh] overflow-y-auto"
+        className="w-full max-w-2xl rounded-2xl bg-white dark:bg-[#15221B] p-6 shadow-2xl border border-stone-200 dark:border-[#243B2F] text-stone-900 dark:text-[#ECF3EE] max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-stone-200 dark:border-[#1E332A]">
+        <div className="flex items-center justify-between pb-4 border-b border-stone-200 dark:border-[#243B2F]">
           <div className="flex items-center gap-2.5">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-500/10 text-rose-600 dark:text-rose-400">
               <HeartPulse className="h-5 w-5" />
             </div>
             <div>
               <h2 className="text-base font-bold tracking-tight">Tıbbi Anamnez & Sağlık Geçmişi</h2>
-              <p className="text-xs text-stone-500 dark:text-[#90A199]">{anamnesisData.patientName} (HS-10248)</p>
+              <p className="text-xs text-stone-500 dark:text-[#A2B5A8]">{anamnesisData.patientName} (HS-10248)</p>
             </div>
           </div>
           <button
             onClick={closeAnamnesisModal}
-            className="p-1.5 rounded-lg text-stone-400 hover:text-stone-700 dark:hover:text-white"
+            className="p-1.5 rounded-lg text-stone-400 hover:text-stone-700 dark:hover:text-[#ECF3EE]"
           >
             <X className="h-5 w-5" />
           </button>
@@ -82,7 +82,7 @@ export function AnamnesisModal() {
 
           {/* 1. Sistemik Hastalıklar */}
           <div>
-            <h4 className="font-bold text-stone-800 dark:text-white uppercase tracking-wider text-[11px] mb-2.5">
+            <h4 className="font-bold text-stone-800 dark:text-[#ECF3EE] uppercase tracking-wider text-[11px] mb-2.5">
               1. Sistemik Rahatsızlıklar
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -98,8 +98,8 @@ export function AnamnesisModal() {
                   key={item.key}
                   className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer select-none transition-all ${
                     diseases[item.key as keyof typeof diseases]
-                      ? "bg-emerald-50 dark:bg-[#182C22] border-emerald-500 text-emerald-900 dark:text-emerald-200 font-semibold"
-                      : "border-stone-200 dark:border-[#233C30] hover:bg-stone-50 dark:hover:bg-[#16261F]"
+                      ? "bg-emerald-50 dark:bg-[#1D3328] border-emerald-500 text-emerald-900 dark:text-emerald-200 font-semibold"
+                      : "border-stone-200 dark:border-[#243B2F] bg-white dark:bg-[#1A2C23] hover:bg-stone-50 dark:hover:bg-[#1D3328]"
                   }`}
                 >
                   <input
@@ -118,7 +118,7 @@ export function AnamnesisModal() {
 
           {/* 2. İlaç ve Madde Alerjileri */}
           <div>
-            <h4 className="font-bold text-stone-800 dark:text-white uppercase tracking-wider text-[11px] mb-2.5">
+            <h4 className="font-bold text-stone-800 dark:text-[#ECF3EE] uppercase tracking-wider text-[11px] mb-2.5">
               2. İlaç & Madde Alerjileri
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -133,7 +133,7 @@ export function AnamnesisModal() {
                   className={`flex items-center gap-2 p-2.5 rounded-xl border cursor-pointer select-none transition-all ${
                     allergies[item.key as keyof typeof allergies]
                       ? "bg-rose-50 dark:bg-rose-950/40 border-rose-500 text-rose-900 dark:text-rose-200 font-semibold"
-                      : "border-stone-200 dark:border-[#233C30] hover:bg-stone-50 dark:hover:bg-[#16261F]"
+                      : "border-stone-200 dark:border-[#243B2F] bg-white dark:bg-[#1A2C23] hover:bg-stone-50 dark:hover:bg-[#1D3328]"
                   }`}
                 >
                   <input
@@ -155,7 +155,7 @@ export function AnamnesisModal() {
             <label className={`flex items-center gap-2.5 p-3 rounded-xl border cursor-pointer select-none ${
               bloodThinner
                 ? "bg-amber-50 dark:bg-amber-950/40 border-amber-500 font-semibold"
-                : "border-stone-200 dark:border-[#233C30]"
+                : "border-stone-200 dark:border-[#243B2F] bg-white dark:bg-[#1A2C23]"
             }`}>
               <input
                 type="checkbox"
@@ -169,7 +169,7 @@ export function AnamnesisModal() {
             <label className={`flex items-center gap-2.5 p-3 rounded-xl border cursor-pointer select-none ${
               isPregnant
                 ? "bg-purple-50 dark:bg-purple-950/40 border-purple-500 font-semibold"
-                : "border-stone-200 dark:border-[#233C30]"
+                : "border-stone-200 dark:border-[#243B2F] bg-white dark:bg-[#1A2C23]"
             }`}>
               <input
                 type="checkbox"
@@ -183,7 +183,7 @@ export function AnamnesisModal() {
 
           {/* 4. Düzenli Kullanılan İlaçlar */}
           <div>
-            <label className="block font-semibold mb-1 text-stone-700 dark:text-[#D1DDD6]">
+            <label className="block font-semibold mb-1 text-stone-700 dark:text-[#C5D4CB]">
               Düzenli Kullanılan İlaçlar
             </label>
             <input
@@ -191,29 +191,29 @@ export function AnamnesisModal() {
               value={currentMedications}
               onChange={(e) => setCurrentMedications(e.target.value)}
               placeholder="Örn: Tansiyon ilacı, insülin, vitamin..."
-              className="w-full h-10 rounded-xl border border-stone-200 dark:border-[#233C30] bg-stone-50 dark:bg-[#16261F] px-3 outline-none"
+              className="w-full h-10 rounded-xl border border-stone-200 dark:border-[#243B2F] bg-stone-50 dark:bg-[#1A2C23] dark:text-[#ECF3EE] dark:placeholder-[#5E7569] px-3 outline-none"
             />
           </div>
 
           {/* 5. Hekim Tıbbi Notu */}
           <div>
-            <label className="block font-semibold mb-1 text-stone-700 dark:text-[#D1DDD6]">
+            <label className="block font-semibold mb-1 text-stone-700 dark:text-[#C5D4CB]">
               Hekim Klinik Uyarı Notu
             </label>
             <textarea
               rows={2}
               value={doctorNotes}
               onChange={(e) => setDoctorNotes(e.target.value)}
-              className="w-full rounded-xl border border-stone-200 dark:border-[#233C30] bg-stone-50 dark:bg-[#16261F] p-2.5 outline-none resize-none leading-relaxed"
+              className="w-full rounded-xl border border-stone-200 dark:border-[#243B2F] bg-stone-50 dark:bg-[#1A2C23] dark:text-[#ECF3EE] dark:placeholder-[#5E7569] p-2.5 outline-none resize-none leading-relaxed"
             />
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-end gap-3 pt-3 border-t border-stone-200 dark:border-[#1E332A]">
+          <div className="flex items-center justify-end gap-3 pt-3 border-t border-stone-200 dark:border-[#243B2F]">
             <button
               type="button"
               onClick={closeAnamnesisModal}
-              className="px-4 py-2 rounded-xl border border-stone-300 dark:border-[#233C30]"
+              className="px-4 py-2 rounded-xl border border-stone-300 dark:border-[#243B2F] text-stone-600 dark:text-[#A2B5A8] hover:bg-stone-50 dark:hover:bg-[#1D3328]"
             >
               Vazgeç
             </button>

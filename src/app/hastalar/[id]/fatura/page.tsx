@@ -100,10 +100,10 @@ export default function PatientFaturaPage() {
   const totalAmount = items.reduce((sum, item) => sum + item.total, 0);
 
   return (
-    <div className="rounded-xl bg-[#FBFAF7] p-6 shadow-xs border border-[#E6E1D8] space-y-8">
+    <div className="rounded-xl bg-[#FBFAF7] p-6 shadow-xs border border-[#E6E1D8] space-y-8 dark:bg-[#15221B] dark:border-[#243B2F]">
       {/* Top Header Row: Title + Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-[#E6E1D8]">
-        <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#1C211E] tracking-tight">
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-[#E6E1D8] dark:border-[#243B2F]">
+        <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
           Fatura
         </h2>
 
@@ -116,7 +116,7 @@ export default function PatientFaturaPage() {
               setItems([]);
               showToast("Fatura kalemleri sıfırlandı.", "info");
             }}
-            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer"
+            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
             <RotateCcw className="h-4 w-4" />
           </button>
@@ -124,7 +124,7 @@ export default function PatientFaturaPage() {
             type="button"
             onClick={addItem}
             title="Yeni Kalem Ekle"
-            className="rounded-lg bg-[#1F3327] p-2 text-white shadow-2xs hover:bg-[#2D3A32] transition-colors cursor-pointer"
+            className="rounded-lg bg-[#1F3327] p-2 text-white shadow-2xs hover:bg-[#2D3A32] transition-colors cursor-pointer dark:hover:bg-[#285A3B]"
           >
             <Plus className="h-4 w-4" />
           </button>
@@ -132,7 +132,7 @@ export default function PatientFaturaPage() {
             type="button"
             title="Faturayı Kaydet"
             onClick={() => showToast(`✓ Fatura FTR-${faturaNo} başarıyla kaydedildi.`, "success")}
-            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer"
+            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
             <Save className="h-4 w-4" />
           </button>
@@ -140,7 +140,7 @@ export default function PatientFaturaPage() {
             type="button"
             title="Düzenle"
             onClick={() => showToast("Fatura düzenleme modu açık.", "info")}
-            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer"
+            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
             <Pencil className="h-4 w-4" />
           </button>
@@ -148,7 +148,7 @@ export default function PatientFaturaPage() {
             type="button"
             title="Önceki"
             onClick={() => showToast("Önceki fatura kaydına geçildi.", "info")}
-            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer"
+            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
             <ArrowLeft className="h-4 w-4" />
           </button>
@@ -156,7 +156,7 @@ export default function PatientFaturaPage() {
             type="button"
             title="Sonraki"
             onClick={() => showToast("Sonraki fatura kaydına geçildi.", "info")}
-            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer"
+            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
             <ArrowRight className="h-4 w-4" />
           </button>
@@ -186,7 +186,7 @@ export default function PatientFaturaPage() {
                 },
               });
             }}
-            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer"
+            className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
             <Printer className="h-4 w-4" />
           </button>
@@ -194,7 +194,7 @@ export default function PatientFaturaPage() {
             type="button"
             title="Fatura Ayarları"
             onClick={() => showToast("GİB Entegratör ve E-Arşiv parametreleri aktif.", "info")}
-            className="rounded-lg bg-[#2D3A32] p-2 text-white shadow-2xs hover:bg-[#1F3327] transition-colors cursor-pointer"
+            className="rounded-lg bg-[#2D3A32] p-2 text-white shadow-2xs hover:bg-[#1F3327] transition-colors cursor-pointer dark:bg-[#1F3327] dark:hover:bg-[#285A3B]"
           >
             <Settings className="h-4 w-4" />
           </button>
@@ -208,10 +208,10 @@ export default function PatientFaturaPage() {
           {/* Faturayı Kesen - VURGU: #2F5A3D */}
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <label className="text-xs font-semibold text-[#2F5A3D]">
+              <label className="text-xs font-semibold text-[#2F5A3D] dark:text-[#76D28F]">
                 Faturayı Kesen
               </label>
-              <span className="rounded-md bg-[#2F5A3D]/10 px-2 py-0.5 text-[10px] font-bold text-[#2F5A3D]">
+              <span className="rounded-md bg-[#2F5A3D]/10 px-2 py-0.5 text-[10px] font-bold text-[#2F5A3D] dark:bg-[#163321] dark:text-[#76D28F]">
                 Yetkili Hekim
               </span>
             </div>
@@ -219,46 +219,46 @@ export default function PatientFaturaPage() {
               type="text"
               value={faturayiKesen}
               onChange={(e) => setFaturayiKesen(e.target.value)}
-              className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#2F5A3D] focus:ring-1 focus:ring-[#2F5A3D] transition-colors"
+              className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#2F5A3D] focus:ring-1 focus:ring-[#2F5A3D] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
             />
           </div>
 
           {/* Tarih & Saat side by side */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+              <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
                 Tarih
               </label>
               <input
                 type="date"
                 value={tarih}
                 onChange={(e) => setTarih(e.target.value)}
-                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+              <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
                 Saat
               </label>
               <input
                 type="time"
                 value={saat}
                 onChange={(e) => setSaat(e.target.value)}
-                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
               />
             </div>
           </div>
 
           {/* Alıcı Subheader */}
           <div className="pt-2">
-            <span className="text-xs font-serif font-bold uppercase tracking-wider text-[#1C211E]">
+            <span className="text-xs font-serif font-bold uppercase tracking-wider text-[#1C211E] dark:text-[#ECF3EE]">
               Alıcı
             </span>
           </div>
 
           {/* Sayın */}
           <div>
-            <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+            <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
               Sayın
             </label>
             <input
@@ -266,13 +266,13 @@ export default function PatientFaturaPage() {
               value={sayin}
               onChange={(e) => setSayin(e.target.value)}
               placeholder="Sayın"
-              className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+              className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
             />
           </div>
 
           {/* Adres */}
           <div>
-            <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+            <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
               Adres
             </label>
             <input
@@ -280,21 +280,21 @@ export default function PatientFaturaPage() {
               value={adres}
               onChange={(e) => setAdres(e.target.value)}
               placeholder="Adres"
-              className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+              className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
             />
           </div>
 
           {/* Şehir & İlçe side by side */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+              <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
                 Şehir
               </label>
               <div className="relative">
                 <select
                   value={sehir}
                   onChange={(e) => setSehir(e.target.value)}
-                  className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white px-3 pr-8 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                  className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white px-3 pr-8 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="İZMİR">İZMİR</option>
                   <option value="İSTANBUL">İSTANBUL</option>
@@ -302,19 +302,19 @@ export default function PatientFaturaPage() {
                   <option value="BURSA">BURSA</option>
                   <option value="ANTALYA">ANTALYA</option>
                 </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F665F]" />
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+              <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
                 İlçe
               </label>
               <div className="relative">
                 <select
                   value={ilce}
                   onChange={(e) => setIlce(e.target.value)}
-                  className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white px-3 pr-8 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                  className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white px-3 pr-8 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="KARŞIYAKA">KARŞIYAKA</option>
                   <option value="KONAK">KONAK</option>
@@ -322,7 +322,7 @@ export default function PatientFaturaPage() {
                   <option value="KADIKÖY">KADIKÖY</option>
                   <option value="BEŞİKTAŞ">BEŞİKTAŞ</option>
                 </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F665F]" />
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
               </div>
             </div>
           </div>
@@ -332,26 +332,26 @@ export default function PatientFaturaPage() {
         <div className="space-y-4">
           {/* Fatura Türü */}
           <div>
-            <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+            <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
               Fatura Türü
             </label>
             <div className="relative">
               <select
                 value={faturaTuru}
                 onChange={(e) => setFaturaTuru(e.target.value)}
-                className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white px-3 pr-8 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white px-3 pr-8 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
               >
                 <option value="Eski Tip / Basılı">Eski Tip / Basılı</option>
                 <option value="E-Fatura">E-Fatura</option>
                 <option value="E-Arşiv Fatura">E-Arşiv Fatura</option>
               </select>
-              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F665F]" />
+              <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             </div>
           </div>
 
           {/* Fatura No */}
           <div>
-            <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+            <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
               Fatura No
             </label>
             <input
@@ -359,14 +359,14 @@ export default function PatientFaturaPage() {
               value={faturaNo}
               onChange={(e) => setFaturaNo(e.target.value)}
               placeholder="Fatura No"
-              className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+              className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
             />
           </div>
 
           {/* Vergi Dairesi & Vergi/TC No side by side */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+              <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
                 Vergi Dairesi
               </label>
               <input
@@ -374,12 +374,12 @@ export default function PatientFaturaPage() {
                 value={vergiDairesi}
                 onChange={(e) => setVergiDairesi(e.target.value)}
                 placeholder="Vergi Dairesi"
-                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+              <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
                 Vergi/TC No
               </label>
               <input
@@ -387,7 +387,7 @@ export default function PatientFaturaPage() {
                 value={vergiNo}
                 onChange={(e) => setVergiNo(e.target.value)}
                 placeholder="Vergi Numarası"
-                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 font-mono text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 font-mono text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
               />
             </div>
           </div>
@@ -395,19 +395,19 @@ export default function PatientFaturaPage() {
           {/* Ülke & Empty space */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+              <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
                 Ülke
               </label>
               <div className="relative">
                 <select
                   value={ulke}
                   onChange={(e) => setUlke(e.target.value)}
-                  className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white px-3 pr-8 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                  className="h-10 w-full appearance-none rounded-lg border border-[#E6E1D8] bg-white px-3 pr-8 text-sm text-[#3F4540] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="TÜRKİYE">TÜRKİYE</option>
                   <option value="DİĞER">DİĞER</option>
                 </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F665F]" />
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
               </div>
             </div>
             <div />
@@ -415,7 +415,7 @@ export default function PatientFaturaPage() {
 
           {/* E-posta with mail icon */}
           <div>
-            <label className="block text-xs font-medium text-[#5F665F] mb-1.5">
+            <label className="block text-xs font-medium text-[#5F665F] mb-1.5 dark:text-[#A2B5A8]">
               E-posta
             </label>
             <div className="relative">
@@ -424,11 +424,11 @@ export default function PatientFaturaPage() {
                 value={eposta}
                 onChange={(e) => setEposta(e.target.value)}
                 placeholder="E-posta"
-                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white pl-10 pr-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors"
+                className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white pl-10 pr-3 text-sm text-[#3F4540] placeholder-[#5F665F] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] transition-colors dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
               />
               <button
                 type="button"
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5F665F] hover:text-[#1C211E] transition-colors"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5F665F] hover:text-[#1C211E] transition-colors dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
               >
                 <Mail className="h-4 w-4" />
               </button>
@@ -438,9 +438,9 @@ export default function PatientFaturaPage() {
       </div>
 
       {/* Fatura Kalemleri Section */}
-      <div className="pt-6 border-t border-[#E6E1D8]">
+      <div className="pt-6 border-t border-[#E6E1D8] dark:border-[#243B2F]">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <h3 className="text-base font-serif font-bold text-[#1C211E] tracking-tight">
+          <h3 className="text-base font-serif font-bold text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
             Fatura Kalemleri
           </h3>
 
@@ -450,14 +450,14 @@ export default function PatientFaturaPage() {
               type="button"
               onClick={addItem}
               title="Kalem Ekle"
-              className="rounded-lg bg-[#1F3327] p-2 text-white shadow-2xs hover:bg-[#2D3A32] transition-colors cursor-pointer"
+              className="rounded-lg bg-[#1F3327] p-2 text-white shadow-2xs hover:bg-[#2D3A32] transition-colors cursor-pointer dark:hover:bg-[#285A3B]"
             >
               <Plus className="h-4 w-4" />
             </button>
             <button
               type="button"
               title="Düzenle"
-              className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer"
+              className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
             >
               <Pencil className="h-4 w-4" />
             </button>
@@ -465,7 +465,7 @@ export default function PatientFaturaPage() {
               type="button"
               onClick={removeItem}
               title="Kaldır"
-              className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer"
+              className="rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] p-2 text-[#3F4540] shadow-2xs hover:bg-[#EADFC8] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
             >
               <Minus className="h-4 w-4" />
             </button>
@@ -476,7 +476,7 @@ export default function PatientFaturaPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-[#E6E1D8] text-[#5F665F] bg-[#EEEBE4]/60">
+              <tr className="border-b border-[#E6E1D8] text-[#5F665F] bg-[#EEEBE4]/60 dark:border-[#243B2F] dark:text-[#A2B5A8] dark:bg-[#1A2C23]">
                 <th className="py-3 px-2 w-8">
                   <input
                     type="checkbox"
@@ -484,7 +484,7 @@ export default function PatientFaturaPage() {
                       items.length > 0 && selectedItems.length === items.length
                     }
                     onChange={toggleSelectAll}
-                    className="h-3.5 w-3.5 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327]"
+                    className="h-3.5 w-3.5 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327] dark:border-[#243B2F]"
                   />
                 </th>
                 <th className="py-3 px-2 font-semibold">Tarih</th>
@@ -507,31 +507,31 @@ export default function PatientFaturaPage() {
                 items.map((item) => (
                   <tr
                     key={item.id}
-                    className="border-b border-[#E6E1D8] hover:bg-[#F6EEDC]/40 transition-colors text-[#3F4540]"
+                    className="border-b border-[#E6E1D8] hover:bg-[#F6EEDC]/40 transition-colors text-[#3F4540] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]/60"
                   >
                     <td className="py-2.5 px-2">
                       <input
                         type="checkbox"
                         checked={selectedItems.includes(item.id)}
                         onChange={() => toggleSelectItem(item.id)}
-                        className="h-3.5 w-3.5 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327]"
+                        className="h-3.5 w-3.5 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327] dark:border-[#243B2F]"
                       />
                     </td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">{item.date}</td>
-                    <td className="py-2.5 px-2 font-medium text-[#1C211E]">{item.toothNo}</td>
-                    <td className="py-2.5 px-2 text-[#3F4540]">{item.treatment}</td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">{item.dentist}</td>
-                    <td className="py-2.5 px-2 text-[#3F4540]">{formatCurrency(item.amount)}</td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">%{item.discountPercent}</td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">{formatCurrency(item.discount)}</td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">%{item.withholdingPercent}</td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">{formatCurrency(item.withholding)}</td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">%{item.vatPercent}</td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">{formatCurrency(item.vat)}</td>
-                    <td className="py-2.5 px-2 font-bold text-[#1C211E]">
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">{item.date}</td>
+                    <td className="py-2.5 px-2 font-medium text-[#1C211E] dark:text-[#ECF3EE]">{item.toothNo}</td>
+                    <td className="py-2.5 px-2 text-[#3F4540] dark:text-[#ECF3EE]">{item.treatment}</td>
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">{item.dentist}</td>
+                    <td className="py-2.5 px-2 text-[#3F4540] dark:text-[#ECF3EE]">{formatCurrency(item.amount)}</td>
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">%{item.discountPercent}</td>
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">{formatCurrency(item.discount)}</td>
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">%{item.withholdingPercent}</td>
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">{formatCurrency(item.withholding)}</td>
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">%{item.vatPercent}</td>
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">{formatCurrency(item.vat)}</td>
+                    <td className="py-2.5 px-2 font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                       {formatCurrency(item.total)}
                     </td>
-                    <td className="py-2.5 px-2 text-[#5F665F]">{item.currency}</td>
+                    <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">{item.currency}</td>
                   </tr>
                 ))
               ) : null}
@@ -551,11 +551,11 @@ export default function PatientFaturaPage() {
       </div>
 
       {/* Bottom Summary Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#E6E1D8]">
-        <div className="text-sm font-semibold text-[#5F665F]">
-          Toplam: <span className="text-[#1C211E] font-bold">{formatCurrency(totalAmount)}</span>
+      <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[#E6E1D8] dark:border-[#243B2F]">
+        <div className="text-sm font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
+          Toplam: <span className="text-[#1C211E] font-bold dark:text-[#ECF3EE]">{formatCurrency(totalAmount)}</span>
         </div>
-        <div className="rounded-xl bg-[#F6EEDC] border border-[#EADFC8] px-6 py-2.5 text-base font-serif font-bold text-[#1C211E] shadow-2xs">
+        <div className="rounded-xl bg-[#F6EEDC] border border-[#EADFC8] px-6 py-2.5 text-base font-serif font-bold text-[#1C211E] shadow-2xs dark:bg-[#2C2415] dark:border-[#523E1E] dark:text-[#E8BA73]">
           Genel Toplam: {formatCurrency(totalAmount)}
         </div>
       </div>

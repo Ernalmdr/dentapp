@@ -564,17 +564,17 @@ export default function FinansPage() {
                 <button
                   type="button"
                   onClick={handlePrintGiderKarti}
-                  className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-3.5 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer"
+                  className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-3.5 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Printer className="h-4 w-4 text-[#5F665F]" />
+                  <Printer className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                   Gider Kartı Yazdır
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveTab("hareketler")}
-                  className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] hover:bg-[#EEEBE4] px-3.5 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer"
+                  className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] hover:bg-[#EEEBE4] px-3.5 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Receipt className="h-4 w-4 text-[#5F665F]" />
+                  <Receipt className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                   Hareketleri Gör ({transactions.length})
                 </button>
               </>
@@ -583,9 +583,9 @@ export default function FinansPage() {
                 <button
                   type="button"
                   onClick={handlePrintSummary}
-                  className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-3.5 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer"
+                  className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-3.5 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Printer className="h-4 w-4 text-[#5F665F]" />
+                  <Printer className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                   Kasa Raporu Yazdır
                 </button>
                 <button
@@ -594,7 +594,7 @@ export default function FinansPage() {
                     handleResetForm();
                     setActiveTab("gider-karti");
                   }}
-                  className="flex items-center gap-1.5 rounded-xl bg-[#1F3327] hover:bg-[#2D3A32] px-4 py-2.5 text-xs font-semibold text-white transition-colors shadow-sm cursor-pointer"
+                  className="flex items-center gap-1.5 rounded-xl bg-[#1F3327] hover:bg-[#2D3A32] px-4 py-2.5 text-xs font-semibold text-white transition-colors shadow-sm cursor-pointer dark:hover:bg-[#285A3B]"
                 >
                   <Plus className="h-4 w-4" />
                   + Yeni Gider Kartı
@@ -606,7 +606,7 @@ export default function FinansPage() {
       />
 
       {/* Tabs Navigation */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E6E1D8] pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E6E1D8] pb-3 dark:border-[#243B2F]">
         <div className="flex items-center gap-2">
           <button
             type="button"
@@ -615,13 +615,13 @@ export default function FinansPage() {
               "flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer",
               activeTab === "gider-karti"
                 ? "bg-[#1F3327] text-white shadow-xs"
-                : "bg-[#FBFAF7] text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] border border-[#E6E1D8]"
+                : "bg-[#FBFAF7] text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
             )}
           >
             <CreditCard className="h-4 w-4" />
             <span>Gider Kartı (Yeni / Düzenle)</span>
             {editingId && (
-              <span className="rounded-full bg-[#E2EEDD] text-[#2C6A3B] text-[10px] px-2 py-0.5 font-bold">
+              <span className="rounded-full bg-[#E2EEDD] text-[#2C6A3B] text-[10px] px-2 py-0.5 font-bold dark:bg-[#163321] dark:text-[#76D28F]">
                 Düzenleniyor
               </span>
             )}
@@ -633,12 +633,12 @@ export default function FinansPage() {
               "flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all cursor-pointer",
               activeTab === "hareketler"
                 ? "bg-[#1F3327] text-white shadow-xs"
-                : "bg-[#FBFAF7] text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] border border-[#E6E1D8]"
+                : "bg-[#FBFAF7] text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
             )}
           >
             <Receipt className="h-4 w-4" />
             <span>Gider Hareketleri & Rapor</span>
-            <span className="rounded-full bg-[#EEEBE4] text-[#1C211E] text-[10px] px-2 py-0.5 font-bold">
+            <span className="rounded-full bg-[#EEEBE4] text-[#1C211E] text-[10px] px-2 py-0.5 font-bold dark:bg-[#1A2C23] dark:text-[#ECF3EE]">
               {transactions.length}
             </span>
           </button>
@@ -646,13 +646,13 @@ export default function FinansPage() {
 
         {activeTab === "gider-karti" && editingId && (
           <div className="flex items-center gap-2">
-            <span className="text-xs text-[#5F665F]">
+            <span className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
               Kayıt Düzenleniyor (ID: #{editingId.slice(-4)})
             </span>
             <button
               type="button"
               onClick={handleResetForm}
-              className="text-xs font-semibold text-[#B3261E] hover:underline cursor-pointer"
+              className="text-xs font-semibold text-[#B3261E] hover:underline cursor-pointer dark:text-[#FF8A80]"
             >
               Yeni Kayda Geç
             </button>
@@ -666,22 +666,22 @@ export default function FinansPage() {
       {activeTab === "gider-karti" && (
         <form onSubmit={handleSaveGiderKarti} className="flex flex-col gap-6">
           {/* KART 1: Hesap Bilgileri */}
-          <div className="rounded-2xl bg-[#FBFAF7] p-6 border border-[#E6E1D8] shadow-xs">
-            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#E6E1D8]">
+          <div className="rounded-2xl bg-[#FBFAF7] p-6 border border-[#E6E1D8] shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#E6E1D8] dark:border-[#243B2F]">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E7EEE6] text-[#1F3327]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E7EEE6] text-[#1F3327] dark:bg-[#1A2C23] dark:text-[#76D28F]">
                   <Wallet className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-bold text-[#1C211E]">
+                  <h3 className="text-base sm:text-lg font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                     1. Hesap Bilgileri
                   </h3>
-                  <p className="text-xs text-[#5F665F]">
+                  <p className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                     Firma, fatura ve gider maliyet tanımları
                   </p>
                 </div>
               </div>
-              <span className="text-[11px] font-semibold text-[#5F665F] bg-[#EEEBE4] px-2.5 py-1 rounded-lg">
+              <span className="text-[11px] font-semibold text-[#5F665F] bg-[#EEEBE4] px-2.5 py-1 rounded-lg dark:bg-[#1A2C23] dark:text-[#A2B5A8]">
                 Firma & Vergi
               </span>
             </div>
@@ -689,8 +689,8 @@ export default function FinansPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {/* Firma Adı (Ad) */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
-                  Firma / Tedarikçi Adı <span className="text-[#B3261E]">*</span>
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
+                  Firma / Tedarikçi Adı <span className="text-[#B3261E] dark:text-[#FF8A80]">*</span>
                 </label>
                 <input
                   type="text"
@@ -698,13 +698,13 @@ export default function FinansPage() {
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder="Örn: DentLab Protez Ltd."
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
 
               {/* Fatura No (Hesap No) */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Fatura No / Belge No
                 </label>
                 <input
@@ -712,19 +712,19 @@ export default function FinansPage() {
                   value={invoiceNo}
                   onChange={(e) => setInvoiceNo(e.target.value)}
                   placeholder="Örn: FT-2026-0842"
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
 
               {/* Masraf Türü (Hesap Tipi) */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Masraf Türü
                 </label>
                 <select
                   value={expenseType}
                   onChange={(e) => setExpenseType(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 >
                   <option value="Laboratuvar & Protez">Laboratuvar & Protez</option>
                   <option value="Anestezi & İğne Uçları">Anestezi & İğne Uçları</option>
@@ -742,21 +742,21 @@ export default function FinansPage() {
 
               {/* Tarih */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Fatura / İşlem Tarihi
                 </label>
                 <input
                   type="date"
                   value={expenseDate}
                   onChange={(e) => setExpenseDate(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 />
               </div>
 
               {/* Tutar */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
-                  Toplam Tutar (₺) <span className="text-[#B3261E]">*</span>
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
+                  Toplam Tutar (₺) <span className="text-[#B3261E] dark:text-[#FF8A80]">*</span>
                 </label>
                 <div className="relative">
                   <input
@@ -766,9 +766,9 @@ export default function FinansPage() {
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
                     placeholder="0.00"
-                    className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white pl-3.5 pr-8 text-sm font-semibold text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white pl-3.5 pr-8 text-sm font-semibold text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                   />
-                  <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#5F665F]">
+                  <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#5F665F] dark:text-[#A2B5A8]">
                     ₺
                   </span>
                 </div>
@@ -776,13 +776,13 @@ export default function FinansPage() {
 
               {/* KDV Oranı */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   KDV Oranı (%)
                 </label>
                 <select
                   value={taxRate}
                   onChange={(e) => setTaxRate(Number(e.target.value))}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 >
                   <option value={0}>%0 (Muaf / İstisna)</option>
                   <option value={1}>%1 (Özel Tıbbi)</option>
@@ -793,13 +793,13 @@ export default function FinansPage() {
 
               {/* Hesap Tipi (Cari / Kasa / Banka) */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Hesap Tipi
                 </label>
                 <select
                   value={accountType}
                   onChange={(e) => setAccountType(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 >
                   <option value="Cari Hesap">Cari Hesap</option>
                   <option value="Kasa (Nakit)">Kasa (Nakit)</option>
@@ -810,13 +810,13 @@ export default function FinansPage() {
 
               {/* Para Birimi */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Para Birimi
                 </label>
                 <select
                   value={currency}
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 >
                   <option value="TRY">Türk Lirası (TRY)</option>
                   <option value="USD">Amerikan Doları (USD)</option>
@@ -826,7 +826,7 @@ export default function FinansPage() {
 
               {/* Vergi Dairesi & Numarası */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Vergi Dairesi / No
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -835,14 +835,14 @@ export default function FinansPage() {
                     value={taxOffice}
                     onChange={(e) => setTaxOffice(e.target.value)}
                     placeholder="Kadıköy V.D."
-                    className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3 text-xs text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327]"
+                    className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3 text-xs text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                   />
                   <input
                     type="text"
                     value={taxNumber}
                     onChange={(e) => setTaxNumber(e.target.value)}
                     placeholder="Vergi No"
-                    className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3 text-xs text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327]"
+                    className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3 text-xs text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                   />
                 </div>
               </div>
@@ -850,22 +850,22 @@ export default function FinansPage() {
           </div>
 
           {/* KART 2: İletişim Bilgileri */}
-          <div className="rounded-2xl bg-[#FBFAF7] p-6 border border-[#E6E1D8] shadow-xs">
-            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#E6E1D8]">
+          <div className="rounded-2xl bg-[#FBFAF7] p-6 border border-[#E6E1D8] shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#E6E1D8] dark:border-[#243B2F]">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E7EEE6] text-[#1F3327]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E7EEE6] text-[#1F3327] dark:bg-[#1A2C23] dark:text-[#76D28F]">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-bold text-[#1C211E]">
+                  <h3 className="text-base sm:text-lg font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                     2. İletişim Bilgileri
                   </h3>
-                  <p className="text-xs text-[#5F665F]">
+                  <p className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                     Tedarikçi yetkili ve adres iletişim kanalları
                   </p>
                 </div>
               </div>
-              <span className="text-[11px] font-semibold text-[#5F665F] bg-[#EEEBE4] px-2.5 py-1 rounded-lg">
+              <span className="text-[11px] font-semibold text-[#5F665F] bg-[#EEEBE4] px-2.5 py-1 rounded-lg dark:bg-[#1A2C23] dark:text-[#A2B5A8]">
                 İletişim & Lokasyon
               </span>
             </div>
@@ -873,7 +873,7 @@ export default function FinansPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
               {/* Yetkili */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Yetkili Ad Soyad
                 </label>
                 <input
@@ -881,13 +881,13 @@ export default function FinansPage() {
                   value={contactPerson}
                   onChange={(e) => setContactPerson(e.target.value)}
                   placeholder="Ahmet Yılmaz"
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
 
               {/* Cep Telefonu */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Cep Telefonu
                 </label>
                 <input
@@ -895,13 +895,13 @@ export default function FinansPage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="0532 XXX XX XX"
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
 
               {/* Sabit Telefon */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Sabit Telefon
                 </label>
                 <input
@@ -909,13 +909,13 @@ export default function FinansPage() {
                   value={landlinePhone}
                   onChange={(e) => setLandlinePhone(e.target.value)}
                   placeholder="0216 XXX XX XX"
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
 
               {/* E-posta */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   E-posta Adresi
                 </label>
                 <input
@@ -923,32 +923,32 @@ export default function FinansPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="muhasebe@tedarikci.com"
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
 
               {/* Ülke */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Ülke
                 </label>
                 <input
                   type="text"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 />
               </div>
 
               {/* Şehir */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Şehir
                 </label>
                 <select
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 >
                   <option value="İstanbul">İstanbul</option>
                   <option value="Ankara">Ankara</option>
@@ -962,7 +962,7 @@ export default function FinansPage() {
 
               {/* İlçe */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   İlçe
                 </label>
                 <input
@@ -970,13 +970,13 @@ export default function FinansPage() {
                   value={district}
                   onChange={(e) => setDistrict(e.target.value)}
                   placeholder="Kadıköy"
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
 
               {/* Posta Kodu */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Posta Kodu
                 </label>
                 <input
@@ -984,13 +984,13 @@ export default function FinansPage() {
                   value={postalCode}
                   onChange={(e) => setPostalCode(e.target.value)}
                   placeholder="34710"
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
 
               {/* Adres (Tam Satır) */}
               <div className="md:col-span-2 lg:col-span-4 flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Firma / Fatura Açık Adresi
                 </label>
                 <textarea
@@ -998,29 +998,29 @@ export default function FinansPage() {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="Fatura ve teslimat adresi..."
-                  className="w-full rounded-xl border border-[#E6E1D8] bg-white p-3 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="w-full rounded-xl border border-[#E6E1D8] bg-white p-3 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
                 />
               </div>
             </div>
           </div>
 
           {/* KART 3: Diğer Bilgiler */}
-          <div className="rounded-2xl bg-[#FBFAF7] p-6 border border-[#E6E1D8] shadow-xs">
-            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#E6E1D8]">
+          <div className="rounded-2xl bg-[#FBFAF7] p-6 border border-[#E6E1D8] shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="flex items-center justify-between pb-4 mb-5 border-b border-[#E6E1D8] dark:border-[#243B2F]">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E7EEE6] text-[#1F3327]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E7EEE6] text-[#1F3327] dark:bg-[#1A2C23] dark:text-[#76D28F]">
                   <FileText className="h-5 w-5" />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-bold text-[#1C211E]">
+                  <h3 className="text-base sm:text-lg font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                     3. Diğer Bilgiler
                   </h3>
-                  <p className="text-xs text-[#5F665F]">
+                  <p className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                     Ödeme koşulları, görevliler ve klinik açıklamaları
                   </p>
                 </div>
               </div>
-              <span className="text-[11px] font-semibold text-[#5F665F] bg-[#EEEBE4] px-2.5 py-1 rounded-lg">
+              <span className="text-[11px] font-semibold text-[#5F665F] bg-[#EEEBE4] px-2.5 py-1 rounded-lg dark:bg-[#1A2C23] dark:text-[#A2B5A8]">
                 Koşullar & Notlar
               </span>
             </div>
@@ -1028,13 +1028,13 @@ export default function FinansPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
               {/* Çalışma Koşulları */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Çalışma Koşulları (Vade)
                 </label>
                 <select
                   value={workingConditions}
                   onChange={(e) => setWorkingConditions(e.target.value)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 >
                   <option value="Peşin">Peşin Ödeme</option>
                   <option value="15 Gün Vade">15 Gün Vade</option>
@@ -1046,13 +1046,13 @@ export default function FinansPage() {
 
               {/* Ödeme Şekli */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Ödeme Şekli
                 </label>
                 <select
                   value={paymentMethod}
                   onChange={(e) => setPaymentMethod(e.target.value as any)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 >
                   <option value="Havale/EFT">Havale / EFT</option>
                   <option value="Kredi Kartı">Kredi Kartı</option>
@@ -1062,13 +1062,13 @@ export default function FinansPage() {
 
               {/* Durum */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-[#5F665F]">
+                <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                   Ödeme Durumu
                 </label>
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value as any)}
-                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                  className="h-10 w-full rounded-xl border border-[#E6E1D8] bg-white px-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B]"
                 >
                   <option value="Ödendi">Ödendi (Kapalı)</option>
                   <option value="Bekliyor">Ödeme Bekliyor</option>
@@ -1079,14 +1079,14 @@ export default function FinansPage() {
             </div>
 
             {/* Görevli Personel Bilgileri Tablosu */}
-            <div className="mt-4 rounded-xl border border-[#E6E1D8] bg-white p-4">
-              <span className="text-xs font-bold text-[#1C211E] mb-3 block">
+            <div className="mt-4 rounded-xl border border-[#E6E1D8] bg-white p-4 dark:bg-[#1A2C23] dark:border-[#243B2F]">
+              <span className="text-xs font-bold text-[#1C211E] mb-3 block dark:text-[#ECF3EE]">
                 İlgili Kişiler & Görevliler
               </span>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                 {/* Yetkili */}
-                <div className="rounded-lg bg-[#FBFAF7] p-3 border border-[#E6E1D8]">
-                  <span className="font-semibold text-[#2F5A3D] block mb-2">
+                <div className="rounded-lg bg-[#FBFAF7] p-3 border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+                  <span className="font-semibold text-[#2F5A3D] block mb-2 dark:text-[#76D28F]">
                     Firma Yetkilisi
                   </span>
                   <div className="flex flex-col gap-1.5">
@@ -1095,28 +1095,28 @@ export default function FinansPage() {
                       value={contactPerson}
                       onChange={(e) => setContactPerson(e.target.value)}
                       placeholder="Ad Soyad"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                     <input
                       type="text"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="Cep Telefonu"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                     <input
                       type="text"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="E-posta"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                   </div>
                 </div>
 
                 {/* Plasiyer */}
-                <div className="rounded-lg bg-[#FBFAF7] p-3 border border-[#E6E1D8]">
-                  <span className="font-semibold text-[#2F5A3D] block mb-2">
+                <div className="rounded-lg bg-[#FBFAF7] p-3 border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+                  <span className="font-semibold text-[#2F5A3D] block mb-2 dark:text-[#76D28F]">
                     Plasiyer / Müşteri Temsilcisi
                   </span>
                   <div className="flex flex-col gap-1.5">
@@ -1125,28 +1125,28 @@ export default function FinansPage() {
                       value={salesRep}
                       onChange={(e) => setSalesRep(e.target.value)}
                       placeholder="Ad Soyad"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                     <input
                       type="text"
                       value={salesRepPhone}
                       onChange={(e) => setSalesRepPhone(e.target.value)}
                       placeholder="Cep Telefonu"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                     <input
                       type="text"
                       value={salesRepEmail}
                       onChange={(e) => setSalesRepEmail(e.target.value)}
                       placeholder="E-posta"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                   </div>
                 </div>
 
                 {/* Teknisyen */}
-                <div className="rounded-lg bg-[#FBFAF7] p-3 border border-[#E6E1D8]">
-                  <span className="font-semibold text-[#2F5A3D] block mb-2">
+                <div className="rounded-lg bg-[#FBFAF7] p-3 border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+                  <span className="font-semibold text-[#2F5A3D] block mb-2 dark:text-[#76D28F]">
                     Laboratuvar Teknisyeni
                   </span>
                   <div className="flex flex-col gap-1.5">
@@ -1155,21 +1155,21 @@ export default function FinansPage() {
                       value={technician}
                       onChange={(e) => setTechnician(e.target.value)}
                       placeholder="Ad Soyad"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                     <input
                       type="text"
                       value={technicianPhone}
                       onChange={(e) => setTechnicianPhone(e.target.value)}
                       placeholder="Cep Telefonu"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                     <input
                       type="text"
                       value={technicianEmail}
                       onChange={(e) => setTechnicianEmail(e.target.value)}
                       placeholder="E-posta"
-                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none"
+                      className="rounded-lg border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                     />
                   </div>
                 </div>
@@ -1178,7 +1178,7 @@ export default function FinansPage() {
 
             {/* Açıklama */}
             <div className="mt-4 flex flex-col gap-1.5">
-              <label className="text-xs font-semibold text-[#5F665F]">
+              <label className="text-xs font-semibold text-[#5F665F] dark:text-[#A2B5A8]">
                 Klinik Açıklama & Fatura Notları
               </label>
               <textarea
@@ -1186,20 +1186,20 @@ export default function FinansPage() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Gider kalemi, sipariş veya teslimatla ilgili ek açıklamalar..."
-                className="w-full rounded-xl border border-[#E6E1D8] bg-white p-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                className="w-full rounded-xl border border-[#E6E1D8] bg-white p-3.5 text-sm text-[#1C211E] outline-none transition-colors hover:border-[#CFCAC0] focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:border-[#285A3B] dark:placeholder-[#5F665F]"
               />
             </div>
           </div>
 
           {/* Form Actions Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-[#FBFAF7] p-4 border border-[#E6E1D8] shadow-xs">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-[#FBFAF7] p-4 border border-[#E6E1D8] shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={handleResetForm}
-                className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-4 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer"
+                className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-4 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
               >
-                <RotateCcw className="h-4 w-4 text-[#5F665F]" />
+                <RotateCcw className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                 Formu Temizle / Yeni
               </button>
               {editingId && (
@@ -1209,7 +1209,7 @@ export default function FinansPage() {
                     handleResetForm();
                     setActiveTab("hareketler");
                   }}
-                  className="rounded-xl border border-[#E6E1D8] bg-white px-3.5 py-2.5 text-xs font-semibold text-[#5F665F] hover:text-[#1C211E] transition-colors cursor-pointer"
+                  className="rounded-xl border border-[#E6E1D8] bg-white px-3.5 py-2.5 text-xs font-semibold text-[#5F665F] hover:text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
                 >
                   Düzenlemeyi Kapat
                 </button>
@@ -1220,14 +1220,14 @@ export default function FinansPage() {
               <button
                 type="button"
                 onClick={handlePrintGiderKarti}
-                className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-4 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer"
+                className="flex items-center gap-1.5 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-4 py-2.5 text-xs font-semibold text-[#1C211E] transition-colors shadow-2xs cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
               >
-                <Printer className="h-4 w-4 text-[#5F665F]" />
+                <Printer className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                 Kartı Yazdır
               </button>
               <button
                 type="submit"
-                className="flex items-center gap-2 rounded-xl bg-[#1F3327] hover:bg-[#2D3A32] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors shadow-sm cursor-pointer"
+                className="flex items-center gap-2 rounded-xl bg-[#1F3327] hover:bg-[#2D3A32] px-6 py-2.5 text-xs sm:text-sm font-semibold text-white transition-colors shadow-sm cursor-pointer dark:hover:bg-[#285A3B]"
               >
                 <Check className="h-4 w-4" />
                 {editingId ? "Gider Kartını Güncelle" : "Gider Kartını Kaydet"}
@@ -1259,50 +1259,50 @@ export default function FinansPage() {
             </div>
 
             {/* Toplam Gelir */}
-            <div className="rounded-2xl bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8]">
-              <span className="text-xs font-medium text-[#5F665F]">Toplam Tahsilat</span>
+            <div className="rounded-2xl bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+              <span className="text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">Toplam Tahsilat</span>
               <div className="mt-2 flex items-baseline justify-between">
-                <span className="text-2xl font-bold font-mono tracking-tight text-[#2C6A3B]">
+                <span className="text-2xl font-bold font-mono tracking-tight text-[#2C6A3B] dark:text-[#76D28F]">
                   +{formatCurrency(totalGelir)} ₺
                 </span>
-                <span className="text-xs font-semibold text-[#2C6A3B] bg-[#E2EEDD] px-2 py-0.5 rounded-full">
+                <span className="text-xs font-semibold text-[#2C6A3B] bg-[#E2EEDD] px-2 py-0.5 rounded-full dark:bg-[#163321] dark:text-[#76D28F]">
                   Gelir
                 </span>
               </div>
-              <p className="mt-2 text-[11px] text-[#5F665F]">Hasta ödemeleri & POS akışı</p>
+              <p className="mt-2 text-[11px] text-[#5F665F] dark:text-[#A2B5A8]">Hasta ödemeleri & POS akışı</p>
             </div>
 
             {/* Toplam Gider */}
-            <div className="rounded-2xl bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8]">
-              <span className="text-xs font-medium text-[#5F665F]">Klinik Giderleri</span>
+            <div className="rounded-2xl bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+              <span className="text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">Klinik Giderleri</span>
               <div className="mt-2 flex items-baseline justify-between">
-                <span className="text-2xl font-bold font-mono tracking-tight text-[#B3261E]">
+                <span className="text-2xl font-bold font-mono tracking-tight text-[#B3261E] dark:text-[#FF8A80]">
                   -{formatCurrency(totalGider)} ₺
                 </span>
-                <span className="text-xs font-semibold text-[#B3261E] bg-[#FBE9E7] px-2 py-0.5 rounded-full">
+                <span className="text-xs font-semibold text-[#B3261E] bg-[#FBE9E7] px-2 py-0.5 rounded-full dark:bg-[#3D1A1A] dark:text-[#FF8A80]">
                   Gider
                 </span>
               </div>
-              <p className="mt-2 text-[11px] text-[#5F665F]">Laboratuvar & malzeme alımları</p>
+              <p className="mt-2 text-[11px] text-[#5F665F] dark:text-[#A2B5A8]">Laboratuvar & malzeme alımları</p>
             </div>
 
             {/* Bekleyen Alacaklar */}
-            <div className="rounded-2xl bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8]">
-              <span className="text-xs font-medium text-[#5F665F]">Bekleyen Alacaklar</span>
+            <div className="rounded-2xl bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+              <span className="text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">Bekleyen Alacaklar</span>
               <div className="mt-2 flex items-baseline justify-between">
-                <span className="text-2xl font-bold font-mono tracking-tight text-[#7A5320]">
+                <span className="text-2xl font-bold font-mono tracking-tight text-[#7A5320] dark:text-[#E8BA73]">
                   42.600 ₺
                 </span>
-                <span className="text-xs font-semibold text-[#7A5320] bg-[#F3EADB] px-2 py-0.5 rounded-full">
+                <span className="text-xs font-semibold text-[#7A5320] bg-[#F3EADB] px-2 py-0.5 rounded-full dark:bg-[#2C2415] dark:text-[#E8BA73]">
                   Taksitli
                 </span>
               </div>
-              <p className="mt-2 text-[11px] text-[#5F665F]">Tamamlanacak tedavilerden</p>
+              <p className="mt-2 text-[11px] text-[#5F665F] dark:text-[#A2B5A8]">Tamamlanacak tedavilerden</p>
             </div>
           </div>
 
           {/* Filter Tabs & Search */}
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-[#FBFAF7] p-4 border border-[#E6E1D8] shadow-xs">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-[#FBFAF7] p-4 border border-[#E6E1D8] shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
             <div className="flex items-center gap-2">
               {["Tümü", "Gelir", "Gider"].map((t) => (
                 <button
@@ -1313,7 +1313,7 @@ export default function FinansPage() {
                     "rounded-xl px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer",
                     filterType === t
                       ? "bg-[#1F3327] text-white shadow-2xs"
-                      : "bg-[#EEEBE4] text-[#5F665F] hover:bg-[#E6E1D8] hover:text-[#1C211E]"
+                      : "bg-[#EEEBE4] text-[#5F665F] hover:bg-[#E6E1D8] hover:text-[#1C211E] dark:bg-[#1A2C23] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
                   )}
                 >
                   {t}
@@ -1324,11 +1324,11 @@ export default function FinansPage() {
             <div className="flex flex-wrap items-center gap-3">
               {/* Method filter */}
               <div className="flex items-center gap-1.5">
-                <Filter className="h-3.5 w-3.5 text-[#5F665F]" />
+                <Filter className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
                 <select
                   value={filterMethod}
                   onChange={(e) => setFilterMethod(e.target.value)}
-                  className="rounded-xl border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none focus:border-[#1F3327]"
+                  className="rounded-xl border border-[#E6E1D8] bg-white px-2.5 py-1.5 text-xs text-[#1C211E] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="Tümü">Tüm Ödeme Yöntemleri</option>
                   <option value="Kredi Kartı">Kredi Kartı</option>
@@ -1339,13 +1339,13 @@ export default function FinansPage() {
 
               {/* Search input */}
               <div className="relative">
-                <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#5F665F]" />
+                <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
                 <input
                   type="text"
                   placeholder="Kayıt veya firma ara..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="h-8 w-48 sm:w-60 rounded-xl border border-[#E6E1D8] bg-white pl-8 pr-3 text-xs text-[#1C211E] outline-none placeholder:text-[#5F665F]/60 focus:border-[#1F3327]"
+                  className="h-8 w-48 sm:w-60 rounded-xl border border-[#E6E1D8] bg-white pl-8 pr-3 text-xs text-[#1C211E] outline-none placeholder:text-[#5F665F]/60 focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:placeholder-[#5F665F]"
                 />
               </div>
 
@@ -1353,7 +1353,7 @@ export default function FinansPage() {
               <button
                 type="button"
                 onClick={handleResetDefaults}
-                className="flex items-center gap-1 rounded-xl px-2.5 py-1.5 text-xs text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer"
+                className="flex items-center gap-1 rounded-xl px-2.5 py-1.5 text-xs text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
                 title="Varsayılan Verileri Geri Yükle"
               >
                 <RotateCcw className="h-3 w-3" />
@@ -1363,10 +1363,10 @@ export default function FinansPage() {
           </div>
 
           {/* Transactions Table */}
-          <div className="rounded-2xl bg-[#FBFAF7] border border-[#E6E1D8] overflow-hidden shadow-xs">
+          <div className="rounded-2xl bg-[#FBFAF7] border border-[#E6E1D8] overflow-hidden shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-[#EEEBE4] border-b border-[#E6E1D8] text-[#5F665F] font-semibold">
+                <thead className="bg-[#EEEBE4] border-b border-[#E6E1D8] text-[#5F665F] font-semibold dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#A2B5A8]">
                   <tr>
                     <th className="py-3 px-4">Tarih</th>
                     <th className="py-3 px-4">Açıklama / Kişi / Firma</th>
@@ -1378,10 +1378,10 @@ export default function FinansPage() {
                     <th className="py-3 px-4 text-center">İşlem</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E6E1D8]">
+                <tbody className="divide-y divide-[#E6E1D8] dark:divide-[#243B2F]">
                   {filtered.length === 0 ? (
                     <tr>
-                      <td colSpan={8} className="py-12 text-center text-[#5F665F]">
+                      <td colSpan={8} className="py-12 text-center text-[#5F665F] dark:text-[#A2B5A8]">
                         Filtrelere uygun kayıt bulunamadı.
                       </td>
                     </tr>
@@ -1389,18 +1389,18 @@ export default function FinansPage() {
                     filtered.map((t) => (
                       <tr
                         key={t.id}
-                        className="hover:bg-[#F3F0EA]/70 transition-colors group cursor-default"
+                        className="hover:bg-[#F3F0EA]/70 transition-colors group cursor-default dark:hover:bg-[#1A2C23]/60"
                       >
-                        <td className="py-3 px-4 font-mono text-[#5F665F] whitespace-nowrap">
+                        <td className="py-3 px-4 font-mono text-[#5F665F] whitespace-nowrap dark:text-[#A2B5A8]">
                           {t.date}
                         </td>
                         <td className="py-3 px-4">
                           <div className="flex flex-col">
-                            <span className="font-semibold text-[#1C211E]">
+                            <span className="font-semibold text-[#1C211E] dark:text-[#ECF3EE]">
                               {t.patientName}
                             </span>
                             {t.invoiceNo && (
-                              <span className="text-[10px] text-[#5F665F] font-mono">
+                              <span className="text-[10px] text-[#5F665F] font-mono dark:text-[#A2B5A8]">
                                 Fatura: {t.invoiceNo}
                               </span>
                             )}
@@ -1411,26 +1411,26 @@ export default function FinansPage() {
                             className={cn(
                               "inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold",
                               t.type === "Gelir"
-                                ? "bg-[#E2EEDD] text-[#2C6A3B]"
-                                : "bg-[#FBE9E7] text-[#B3261E]"
+                                ? "bg-[#E2EEDD] text-[#2C6A3B] dark:bg-[#163321] dark:text-[#76D28F]"
+                                : "bg-[#FBE9E7] text-[#B3261E] dark:bg-[#3D1A1A] dark:text-[#FF8A80]"
                             )}
                           >
                             {t.type === "Gelir" ? "+ Gelir" : "- Gider"}
                           </span>
                         </td>
-                        <td className="py-3 px-4 text-[#1C211E] font-medium">
+                        <td className="py-3 px-4 text-[#1C211E] font-medium dark:text-[#ECF3EE]">
                           {t.category}
                         </td>
-                        <td className="py-3 px-4 text-[#5F665F] whitespace-nowrap">
+                        <td className="py-3 px-4 text-[#5F665F] whitespace-nowrap dark:text-[#A2B5A8]">
                           {t.method}
                         </td>
-                        <td className="py-3 px-4 text-[#5F665F] whitespace-nowrap">
+                        <td className="py-3 px-4 text-[#5F665F] whitespace-nowrap dark:text-[#A2B5A8]">
                           {t.dentist}
                         </td>
                         <td
                           className={cn(
                             "py-3 px-4 text-right font-mono font-bold whitespace-nowrap text-sm",
-                            t.type === "Gelir" ? "text-[#2C6A3B]" : "text-[#B3261E]"
+                            t.type === "Gelir" ? "text-[#2C6A3B] dark:text-[#76D28F]" : "text-[#B3261E] dark:text-[#FF8A80]"
                           )}
                         >
                           {t.type === "Gelir" ? "+" : "-"}
@@ -1441,7 +1441,7 @@ export default function FinansPage() {
                             <button
                               type="button"
                               onClick={() => handleLoadTransactionToForm(t)}
-                              className="rounded-lg p-1.5 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer"
+                              className="rounded-lg p-1.5 text-[#5F665F] hover:bg-[#EEEBE4] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
                               title="Gider Kartında Düzenle"
                             >
                               <Pencil className="h-3.5 w-3.5" />
@@ -1449,7 +1449,7 @@ export default function FinansPage() {
                             <button
                               type="button"
                               onClick={() => setTransactionToDelete(t)}
-                              className="rounded-lg p-1.5 text-[#5F665F] hover:bg-[#FBE9E7] hover:text-[#B3261E] transition-colors cursor-pointer"
+                              className="rounded-lg p-1.5 text-[#5F665F] hover:bg-[#FBE9E7] hover:text-[#B3261E] transition-colors cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#3D1A1A] dark:hover:text-[#FF8A80]"
                               title="Kaydı Sil"
                             >
                               <Trash2 className="h-3.5 w-3.5" />
@@ -1469,34 +1469,34 @@ export default function FinansPage() {
       {/* Delete Confirmation Modal */}
       {transactionToDelete && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-xs p-4 animate-in fade-in duration-200">
-          <div className="w-full max-w-md rounded-2xl bg-[#FBFAF7] p-6 shadow-xl border border-[#E6E1D8]">
-            <div className="flex items-center gap-3 text-[#B3261E] mb-3">
-              <div className="rounded-xl bg-[#FBE9E7] p-2.5">
+          <div className="w-full max-w-md rounded-2xl bg-[#FBFAF7] p-6 shadow-xl border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="flex items-center gap-3 text-[#B3261E] mb-3 dark:text-[#FF8A80]">
+              <div className="rounded-xl bg-[#FBE9E7] p-2.5 dark:bg-[#3D1A1A]">
                 <AlertTriangle className="h-6 w-6" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-[#1C211E]">
+                <h3 className="text-base font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                   Kayıt Silinecek
                 </h3>
-                <p className="text-xs text-[#5F665F]">
+                <p className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                   Bu işlem finansal raporlardan bu kaydı kaldırır.
                 </p>
               </div>
             </div>
 
-            <div className="my-4 rounded-xl bg-white p-3.5 border border-[#E6E1D8] text-xs">
-              <p className="font-semibold text-[#1C211E]">
+            <div className="my-4 rounded-xl bg-white p-3.5 border border-[#E6E1D8] text-xs dark:bg-[#1A2C23] dark:border-[#243B2F]">
+              <p className="font-semibold text-[#1C211E] dark:text-[#ECF3EE]">
                 {transactionToDelete.patientName}
               </p>
-              <p className="text-[#5F665F] mt-1">
+              <p className="text-[#5F665F] mt-1 dark:text-[#A2B5A8]">
                 {transactionToDelete.category} • {transactionToDelete.date}
               </p>
               <p
                 className={cn(
                   "font-mono font-bold mt-2 text-sm",
                   transactionToDelete.type === "Gelir"
-                    ? "text-[#2C6A3B]"
-                    : "text-[#B3261E]"
+                    ? "text-[#2C6A3B] dark:text-[#76D28F]"
+                    : "text-[#B3261E] dark:text-[#FF8A80]"
                 )}
               >
                 {transactionToDelete.type === "Gelir" ? "+" : "-"}
@@ -1508,14 +1508,14 @@ export default function FinansPage() {
               <button
                 type="button"
                 onClick={() => setTransactionToDelete(null)}
-                className="rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-4 py-2 text-xs font-semibold text-[#1C211E] transition-colors cursor-pointer"
+                className="rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] px-4 py-2 text-xs font-semibold text-[#1C211E] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
               >
                 Vazgeç
               </button>
               <button
                 type="button"
                 onClick={confirmDelete}
-                className="rounded-xl bg-[#B3261E] hover:bg-[#9B1C1C] px-4 py-2 text-xs font-semibold text-white transition-colors cursor-pointer"
+                className="rounded-xl bg-[#B3261E] hover:bg-[#9B1C1C] px-4 py-2 text-xs font-semibold text-white transition-colors cursor-pointer dark:bg-[#D32F2F] dark:hover:bg-[#B71C1C]"
               >
                 Evet, Sil
               </button>

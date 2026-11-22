@@ -108,12 +108,12 @@ function PatientLayoutContent({
   return (
     <div className="space-y-6">
       {/* Breadcrumbs */}
-      <div className="flex items-center gap-2 text-sm text-[#5F665F]">
-        <Link href="/hastalar" className="hover:text-[#1F3327] transition-colors">
+      <div className="flex items-center gap-2 text-sm text-[#5F665F] dark:text-[#A2B5A8]">
+        <Link href="/hastalar" className="hover:text-[#1F3327] dark:hover:text-[#76D28F] transition-colors">
           Hastalar
         </Link>
-        <span className="text-[#E6E1D8]">/</span>
-        <span className="font-medium text-[#1C211E] font-serif">
+        <span className="text-[#E6E1D8] dark:text-[#243B2F]">/</span>
+        <span className="font-medium text-[#1C211E] font-serif dark:text-[#ECF3EE]">
           {currentTab?.name || "Hasta Kartı"}
         </span>
       </div>
@@ -121,12 +121,12 @@ function PatientLayoutContent({
       {/* ============================================================ */}
       {/* Patient Header Card */}
       {/* ============================================================ */}
-      <div className="relative overflow-hidden rounded-[20px] border border-[#E6E1D8] bg-[#FBFAF7] p-6 shadow-xs">
+      <div className="relative overflow-hidden rounded-[20px] border border-[#E6E1D8] bg-[#FBFAF7] p-6 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
         {/* Subtle decorative tooth outline in background */}
         <div className="pointer-events-none absolute -bottom-8 -right-4 top-0 flex w-72 select-none items-center justify-end overflow-hidden pr-6 opacity-[0.04]">
           <svg
             viewBox="0 0 200 220"
-            className="h-56 w-56 fill-current text-[#1F3327]"
+            className="h-56 w-56 fill-current text-[#1F3327] dark:text-[#76D28F]"
           >
             <path d="M50,15 C25,15 10,38 10,70 C10,95 20,125 35,160 C42,178 52,195 62,205 C70,212 78,206 82,192 C88,172 92,152 98,135 C100,130 104,130 106,135 C112,152 116,172 122,192 C126,206 134,212 142,205 C152,195 162,178 169,160 C184,125 194,95 194,70 C194,38 179,15 154,15 C132,15 116,28 102,28 C88,28 72,15 50,15 Z" />
           </svg>
@@ -136,31 +136,31 @@ function PatientLayoutContent({
           {/* Left: Avatar + Name + Info Bar */}
           <div className="flex items-center gap-5">
             {/* 76x76px Neutral Circle Avatar with Female Silhouette */}
-            <div className="flex h-[76px] w-[76px] shrink-0 items-center justify-center rounded-full bg-[#E4E0D8] border border-[#D5D0C6] shadow-2xs">
-              <FemaleAvatarIcon className="h-10 w-10 text-[#8A8F89]" />
+            <div className="flex h-[76px] w-[76px] shrink-0 items-center justify-center rounded-full bg-[#E4E0D8] border border-[#D5D0C6] shadow-2xs dark:bg-[#1A2C23] dark:border-[#243B2F]">
+              <FemaleAvatarIcon className="h-10 w-10 text-[#8A8F89] dark:text-[#A2B5A8]" />
             </div>
 
             {/* Patient Name & Details */}
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-[40px] font-serif leading-[44px] text-[#1C211E] tracking-tight">
+                <h1 className="text-[40px] font-serif leading-[44px] text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
                   {patient.firstName} {patient.lastName}
                 </h1>
-                <span className="inline-flex items-center rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-3 py-1 text-[13px] font-medium text-[#2C6A3B]">
+                <span className="inline-flex items-center rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-3 py-1 text-[13px] font-medium text-[#2C6A3B] dark:bg-[#163321] dark:border-[#285A3B] dark:text-[#76D28F]">
                   {patient.status || "Aktif Tedavi"}
                 </span>
               </div>
 
               {/* Info Bar: HS-10248 | 28 Yaş | Kadın | +90 505 321 45 67 */}
-              <div className="flex flex-wrap items-center gap-2.5 text-sm font-medium text-[#5F665F]">
-                <span className="text-[#3F4540]">
+              <div className="flex flex-wrap items-center gap-2.5 text-sm font-medium text-[#5F665F] dark:text-[#A2B5A8]">
+                <span className="text-[#3F4540] dark:text-[#ECF3EE]">
                   {patient.hsNo || "HS-10248"}
                 </span>
-                <span className="text-[#CFCAC0]">|</span>
+                <span className="text-[#CFCAC0] dark:text-[#243B2F]">|</span>
                 <span>{patient.age || 28} Yaş</span>
-                <span className="text-[#CFCAC0]">|</span>
+                <span className="text-[#CFCAC0] dark:text-[#243B2F]">|</span>
                 <span>{patient.gender || "Kadın"}</span>
-                <span className="text-[#CFCAC0]">|</span>
+                <span className="text-[#CFCAC0] dark:text-[#243B2F]">|</span>
                 <span>
                   {patient.phone ? formatPhone(patient.phone) : "+90 505 321 45 67"}
                 </span>
@@ -174,9 +174,9 @@ function PatientLayoutContent({
             <button
               type="button"
               onClick={() => showToast(`✓ ${patient.firstName} ${patient.lastName} bilgileri düzenleme moduna alındı.`, "info")}
-              className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2.5 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer"
+              className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2.5 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
             >
-              <Pencil className="h-4 w-4 text-[#5F665F]" />
+              <Pencil className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
               <span>Düzenle</span>
             </button>
 
@@ -195,7 +195,7 @@ function PatientLayoutContent({
               type="button"
               onClick={() => showToast(`Hasta No: ${patient.hsNo || "HS-10248"} panoya kopyalandı.`, "info")}
               aria-label="Diğer İşlemler"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E1D8] bg-white text-[#5F665F] shadow-2xs transition-colors hover:bg-[#F3F0EA] hover:text-[#1C211E] cursor-pointer"
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E6E1D8] bg-white text-[#5F665F] shadow-2xs transition-colors hover:bg-[#F3F0EA] hover:text-[#1C211E] cursor-pointer dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#A2B5A8] dark:hover:bg-[#1E3026] dark:hover:text-[#ECF3EE]"
             >
               <MoreHorizontal className="h-5 w-5" />
             </button>
@@ -222,13 +222,13 @@ function PatientLayoutContent({
                   "flex h-[48px] items-center gap-2.5 rounded-[14px] px-5 text-sm font-medium transition-all duration-200 whitespace-nowrap",
                   isActive
                     ? "bg-[#1F3327] border border-[#1F3327] text-white shadow-xs"
-                    : "bg-white/70 hover:bg-white text-[#1C211E] border border-[#E6E1D8]"
+                    : "bg-white/70 hover:bg-white text-[#1C211E] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 )}
               >
                 <Icon
                   className={cn(
                     "h-4 w-4 shrink-0",
-                    isActive ? "text-white" : "text-[#5F665F]"
+                    isActive ? "text-white" : "text-[#5F665F] dark:text-[#A2B5A8]"
                   )}
                 />
                 <span>{tab.name}</span>

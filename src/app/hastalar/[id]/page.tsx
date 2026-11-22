@@ -95,7 +95,7 @@ export default function PatientInfoPage() {
       {/* ============================================================ */}
       {/* Top Toolbar Row */}
       {/* ============================================================ */}
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-4 py-2.5 shadow-2xs">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-4 py-2.5 shadow-2xs dark:bg-[#15221B] dark:border-[#243B2F]">
         {/* Left Toolbar actions */}
         <div className="flex items-center gap-1 sm:gap-2">
           <button
@@ -139,16 +139,16 @@ export default function PatientInfoPage() {
               });
               showToast("Form orijinal değerlere sıfırlandı.", "info");
             }}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#5F665F] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#5F665F] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
           >
             <RotateCcw className="h-4 w-4" />
           </button>
-          <div className="h-4 w-px bg-[#E6E1D8]" />
+          <div className="h-4 w-px bg-[#E6E1D8] dark:bg-[#243B2F]" />
           <button
             type="button"
             title="Ekle"
             onClick={() => showToast("Yeni hasta kayıt modu açıldı.", "info")}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#5F665F] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#5F665F] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
           >
             <Plus className="h-4 w-4" />
           </button>
@@ -156,7 +156,7 @@ export default function PatientInfoPage() {
             type="button"
             title="Sil"
             onClick={() => showToast("Hasta kartı silme işlemi için yetki onaylandı.", "error")}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#B3261E] transition-colors hover:bg-[#FBE9E7] cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#B3261E] transition-colors hover:bg-[#FBE9E7] cursor-pointer dark:text-[#FF8B8B] dark:hover:bg-[#2C1919]"
           >
             <Trash2 className="h-4 w-4" />
           </button>
@@ -167,11 +167,11 @@ export default function PatientInfoPage() {
               setIsEditing(!isEditing);
               showToast(isEditing ? "Düzenleme modu kapatıldı." : "Düzenleme modu açıldı.", "info");
             }}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#5F665F] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-lg text-[#5F665F] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:bg-[#1A2C23] dark:hover:text-[#ECF3EE]"
           >
             <Pencil className="h-4 w-4" />
           </button>
-          <div className="h-4 w-px bg-[#E6E1D8]" />
+          <div className="h-4 w-px bg-[#E6E1D8] dark:bg-[#243B2F]" />
           <button
             type="button"
             title="Kaydet"
@@ -185,7 +185,7 @@ export default function PatientInfoPage() {
 
         {/* Right Navigation Arrows */}
         <div className="flex items-center gap-2">
-          <span className="text-xs font-medium text-[#5F665F]">Hasta {currentId} / 5</span>
+          <span className="text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">Hasta {currentId} / 5</span>
           <div className="flex items-center gap-1">
             <button
               type="button"
@@ -194,7 +194,7 @@ export default function PatientInfoPage() {
                 const prev = currentId > 1 ? currentId - 1 : 5;
                 router.push(`/hastalar/${prev}`);
               }}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#3F4540] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#3F4540] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
@@ -205,7 +205,7 @@ export default function PatientInfoPage() {
                 const next = currentId < 5 ? currentId + 1 : 1;
                 router.push(`/hastalar/${next}`);
               }}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#3F4540] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#E6E1D8] text-[#3F4540] transition-colors hover:bg-[#EEEBE4] hover:text-[#1C211E] cursor-pointer dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1A2C23]"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
@@ -222,10 +222,10 @@ export default function PatientInfoPage() {
           {/* ======================================================== */}
           {/* Section 1: Kişisel Bilgiler */}
           {/* ======================================================== */}
-          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs">
-            <div className="mb-4 flex items-center gap-2 border-b border-[#E6E1D8] pb-3">
-              <UserCheck className="h-4 w-4 text-[#1F3327]" />
-              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider">
+          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="mb-4 flex items-center gap-2 border-b border-[#E6E1D8] pb-3 dark:border-[#243B2F]">
+              <UserCheck className="h-4 w-4 text-[#1F3327] dark:text-[#76D28F]" />
+              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider dark:text-[#ECF3EE]">
                 Kişisel Bilgiler
               </h2>
             </div>
@@ -235,37 +235,37 @@ export default function PatientInfoPage() {
               <div className="space-y-3">
                 {/* Ad */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Ad
                   </label>
                   <input
                     type="text"
                     value={formData.firstName}
                     onChange={(e) => handleChange("firstName", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Soyad */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Soyad
                   </label>
                   <input
                     type="text"
                     value={formData.lastName}
                     onChange={(e) => handleChange("lastName", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Cinsiyet: Radio (Erkek / Kadın) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Cinsiyet
                   </label>
                   <div className="flex h-10 items-center gap-6">
-                    <label className="flex cursor-pointer items-center gap-2 text-sm text-[#3F4540]">
+                    <label className="flex cursor-pointer items-center gap-2 text-sm text-[#3F4540] dark:text-[#ECF3EE]">
                       <input
                         type="radio"
                         name="gender"
@@ -279,7 +279,7 @@ export default function PatientInfoPage() {
                       />
                       <span>Erkek</span>
                     </label>
-                    <label className="flex cursor-pointer items-center gap-2 text-sm text-[#3F4540]">
+                    <label className="flex cursor-pointer items-center gap-2 text-sm text-[#3F4540] dark:text-[#ECF3EE]">
                       <input
                         type="radio"
                         name="gender"
@@ -298,7 +298,7 @@ export default function PatientInfoPage() {
 
                 {/* Doğum Tarihi */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Doğum Tarihi
                   </label>
                   <div className="relative w-full">
@@ -307,9 +307,9 @@ export default function PatientInfoPage() {
                       value={formData.birthDate}
                       onChange={(e) => handleChange("birthDate", e.target.value)}
                       placeholder="GG.AA.YYYY"
-                      className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                      className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                     />
-                    <CalendarDays className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F]" />
+                    <CalendarDays className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
                   </div>
                 </div>
               </div>
@@ -318,13 +318,13 @@ export default function PatientInfoPage() {
               <div className="space-y-3">
                 {/* Uyruk (dropdown) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Uyruk
                   </label>
                   <select
                     value={formData.nationality}
                     onChange={(e) => handleChange("nationality", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="TÜRKİYE">TÜRKİYE</option>
                     <option value="ALMANYA">ALMANYA</option>
@@ -335,7 +335,7 @@ export default function PatientInfoPage() {
 
                 {/* TC Kimlik No */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     TC Kimlik No
                   </label>
                   <input
@@ -343,13 +343,13 @@ export default function PatientInfoPage() {
                     maxLength={11}
                     value={formData.tcNo}
                     onChange={(e) => handleChange("tcNo", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 font-mono text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 font-mono text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Kayıt Tarihi (date picker style) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Kayıt Tarihi
                   </label>
                   <div className="relative w-full">
@@ -359,21 +359,21 @@ export default function PatientInfoPage() {
                       onChange={(e) =>
                         handleChange("registrationDate", e.target.value)
                       }
-                      className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                      className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                     />
-                    <CalendarDays className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F]" />
+                    <CalendarDays className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
                   </div>
                 </div>
 
                 {/* Dişhekimi (dropdown) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Dişhekimi
                   </label>
                   <select
                     value={formData.dentist}
                     onChange={(e) => handleChange("dentist", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Dr. Selin Yılmaz">Dr. Selin Yılmaz</option>
                     <option value="Dr. Mahir Açıkkalın">Dr. Mahir Açıkkalın</option>
@@ -387,10 +387,10 @@ export default function PatientInfoPage() {
           {/* ======================================================== */}
           {/* Section 2: İletişim Bilgileri */}
           {/* ======================================================== */}
-          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs">
-            <div className="mb-4 flex items-center gap-2 border-b border-[#E6E1D8] pb-3">
-              <Phone className="h-4 w-4 text-[#1F3327]" />
-              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider">
+          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="mb-4 flex items-center gap-2 border-b border-[#E6E1D8] pb-3 dark:border-[#243B2F]">
+              <Phone className="h-4 w-4 text-[#1F3327] dark:text-[#76D28F]" />
+              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider dark:text-[#ECF3EE]">
                 İletişim Bilgileri
               </h2>
             </div>
@@ -400,39 +400,39 @@ export default function PatientInfoPage() {
               <div className="space-y-3">
                 {/* Cep Telefonu */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Cep Telefonu
                   </label>
                   <input
                     type="text"
                     value={formData.mobilePhone}
                     onChange={(e) => handleChange("mobilePhone", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Telefon */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Telefon
                   </label>
                   <input
                     type="text"
                     value={formData.phone2}
                     onChange={(e) => handleChange("phone2", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Ülke (dropdown) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Ülke
                   </label>
                   <select
                     value={formData.country}
                     onChange={(e) => handleChange("country", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="TÜRKİYE">TÜRKİYE</option>
                     <option value="ALMANYA">ALMANYA</option>
@@ -442,14 +442,14 @@ export default function PatientInfoPage() {
 
                 {/* Posta Kodu */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Posta Kodu
                   </label>
                   <input
                     type="text"
                     value={formData.postalCode}
                     onChange={(e) => handleChange("postalCode", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
               </div>
@@ -458,7 +458,7 @@ export default function PatientInfoPage() {
               <div className="space-y-3">
                 {/* Sabit Telefon */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Sabit Telefon
                   </label>
                   <input
@@ -466,32 +466,32 @@ export default function PatientInfoPage() {
                     value={formData.landline}
                     onChange={(e) => handleChange("landline", e.target.value)}
                     placeholder="—"
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* E-posta */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     E-posta
                   </label>
                   <input
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleChange("email", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Şehir (dropdown) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Şehir
                   </label>
                   <select
                     value={formData.city}
                     onChange={(e) => handleChange("city", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="İSTANBUL">İSTANBUL</option>
                     <option value="ANKARA">ANKARA</option>
@@ -503,13 +503,13 @@ export default function PatientInfoPage() {
 
                 {/* İlçe (dropdown) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     İlçe
                   </label>
                   <select
                     value={formData.district}
                     onChange={(e) => handleChange("district", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Kadıköy">Kadıköy</option>
                     <option value="Beşiktaş">Beşiktaş</option>
@@ -523,14 +523,14 @@ export default function PatientInfoPage() {
               {/* Full Width Row: Adres */}
               <div className="md:col-span-2 pt-1">
                 <div className="flex flex-col sm:flex-row sm:items-start gap-3">
-                  <label className="w-28 shrink-0 pt-2 text-xs font-medium text-[#5F665F]">
+                  <label className="w-28 shrink-0 pt-2 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Adres
                   </label>
                   <textarea
                     rows={2}
                     value={formData.address}
                     onChange={(e) => handleChange("address", e.target.value)}
-                    className="w-full rounded-lg border border-[#E6E1D8] bg-white p-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="w-full rounded-lg border border-[#E6E1D8] bg-white p-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
               </div>
@@ -540,10 +540,10 @@ export default function PatientInfoPage() {
           {/* ======================================================== */}
           {/* Section 3: Diğer Bilgiler */}
           {/* ======================================================== */}
-          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs">
-            <div className="mb-4 flex items-center gap-2 border-b border-[#E6E1D8] pb-3">
-              <Info className="h-4 w-4 text-[#1F3327]" />
-              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider">
+          <div className="rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <div className="mb-4 flex items-center gap-2 border-b border-[#E6E1D8] pb-3 dark:border-[#243B2F]">
+              <Info className="h-4 w-4 text-[#1F3327] dark:text-[#76D28F]" />
+              <h2 className="text-sm font-serif font-bold text-[#1C211E] uppercase tracking-wider dark:text-[#ECF3EE]">
                 Diğer Bilgiler
               </h2>
             </div>
@@ -553,26 +553,26 @@ export default function PatientInfoPage() {
               <div className="space-y-3">
                 {/* Para Birimi */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Para Birimi
                   </label>
                   <input
                     type="text"
                     value={formData.currency}
                     onChange={(e) => handleChange("currency", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Tarife */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Tarife
                   </label>
                   <select
                     value={formData.tariff}
                     onChange={(e) => handleChange("tariff", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="TDB 2021">TDB 2021</option>
                     <option value="TDB 2024">TDB 2024</option>
@@ -582,13 +582,13 @@ export default function PatientInfoPage() {
 
                 {/* Kurum */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Kurum
                   </label>
                   <select
                     value={formData.institution}
                     onChange={(e) => handleChange("institution", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Özel">Özel</option>
                     <option value="SGK">SGK</option>
@@ -598,21 +598,21 @@ export default function PatientInfoPage() {
 
                 {/* Aile: Seçiniz (+) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Aile
                   </label>
                   <div className="flex w-full items-center gap-2">
                     <select
                       value={formData.family}
                       onChange={(e) => handleChange("family", e.target.value)}
-                      className="h-10 flex-1 rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                      className="h-10 flex-1 rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                     >
                       <option value="Seçiniz">Seçiniz</option>
                       <option value="Üngör Ailesi">Üngör Ailesi</option>
                     </select>
                     <button
                       type="button"
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] text-[#3F4540] transition hover:bg-[#EADFC8] hover:text-[#1C211E] cursor-pointer"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] text-[#3F4540] transition hover:bg-[#EADFC8] hover:text-[#1C211E] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -621,14 +621,14 @@ export default function PatientInfoPage() {
 
                 {/* Grup: Seçiniz (+) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Grup
                   </label>
                   <div className="flex w-full items-center gap-2">
                     <select
                       value={formData.group}
                       onChange={(e) => handleChange("group", e.target.value)}
-                      className="h-10 flex-1 rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                      className="h-10 flex-1 rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                     >
                       <option value="Seçiniz">Seçiniz</option>
                       <option value="VIP">VIP</option>
@@ -636,7 +636,7 @@ export default function PatientInfoPage() {
                     </select>
                     <button
                       type="button"
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] text-[#3F4540] transition hover:bg-[#EADFC8] hover:text-[#1C211E] cursor-pointer"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#E6E1D8] bg-[#EEEBE4] text-[#3F4540] transition hover:bg-[#EADFC8] hover:text-[#1C211E] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                     >
                       <Plus className="h-4 w-4" />
                     </button>
@@ -645,7 +645,7 @@ export default function PatientInfoPage() {
 
                 {/* Yakınının Adı */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Yakınının Adı
                   </label>
                   <input
@@ -654,13 +654,13 @@ export default function PatientInfoPage() {
                     onChange={(e) =>
                       handleChange("relativeName", e.target.value)
                     }
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Yakının Tel. */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Yakının Tel.
                   </label>
                   <input
@@ -669,13 +669,13 @@ export default function PatientInfoPage() {
                     onChange={(e) =>
                       handleChange("relativePhone", e.target.value)
                     }
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Referans Adı: Seçiniz */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Referans Adı
                   </label>
                   <select
@@ -683,7 +683,7 @@ export default function PatientInfoPage() {
                     onChange={(e) =>
                       handleChange("referenceName", e.target.value)
                     }
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="Seçiniz">Seçiniz</option>
                     <option value="Tavsiye / Tanıdık">Tavsiye / Tanıdık</option>
@@ -697,7 +697,7 @@ export default function PatientInfoPage() {
               <div className="space-y-3">
                 {/* Gelecek Rand. Tar. */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Gelecek Rand. Tar.
                   </label>
                   <div className="relative w-full">
@@ -708,15 +708,15 @@ export default function PatientInfoPage() {
                       onChange={(e) =>
                         handleChange("nextAppointmentDate", e.target.value)
                       }
-                      className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                      className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                     />
-                    <CalendarDays className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F]" />
+                    <CalendarDays className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#5F665F] dark:text-[#A2B5A8]" />
                   </div>
                 </div>
 
                 {/* Son Tedavi Tarihi */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Son Tedavi Tarihi
                   </label>
                   <input
@@ -725,13 +725,13 @@ export default function PatientInfoPage() {
                     onChange={(e) =>
                       handleChange("lastTreatmentDate", e.target.value)
                     }
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Son Ödeme Tarihi */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Son Ödeme Tarihi
                   </label>
                   <input
@@ -740,32 +740,32 @@ export default function PatientInfoPage() {
                     onChange={(e) =>
                       handleChange("lastPaymentDate", e.target.value)
                     }
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Meslek */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Meslek
                   </label>
                   <input
                     type="text"
                     value={formData.profession}
                     onChange={(e) => handleChange("profession", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Kan Grubu */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Kan Grubu
                   </label>
                   <select
                     value={formData.bloodGroup}
                     onChange={(e) => handleChange("bloodGroup", e.target.value)}
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="A Rh(+)">A Rh(+)</option>
                     <option value="A Rh(-)">A Rh(-)</option>
@@ -780,7 +780,7 @@ export default function PatientInfoPage() {
 
                 {/* Kontrol Periyodu */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Kontrol Periyodu
                   </label>
                   <select
@@ -788,7 +788,7 @@ export default function PatientInfoPage() {
                     onChange={(e) =>
                       handleChange("controlPeriod", e.target.value)
                     }
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   >
                     <option value="3 Ay">3 Ay</option>
                     <option value="6 Ay">6 Ay</option>
@@ -798,7 +798,7 @@ export default function PatientInfoPage() {
 
                 {/* Özel Kod (1) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Özel Kod
                   </label>
                   <input
@@ -808,13 +808,13 @@ export default function PatientInfoPage() {
                       handleChange("specialCode1", e.target.value)
                     }
                     placeholder="—"
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
 
                 {/* Özel Kod (2) */}
                 <div className="flex items-center gap-3">
-                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F]">
+                  <label className="w-32 shrink-0 text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
                     Özel Kod
                   </label>
                   <input
@@ -824,7 +824,7 @@ export default function PatientInfoPage() {
                       handleChange("specialCode2", e.target.value)
                     }
                     placeholder="—"
-                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                    className="h-10 w-full rounded-lg border border-[#E6E1D8] bg-white px-3 text-sm text-[#3F4540] outline-none transition focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
               </div>
@@ -836,8 +836,8 @@ export default function PatientInfoPage() {
         {/* Right Sidebar Panel: 2x3 Grid of Action Buttons */}
         {/* ======================================================== */}
         <div className="xl:col-span-3">
-          <div className="sticky top-20 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs">
-            <h3 className="mb-4 text-xs font-serif font-bold uppercase tracking-wider text-[#1C211E]">
+          <div className="sticky top-20 rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-xs dark:bg-[#15221B] dark:border-[#243B2F]">
+            <h3 className="mb-4 text-xs font-serif font-bold uppercase tracking-wider text-[#1C211E] dark:text-[#ECF3EE]">
               Hızlı İşlemler
             </h3>
 
@@ -877,12 +877,12 @@ export default function PatientInfoPage() {
                         openReportModal(`${formData.firstName} ${formData.lastName}`, formData.dentist, formData.tcNo);
                       }
                     }}
-                    className="group flex flex-col items-center justify-center rounded-xl border border-[#E6E1D8] bg-white p-4 text-center shadow-2xs transition-all duration-200 hover:border-[#1F3327] hover:bg-[#EEEBE4]/60 hover:shadow-xs cursor-pointer"
+                    className="group flex flex-col items-center justify-center rounded-xl border border-[#E6E1D8] bg-white p-4 text-center shadow-2xs transition-all duration-200 hover:border-[#1F3327] hover:bg-[#EEEBE4]/60 hover:shadow-xs cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:hover:bg-[#1E3026]"
                   >
-                    <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-lg bg-[#EEEBE4] text-[#1F3327] transition-colors group-hover:bg-[#1F3327] group-hover:text-white">
+                    <div className="mb-2 flex h-11 w-11 items-center justify-center rounded-lg bg-[#EEEBE4] text-[#1F3327] transition-colors group-hover:bg-[#1F3327] group-hover:text-white dark:bg-[#15221B] dark:text-[#76D28F] dark:group-hover:bg-[#1F3327] dark:group-hover:text-white">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <span className="text-xs font-medium text-[#3F4540] group-hover:text-[#1C211E]">
+                    <span className="text-xs font-medium text-[#3F4540] group-hover:text-[#1C211E] dark:text-[#A2B5A8] dark:group-hover:text-[#ECF3EE]">
                       {btn.name}
                     </span>
                   </button>

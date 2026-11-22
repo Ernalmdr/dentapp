@@ -18,31 +18,21 @@ export default function RecentImages() {
 
   return (
     <div
-      className="rounded-[20px] p-6 shadow-xs"
-      style={{
-        backgroundColor: "#FBFAF7",
-        border: "1px solid #E6E1D8",
-      }}
+      className="rounded-[20px] p-6 shadow-xs bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <h2
-          className="text-xl md:text-[22px] font-normal tracking-tight font-serif"
-          style={{ color: "#1C211E" }}
+          className="text-xl md:text-[22px] font-normal tracking-tight font-serif text-[#1C211E] dark:text-[#ECF3EE]"
         >
           Son Görüntüler
         </h2>
         <Link
           href="/goruntuler"
-          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold transition-all hover:shadow-xs cursor-pointer"
-          style={{
-            backgroundColor: "#FBFAF7",
-            border: "1px solid #E6E1D8",
-            color: "#1C211E",
-          }}
+          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold transition-all hover:shadow-xs cursor-pointer bg-[#FBFAF7] border border-[#E6E1D8] text-[#1C211E] hover:bg-[#EEEBE4] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#243B2F]"
         >
           <span>Tümünü Gör</span>
-          <ArrowRight className="h-3.5 w-3.5" style={{ color: "#5F665F" }} />
+          <ArrowRight className="h-3.5 w-3.5 text-[#5F665F] dark:text-[#A2B5A8]" />
         </Link>
       </div>
 
@@ -67,11 +57,7 @@ export default function RecentImages() {
             >
               {/* Image Container with Expand Icon */}
               <div
-                className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] shadow-2xs transition-transform duration-200"
-                style={{
-                  backgroundColor: "#121815",
-                  border: "1px solid rgba(230, 225, 216, 0.7)",
-                }}
+                className="relative aspect-[4/3] w-full overflow-hidden rounded-[14px] shadow-2xs transition-transform duration-200 bg-[#121815] border border-[rgba(230,225,216,0.7)] dark:border-[#243B2F]"
               >
                 <Image
                   src={src}
@@ -81,7 +67,7 @@ export default function RecentImages() {
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 {/* Maximize Icon */}
-                <div className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-lg bg-black/60 backdrop-blur-xs text-white/80 group-hover:text-white group-hover:bg-[#1F3327] transition-all shadow-xs">
+                <div className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-lg bg-black/60 backdrop-blur-xs text-white/80 group-hover:text-white group-hover:bg-[#1F3327] dark:group-hover:bg-[#2D4C3C] transition-all shadow-xs">
                   <Maximize2 className="h-3 w-3" />
                 </div>
               </div>
@@ -89,14 +75,12 @@ export default function RecentImages() {
               {/* Patient Info */}
               <div className="mt-2.5">
                 <p
-                  className="text-xs font-bold truncate transition-colors group-hover:text-[#2F5A3D]"
-                  style={{ color: "#1C211E" }}
+                  className="text-xs font-bold truncate transition-colors group-hover:text-[#2F5A3D] dark:group-hover:text-[#4ADE80] text-[#1C211E] dark:text-[#ECF3EE]"
                 >
                   {img.patientName}
                 </p>
                 <p
-                  className="text-[11px] font-medium truncate mt-0.5"
-                  style={{ color: "#5F665F" }}
+                  className="text-[11px] font-medium truncate mt-0.5 text-[#5F665F] dark:text-[#A2B5A8]"
                 >
                   {img.type} • {img.date}
                 </p>

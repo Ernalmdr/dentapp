@@ -142,25 +142,25 @@ export function ImageUploadModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="w-full max-w-lg rounded-2xl bg-[#FBFAF7] border border-[#E6E1D8] shadow-2xl overflow-hidden flex flex-col text-[#1C211E]">
+      <div className="w-full max-w-lg rounded-2xl bg-[#FBFAF7] dark:bg-[#15221B] border border-[#E6E1D8] dark:border-[#243B2F] shadow-2xl overflow-hidden flex flex-col text-[#1C211E] dark:text-[#ECF3EE]">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E6E1D8] bg-[#EEEBE4]/60">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E6E1D8] dark:border-[#243B2F] bg-[#EEEBE4]/60 dark:bg-[#1A2C23]">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#E2EEDD] text-[#1F3327]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#E2EEDD] dark:bg-[#1D3328] text-[#1F3327] dark:text-[#7CC9A6]">
               <FileImage className="h-5 w-5" />
             </div>
             <div>
-              <h2 className="text-sm font-serif font-bold text-[#1C211E]">
+              <h2 className="text-sm font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                 {isEditing ? "Röntgen Kaydını Düzenle" : "Yeni Röntgen & Görüntü Yükle"}
               </h2>
-              <p className="text-xs text-[#5F665F]">
+              <p className="text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                 DICOM / JPEG / PNG formatında klinik radyoloji arşivi
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#5F665F] hover:text-[#1C211E] hover:bg-[#EEEBE4] transition-colors cursor-pointer"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-[#5F665F] dark:text-[#A2B5A8] hover:text-[#1C211E] dark:hover:text-[#ECF3EE] hover:bg-[#EEEBE4] dark:hover:bg-[#1D3328] transition-colors cursor-pointer"
           >
             <X className="h-4 w-4" />
           </button>
@@ -178,16 +178,16 @@ export function ImageUploadModal({
           {/* Patient Selection & Modality */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-[#1C211E] mb-1.5">
+              <label className="block text-xs font-semibold text-[#1C211E] dark:text-[#C5D4CB] mb-1.5">
                 Hasta Adı Soyadı <span className="text-[#B3261E]">*</span>
               </label>
               <select
                 value={patientName}
                 onChange={(e) => setPatientName(e.target.value)}
-                className="w-full rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-3 py-2 text-xs text-[#1C211E] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                className="w-full rounded-xl border border-[#E6E1D8] dark:border-[#243B2F] bg-[#FBFAF7] dark:bg-[#1A2C23] text-[#1C211E] dark:text-[#ECF3EE] px-3 py-2 text-xs outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
               >
                 {patientList.map((p) => (
-                  <option key={p} value={p}>
+                  <option key={p} value={p} className="dark:bg-[#1A2C23]">
                     {p}
                   </option>
                 ))}
@@ -195,16 +195,16 @@ export function ImageUploadModal({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#1C211E] mb-1.5">
+              <label className="block text-xs font-semibold text-[#1C211E] dark:text-[#C5D4CB] mb-1.5">
                 Radyoloji Modalitesi
               </label>
               <select
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                className="w-full rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-3 py-2 text-xs text-[#1C211E] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+                className="w-full rounded-xl border border-[#E6E1D8] dark:border-[#243B2F] bg-[#FBFAF7] dark:bg-[#1A2C23] text-[#1C211E] dark:text-[#ECF3EE] px-3 py-2 text-xs outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
               >
                 {types.map((t) => (
-                  <option key={t} value={t}>
+                  <option key={t} value={t} className="dark:bg-[#1A2C23]">
                     {t}
                   </option>
                 ))}
@@ -215,34 +215,34 @@ export function ImageUploadModal({
           {/* Date, Doctor & Region */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-xs font-semibold text-[#1C211E] mb-1.5">
+              <label className="block text-xs font-semibold text-[#1C211E] dark:text-[#C5D4CB] mb-1.5">
                 Çekim Tarihi
               </label>
               <input
                 type="date"
                 value={date.includes(".") ? date.split(".").reverse().join("-") : date}
                 onChange={(e) => setDate(e.target.value)}
-                className="w-full rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-2.5 py-2 text-xs text-[#1C211E] outline-none focus:border-[#1F3327]"
+                className="w-full rounded-xl border border-[#E6E1D8] dark:border-[#243B2F] bg-[#FBFAF7] dark:bg-[#1A2C23] text-[#1C211E] dark:text-[#ECF3EE] px-2.5 py-2 text-xs outline-none focus:border-[#1F3327]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#1C211E] mb-1.5">
+              <label className="block text-xs font-semibold text-[#1C211E] dark:text-[#C5D4CB] mb-1.5">
                 Sorumlu Hekim
               </label>
               <select
                 value={doctor}
                 onChange={(e) => setDoctor(e.target.value)}
-                className="w-full rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-2.5 py-2 text-xs text-[#1C211E] outline-none focus:border-[#1F3327]"
+                className="w-full rounded-xl border border-[#E6E1D8] dark:border-[#243B2F] bg-[#FBFAF7] dark:bg-[#1A2C23] text-[#1C211E] dark:text-[#ECF3EE] px-2.5 py-2 text-xs outline-none focus:border-[#1F3327]"
               >
-                <option value="Dr. Selin Yılmaz">Dr. Selin Yılmaz</option>
-                <option value="Dt. Mahir Açıkalın">Dt. Mahir Açıkalın</option>
-                <option value="Dt. Kemal Aydın">Dt. Kemal Aydın</option>
+                <option value="Dr. Selin Yılmaz" className="dark:bg-[#1A2C23]">Dr. Selin Yılmaz</option>
+                <option value="Dt. Mahir Açıkalın" className="dark:bg-[#1A2C23]">Dt. Mahir Açıkalın</option>
+                <option value="Dt. Kemal Aydın" className="dark:bg-[#1A2C23]">Dt. Kemal Aydın</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#1C211E] mb-1.5">
+              <label className="block text-xs font-semibold text-[#1C211E] dark:text-[#C5D4CB] mb-1.5">
                 Bölge / Diş No
               </label>
               <input
@@ -250,19 +250,19 @@ export function ImageUploadModal({
                 value={region}
                 placeholder="Örn: 16 Molar"
                 onChange={(e) => setRegion(e.target.value)}
-                className="w-full rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] px-3 py-2 text-xs text-[#1C211E] placeholder-[#5F665F]/60 outline-none focus:border-[#1F3327]"
+                className="w-full rounded-xl border border-[#E6E1D8] dark:border-[#243B2F] bg-[#FBFAF7] dark:bg-[#1A2C23] text-[#1C211E] dark:text-[#ECF3EE] placeholder-[#5F665F]/60 dark:placeholder-[#5E7569] px-3 py-2 text-xs outline-none focus:border-[#1F3327]"
               />
             </div>
           </div>
 
           {/* Image Upload or Preset Selector */}
           <div>
-            <label className="block text-xs font-semibold text-[#1C211E] mb-1.5">
+            <label className="block text-xs font-semibold text-[#1C211E] dark:text-[#C5D4CB] mb-1.5">
               Röntgen / Görüntü Kaynağı
             </label>
 
             {/* Custom file drop */}
-            <div className="relative border-2 border-dashed border-[#E6E1D8] rounded-xl p-4 text-center hover:bg-[#EEEBE4]/40 transition-colors mb-3">
+            <div className="relative border-2 border-dashed border-[#E6E1D8] dark:border-[#243B2F] rounded-xl p-4 text-center hover:bg-[#EEEBE4]/40 dark:hover:bg-[#1D3328] transition-colors mb-3">
               <input
                 type="file"
                 accept="image/*,.dcm"
@@ -270,16 +270,16 @@ export function ImageUploadModal({
                 className="absolute inset-0 opacity-0 cursor-pointer"
               />
               <div className="flex flex-col items-center justify-center">
-                <UploadCloud className="h-6 w-6 text-[#1F3327] mb-1" />
-                <span className="text-xs font-semibold text-[#1C211E]">
+                <UploadCloud className="h-6 w-6 text-[#1F3327] dark:text-[#7CC9A6] mb-1" />
+                <span className="text-xs font-semibold text-[#1C211E] dark:text-[#ECF3EE]">
                   {customImageSrc ? "Yeni Dosya Seçildi (Önizleme Aşağıda)" : "Cihazdan Röntgen Dosyası Yükleyin"}
                 </span>
-                <span className="text-[10px] text-[#5F665F]">DICOM, JPEG, PNG veya TIFF (Maks. 15MB)</span>
+                <span className="text-[10px] text-[#5F665F] dark:text-[#A2B5A8]">DICOM, JPEG, PNG veya TIFF (Maks. 15MB)</span>
               </div>
             </div>
 
             {/* Or choose from clinical presets */}
-            <span className="block text-[11px] font-medium text-[#5F665F] mb-2">
+            <span className="block text-[11px] font-medium text-[#5F665F] dark:text-[#A2B5A8] mb-2">
               veya Hazır Klinik Röntgen Şablonlarından Seçin:
             </span>
             <div className="grid grid-cols-2 gap-2">
@@ -294,14 +294,14 @@ export function ImageUploadModal({
                   }}
                   className={`p-2 rounded-xl border text-left flex items-center gap-2.5 transition-all cursor-pointer ${
                     !customImageSrc && selectedPresetImage === preset.src
-                      ? "border-[#1F3327] bg-[#E2EEDD]"
-                      : "border-[#E6E1D8] bg-[#FBFAF7] hover:bg-[#EEEBE4]/60"
+                      ? "border-[#1F3327] dark:border-[#3F8F55] bg-[#E2EEDD] dark:bg-[#1D3328]"
+                      : "border-[#E6E1D8] dark:border-[#243B2F] bg-[#FBFAF7] dark:bg-[#1A2C23] hover:bg-[#EEEBE4]/60 dark:hover:bg-[#1D3328]"
                   }`}
                 >
                   <div className="relative h-10 w-12 rounded bg-black overflow-hidden shrink-0">
                     <Image src={preset.src} alt={preset.label} fill className="object-cover" />
                   </div>
-                  <span className="text-[11px] font-medium text-[#1C211E] line-clamp-2">
+                  <span className="text-[11px] font-medium text-[#1C211E] dark:text-[#ECF3EE] line-clamp-2">
                     {preset.label}
                   </span>
                 </button>
@@ -311,7 +311,7 @@ export function ImageUploadModal({
 
           {/* Notes */}
           <div>
-            <label className="block text-xs font-semibold text-[#1C211E] mb-1.5">
+            <label className="block text-xs font-semibold text-[#1C211E] dark:text-[#C5D4CB] mb-1.5">
               Radyoloji Ön Tanı & Klinik Not
             </label>
             <textarea
@@ -319,16 +319,16 @@ export function ImageUploadModal({
               placeholder="Sol alt 38 nolu gömülü diş kontrolü, arayüz çürük taraması, implant planlama..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full rounded-xl border border-[#E6E1D8] bg-[#FBFAF7] p-2.5 text-xs text-[#1C211E] placeholder-[#5F665F]/60 outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
+              className="w-full rounded-xl border border-[#E6E1D8] dark:border-[#243B2F] bg-[#FBFAF7] dark:bg-[#1A2C23] p-2.5 text-xs text-[#1C211E] dark:text-[#ECF3EE] placeholder-[#5F665F]/60 dark:placeholder-[#5E7569] outline-none focus:border-[#1F3327] focus:ring-1 focus:ring-[#1F3327]"
             />
           </div>
 
           {/* Footer Actions */}
-          <div className="flex items-center justify-end gap-2 pt-3 border-t border-[#E6E1D8]">
+          <div className="flex items-center justify-end gap-2 pt-3 border-t border-[#E6E1D8] dark:border-[#243B2F]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl border border-[#E6E1D8] bg-[#EEEBE4] hover:bg-[#E6E1D8] text-xs font-semibold text-[#1C211E] transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-xl border border-[#E6E1D8] dark:border-[#243B2F] bg-[#EEEBE4] dark:bg-[#1A2C23] hover:bg-[#E6E1D8] dark:hover:bg-[#1D3328] text-xs font-semibold text-[#1C211E] dark:text-[#ECF3EE] transition-colors cursor-pointer"
             >
               İptal
             </button>

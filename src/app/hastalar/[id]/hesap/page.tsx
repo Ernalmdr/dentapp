@@ -209,52 +209,52 @@ export default function PatientHesapPage() {
       {/* ============================================================ */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Toplam Ücret */}
-        <div className="rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-2xs flex flex-col justify-between">
-          <div className="flex items-center justify-between text-xs font-medium text-[#5F665F]">
+        <div className="rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-2xs flex flex-col justify-between dark:bg-[#15221B] dark:border-[#243B2F]">
+          <div className="flex items-center justify-between text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
             <span>Toplam Ücret</span>
-            <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-[11px] font-semibold text-[#3F4540]">
+            <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-[11px] font-semibold text-[#3F4540] dark:bg-[#1A2C23] dark:text-[#ECF3EE]">
               {treatments.length} Tedavi
             </span>
           </div>
           <div className="mt-3">
-            <div className="text-2xl lg:text-3xl font-serif font-bold text-[#1C211E] tracking-tight">
-              {formatCurrency(totalFee)} <span className="text-base font-normal font-sans text-[#5F665F]">TL</span>
+            <div className="text-2xl lg:text-3xl font-serif font-bold text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
+              {formatCurrency(totalFee)} <span className="text-base font-normal font-sans text-[#5F665F] dark:text-[#A2B5A8]">TL</span>
             </div>
-            <p className="mt-1 text-xs text-[#5F665F]">Kayıtlı toplam tedavi bedeli</p>
+            <p className="mt-1 text-xs text-[#5F665F] dark:text-[#A2B5A8]">Kayıtlı toplam tedavi bedeli</p>
           </div>
         </div>
 
         {/* Ödenen Tutar */}
-        <div className="rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-2xs flex flex-col justify-between">
-          <div className="flex items-center justify-between text-xs font-medium text-[#5F665F]">
+        <div className="rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-2xs flex flex-col justify-between dark:bg-[#15221B] dark:border-[#243B2F]">
+          <div className="flex items-center justify-between text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
             <span>Ödenen Tutar</span>
-            <span className="rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-2.5 py-0.5 text-[11px] font-semibold text-[#2C6A3B]">
+            <span className="rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-2.5 py-0.5 text-[11px] font-semibold text-[#2C6A3B] dark:bg-[#163321] dark:border-[#285A3B] dark:text-[#76D28F]">
               {payments.length} Tahsilat
             </span>
           </div>
           <div className="mt-3">
-            <div className="text-2xl lg:text-3xl font-serif font-bold text-[#2C6A3B] tracking-tight">
-              {formatCurrency(totalPaid)} <span className="text-base font-normal font-sans text-[#5F665F]">TL</span>
+            <div className="text-2xl lg:text-3xl font-serif font-bold text-[#2C6A3B] tracking-tight dark:text-[#76D28F]">
+              {formatCurrency(totalPaid)} <span className="text-base font-normal font-sans text-[#5F665F] dark:text-[#A2B5A8]">TL</span>
             </div>
-            <p className="mt-1 text-xs text-[#5F665F]">Alınan nakit & kart tahsilatları</p>
+            <p className="mt-1 text-xs text-[#5F665F] dark:text-[#A2B5A8]">Alınan nakit & kart tahsilatları</p>
           </div>
         </div>
 
         {/* Kalan Bakiye */}
-        <div className="rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-2xs flex flex-col justify-between">
-          <div className="flex items-center justify-between text-xs font-medium text-[#5F665F]">
+        <div className="rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-5 shadow-2xs flex flex-col justify-between dark:bg-[#15221B] dark:border-[#243B2F]">
+          <div className="flex items-center justify-between text-xs font-medium text-[#5F665F] dark:text-[#A2B5A8]">
             <span>Kalan Bakiye</span>
             {discount > 0 && (
-              <span className="rounded-full bg-[#F6EEDC] border border-[#EADFC8] px-2.5 py-0.5 text-[11px] font-semibold text-[#7A5320]">
+              <span className="rounded-full bg-[#F6EEDC] border border-[#EADFC8] px-2.5 py-0.5 text-[11px] font-semibold text-[#7A5320] dark:bg-[#2C2415] dark:border-[#523E1E] dark:text-[#E8BA73]">
                 {formatCurrency(discount)} TL İndirim
               </span>
             )}
           </div>
           <div className="mt-3">
-            <div className={`text-2xl lg:text-3xl font-serif font-bold tracking-tight ${remainingBalance > 0 ? "text-[#B3261E]" : "text-[#2C6A3B]"}`}>
-              {formatCurrency(remainingBalance)} <span className="text-base font-normal font-sans text-[#5F665F]">TL</span>
+            <div className={`text-2xl lg:text-3xl font-serif font-bold tracking-tight ${remainingBalance > 0 ? "text-[#B3261E] dark:text-[#FF8B8B]" : "text-[#2C6A3B] dark:text-[#76D28F]"}`}>
+              {formatCurrency(remainingBalance)} <span className="text-base font-normal font-sans text-[#5F665F] dark:text-[#A2B5A8]">TL</span>
             </div>
-            <p className="mt-1 text-xs text-[#5F665F]">
+            <p className="mt-1 text-xs text-[#5F665F] dark:text-[#A2B5A8]">
               {remainingBalance > 0 ? "Ödenmesi gereken açık hesap bakiye" : "Hesap tamamen kapatılmıştır"}
             </p>
           </div>
@@ -262,9 +262,9 @@ export default function PatientHesapPage() {
       </div>
 
       {/* Action Buttons Row */}
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-4 shadow-2xs">
-        <div className="flex items-center gap-2 text-sm font-serif font-bold text-[#1C211E]">
-          <Receipt className="h-4 w-4 text-[#1F3327]" />
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-[#E6E1D8] bg-[#FBFAF7] p-4 shadow-2xs dark:bg-[#15221B] dark:border-[#243B2F]">
+        <div className="flex items-center gap-2 text-sm font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
+          <Receipt className="h-4 w-4 text-[#1F3327] dark:text-[#76D28F]" />
           <span>Hızlı Kasa İşlemleri</span>
         </div>
 
@@ -273,9 +273,9 @@ export default function PatientHesapPage() {
           <button
             type="button"
             onClick={() => handleOpenPayment("Nakit")}
-            className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer"
+            className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
-            <Banknote className="h-4 w-4 text-[#5F665F]" />
+            <Banknote className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             <span>Nakit Tahsilat</span>
           </button>
 
@@ -283,9 +283,9 @@ export default function PatientHesapPage() {
           <button
             type="button"
             onClick={() => handleOpenPayment("Kredi Kartı")}
-            className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer"
+            className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
-            <CreditCard className="h-4 w-4 text-[#5F665F]" />
+            <CreditCard className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             <span>Kart Tahsilat</span>
           </button>
 
@@ -293,9 +293,9 @@ export default function PatientHesapPage() {
           <button
             type="button"
             onClick={() => setIsDiscountModalOpen(true)}
-            className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer"
+            className="flex items-center gap-2 rounded-xl border border-[#E6E1D8] bg-white px-4 py-2 text-sm font-medium text-[#1C211E] shadow-2xs transition-colors hover:bg-[#F3F0EA] cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
           >
-            <Tag className="h-4 w-4 text-[#5F665F]" />
+            <Tag className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
             <span>İndirim Yap</span>
           </button>
 
@@ -316,15 +316,15 @@ export default function PatientHesapPage() {
       {/* ========================================================= */}
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
         {/* LEFT PANEL: Tedaviler */}
-        <div className="flex flex-col justify-between rounded-[16px] bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8] min-h-[460px]">
+        <div className="flex flex-col justify-between rounded-[16px] bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8] min-h-[460px] dark:bg-[#15221B] dark:border-[#243B2F]">
           <div>
             {/* Header: Title + Toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8]">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8] dark:border-[#243B2F]">
               <div className="flex items-center gap-2.5">
-                <h2 className="text-xl font-serif font-bold text-[#1C211E] tracking-tight">
+                <h2 className="text-xl font-serif font-bold text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
                   Tedaviler
                 </h2>
-                <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-xs font-semibold text-[#3F4540]">
+                <span className="rounded-full bg-[#EEEBE4] px-2.5 py-0.5 text-xs font-semibold text-[#3F4540] dark:bg-[#1A2C23] dark:text-[#ECF3EE]">
                   {treatments.length}
                 </span>
               </div>
@@ -335,17 +335,17 @@ export default function PatientHesapPage() {
                   type="button"
                   title="Örnek Tedavileri Yükle"
                   onClick={reloadSamples}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Eye className="h-4 w-4 text-[#5F665F]" />
+                  <Eye className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                 </button>
                 <button
                   type="button"
                   title="Ayarlar & Tarife"
                   onClick={() => showToast("Fiyat tarifesi: TDB 2026 Asgari Ücret Tarifesi geçerlidir.", "info")}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Settings className="h-4 w-4 text-[#5F665F]" />
+                  <Settings className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                 </button>
                 <button
                   type="button"
@@ -359,9 +359,9 @@ export default function PatientHesapPage() {
                   type="button"
                   title="Hastaya Bakiye SMS Hatırlatması"
                   onClick={() => showToast("✓ Hastaya kalan bakiye hatırlatma SMS'i iletildi.", "success")}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Bell className="h-4 w-4 text-[#5F665F]" />
+                  <Bell className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                 </button>
                 <button
                   type="button"
@@ -371,7 +371,7 @@ export default function PatientHesapPage() {
                     setSelectedTreatments([]);
                     showToast("Tedavi listesi temizlendi.", "info");
                   }}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#B3261E] shadow-2xs hover:bg-[#FBE9E7] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#B3261E] shadow-2xs hover:bg-[#FBE9E7] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#FF8B8B] dark:hover:bg-[#2C1919]"
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>
@@ -390,7 +390,7 @@ export default function PatientHesapPage() {
             <div className="overflow-x-auto mt-3">
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
-                  <tr className="border-b border-[#E6E1D8] text-[#5F665F] bg-[#EEEBE4]/60">
+                  <tr className="border-b border-[#E6E1D8] text-[#5F665F] bg-[#EEEBE4]/60 dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                     <th className="py-2.5 px-3 w-8">
                       <input
                         type="checkbox"
@@ -399,7 +399,7 @@ export default function PatientHesapPage() {
                           selectedTreatments.length === treatments.length
                         }
                         onChange={toggleSelectAll}
-                        className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327]"
+                        className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327] dark:border-[#243B2F]"
                       />
                     </th>
                     <th className="py-2.5 px-3 font-semibold">Tarih</th>
@@ -416,29 +416,29 @@ export default function PatientHesapPage() {
                     treatments.map((t) => (
                       <tr
                         key={t.id}
-                        className="border-b border-[#E6E1D8] hover:bg-[#F6EEDC]/40 transition-colors text-[#3F4540]"
+                        className="border-b border-[#E6E1D8] hover:bg-[#F6EEDC]/40 transition-colors text-[#3F4540] dark:border-[#243B2F] dark:hover:bg-[#1E3026]/50 dark:text-[#ECF3EE]"
                       >
                         <td className="py-2.5 px-3">
                           <input
                             type="checkbox"
                             checked={selectedTreatments.includes(t.id)}
                             onChange={() => toggleSelectTreatment(t.id)}
-                            className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327]"
+                            className="h-4 w-4 rounded border-[#E6E1D8] accent-[#1F3327] text-[#1F3327] dark:border-[#243B2F]"
                           />
                         </td>
-                        <td className="py-2.5 px-3 text-[#5F665F] whitespace-nowrap">{t.date}</td>
-                        <td className="py-2.5 px-2 font-semibold text-[#1C211E]">{t.toothNo || "-"}</td>
-                        <td className="py-2.5 px-3 font-medium text-[#1C211E]">{t.treatment}</td>
-                        <td className="py-2.5 px-3 text-[#5F665F]">{t.dentist}</td>
-                        <td className="py-2.5 px-3 font-bold text-[#1C211E] text-right whitespace-nowrap">
+                        <td className="py-2.5 px-3 text-[#5F665F] whitespace-nowrap dark:text-[#A2B5A8]">{t.date}</td>
+                        <td className="py-2.5 px-2 font-semibold text-[#1C211E] dark:text-[#ECF3EE]">{t.toothNo || "-"}</td>
+                        <td className="py-2.5 px-3 font-medium text-[#1C211E] dark:text-[#ECF3EE]">{t.treatment}</td>
+                        <td className="py-2.5 px-3 text-[#5F665F] dark:text-[#A2B5A8]">{t.dentist}</td>
+                        <td className="py-2.5 px-3 font-bold text-[#1C211E] text-right whitespace-nowrap dark:text-[#ECF3EE]">
                           {formatCurrency(t.total)}
                         </td>
-                        <td className="py-2.5 px-2 text-[#5F665F]">{t.currency}</td>
+                        <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">{t.currency}</td>
                         <td className="py-2.5 px-2 text-center">
                           <button
                             type="button"
                             onClick={() => removeTreatment(t.id)}
-                            className="text-[#8A8F89] hover:text-[#B3261E] transition-colors cursor-pointer"
+                            className="text-[#8A8F89] hover:text-[#B3261E] transition-colors cursor-pointer dark:hover:text-[#FF8B8B]"
                           >
                             <Trash2 className="h-3.5 w-3.5 inline" />
                           </button>
@@ -463,13 +463,13 @@ export default function PatientHesapPage() {
 
           {/* Table Footer */}
           {treatments.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-[#E6E1D8] flex items-center justify-between text-xs text-[#5F665F]">
+            <div className="mt-4 pt-3 border-t border-[#E6E1D8] flex items-center justify-between text-xs text-[#5F665F] dark:border-[#243B2F] dark:text-[#A2B5A8]">
               <span>
                 {selectedTreatments.length > 0
                   ? `${selectedTreatments.length} tedavi seçili`
                   : `Toplam ${treatments.length} tedavi kaydı`}
               </span>
-              <span className="font-serif font-bold text-[#1C211E] text-sm">
+              <span className="font-serif font-bold text-[#1C211E] text-sm dark:text-[#ECF3EE]">
                 Ara Toplam: {formatCurrency(totalFee)} TL
               </span>
             </div>
@@ -477,15 +477,15 @@ export default function PatientHesapPage() {
         </div>
 
         {/* RIGHT PANEL: Alınan Paralar */}
-        <div className="flex flex-col justify-between rounded-[16px] bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8] min-h-[460px]">
+        <div className="flex flex-col justify-between rounded-[16px] bg-[#FBFAF7] p-5 shadow-xs border border-[#E6E1D8] min-h-[460px] dark:bg-[#15221B] dark:border-[#243B2F]">
           <div>
             {/* Header: Title + Toolbar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8]">
+            <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E6E1D8] dark:border-[#243B2F]">
               <div className="flex items-center gap-2.5">
-                <h2 className="text-xl font-serif font-bold text-[#1C211E] tracking-tight">
+                <h2 className="text-xl font-serif font-bold text-[#1C211E] tracking-tight dark:text-[#ECF3EE]">
                   Alınan Paralar
                 </h2>
-                <span className="rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-2.5 py-0.5 text-xs font-semibold text-[#2C6A3B]">
+                <span className="rounded-full bg-[#E2EEDD] border border-[#C5D6C0] px-2.5 py-0.5 text-xs font-semibold text-[#2C6A3B] dark:bg-[#163321] dark:border-[#285A3B] dark:text-[#76D28F]">
                   {payments.length}
                 </span>
               </div>
@@ -504,7 +504,7 @@ export default function PatientHesapPage() {
                   type="button"
                   title="POS / Kart Tahsilat"
                   onClick={() => handleOpenPayment("Kredi Kartı")}
-                  className="rounded-lg border border-[#C5D6C0] bg-[#E2EEDD] p-2 text-[#2C6A3B] shadow-2xs hover:bg-[#E2EEDD]/80 transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#C5D6C0] bg-[#E2EEDD] p-2 text-[#2C6A3B] shadow-2xs hover:bg-[#E2EEDD]/80 transition-colors cursor-pointer dark:bg-[#163321] dark:border-[#285A3B] dark:text-[#76D28F] dark:hover:bg-[#1E3026]"
                 >
                   <CreditCard className="h-4 w-4" />
                 </button>
@@ -512,9 +512,9 @@ export default function PatientHesapPage() {
                   type="button"
                   title="Nakit Tahsilat"
                   onClick={() => handleOpenPayment("Nakit")}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Banknote className="h-4 w-4 text-[#5F665F]" />
+                  <Banknote className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                 </button>
                 <button
                   type="button"
@@ -523,7 +523,7 @@ export default function PatientHesapPage() {
                     setPayments([]);
                     showToast("Tahsilat listesi temizlendi.", "info");
                   }}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#B3261E] shadow-2xs hover:bg-[#FBE9E7] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#B3261E] shadow-2xs hover:bg-[#FBE9E7] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#FF8B8B] dark:hover:bg-[#2C1919]"
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>
@@ -545,9 +545,9 @@ export default function PatientHesapPage() {
                       })) : undefined,
                     });
                   }}
-                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer"
+                  className="rounded-lg border border-[#E6E1D8] bg-white p-2 text-[#3F4540] shadow-2xs hover:bg-[#F3F0EA] transition-colors cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE] dark:hover:bg-[#1E3026]"
                 >
-                  <Printer className="h-4 w-4 text-[#5F665F]" />
+                  <Printer className="h-4 w-4 text-[#5F665F] dark:text-[#A2B5A8]" />
                 </button>
               </div>
             </div>
@@ -556,7 +556,7 @@ export default function PatientHesapPage() {
             <div className="overflow-x-auto mt-3">
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
-                  <tr className="border-b border-[#E6E1D8] text-[#5F665F] bg-[#EEEBE4]/60">
+                  <tr className="border-b border-[#E6E1D8] text-[#5F665F] bg-[#EEEBE4]/60 dark:border-[#243B2F] dark:bg-[#1A2C23]/80 dark:text-[#A2B5A8]">
                     <th className="py-2.5 px-3 font-semibold">Tarih</th>
                     <th className="py-2.5 px-3 font-semibold">Ödeme Tipi</th>
                     <th className="py-2.5 px-3 font-semibold">Dişhekimi</th>
@@ -571,24 +571,24 @@ export default function PatientHesapPage() {
                     payments.map((p) => (
                       <tr
                         key={p.id}
-                        className="border-b border-[#E6E1D8] hover:bg-[#F6EEDC]/40 transition-colors text-[#3F4540]"
+                        className="border-b border-[#E6E1D8] hover:bg-[#F6EEDC]/40 transition-colors text-[#3F4540] dark:border-[#243B2F] dark:hover:bg-[#1E3026]/50 dark:text-[#ECF3EE]"
                       >
-                        <td className="py-2.5 px-3 text-[#5F665F] whitespace-nowrap">{p.date}</td>
-                        <td className="py-2.5 px-3 font-medium text-[#1C211E]">
+                        <td className="py-2.5 px-3 text-[#5F665F] whitespace-nowrap dark:text-[#A2B5A8]">{p.date}</td>
+                        <td className="py-2.5 px-3 font-medium text-[#1C211E] dark:text-[#ECF3EE]">
                           <span className="inline-flex items-center gap-1">
                             {p.paymentType === "Nakit" ? (
-                              <Banknote className="h-3.5 w-3.5 text-[#2C6A3B]" />
+                              <Banknote className="h-3.5 w-3.5 text-[#2C6A3B] dark:text-[#76D28F]" />
                             ) : (
-                              <CreditCard className="h-3.5 w-3.5 text-[#1F3327]" />
+                              <CreditCard className="h-3.5 w-3.5 text-[#1F3327] dark:text-[#76D28F]" />
                             )}
                             {p.paymentType}
                           </span>
                         </td>
-                        <td className="py-2.5 px-3 text-[#5F665F]">{p.dentist}</td>
-                        <td className="py-2.5 px-3 font-bold text-[#2C6A3B] text-right whitespace-nowrap">
+                        <td className="py-2.5 px-3 text-[#5F665F] dark:text-[#A2B5A8]">{p.dentist}</td>
+                        <td className="py-2.5 px-3 font-bold text-[#2C6A3B] text-right whitespace-nowrap dark:text-[#76D28F]">
                           {formatCurrency(p.amount)}
                         </td>
-                        <td className="py-2.5 px-2 text-[#5F665F]">{p.currency}</td>
+                        <td className="py-2.5 px-2 text-[#5F665F] dark:text-[#A2B5A8]">{p.currency}</td>
                         <td className="py-2.5 px-2 text-center">
                           <button
                             type="button"
@@ -610,7 +610,7 @@ export default function PatientHesapPage() {
                                 ],
                               });
                             }}
-                            className="text-[#5F665F] hover:text-[#1C211E] transition-colors cursor-pointer"
+                            className="text-[#5F665F] hover:text-[#1C211E] transition-colors cursor-pointer dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
                           >
                             <Printer className="h-4 w-4 inline" />
                           </button>
@@ -619,7 +619,7 @@ export default function PatientHesapPage() {
                           <button
                             type="button"
                             onClick={() => removePayment(p.id)}
-                            className="text-[#8A8F89] hover:text-[#B3261E] transition-colors cursor-pointer"
+                            className="text-[#8A8F89] hover:text-[#B3261E] transition-colors cursor-pointer dark:hover:text-[#FF8B8B]"
                           >
                             <Trash2 className="h-3.5 w-3.5 inline" />
                           </button>
@@ -644,9 +644,9 @@ export default function PatientHesapPage() {
 
           {/* Table Footer */}
           {payments.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-[#E6E1D8] flex items-center justify-between text-xs text-[#5F665F]">
+            <div className="mt-4 pt-3 border-t border-[#E6E1D8] flex items-center justify-between text-xs text-[#5F665F] dark:border-[#243B2F] dark:text-[#A2B5A8]">
               <span>Toplam {payments.length} tahsilat kaydı</span>
-              <span className="font-serif font-bold text-[#2C6A3B] text-sm">
+              <span className="font-serif font-bold text-[#2C6A3B] text-sm dark:text-[#76D28F]">
                 Tahsil Edilen: {formatCurrency(totalPaid)} TL
               </span>
             </div>
@@ -660,14 +660,14 @@ export default function PatientHesapPage() {
       {/* 1. Tahsilat Girişi Modalı */}
       {isPaymentModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-md rounded-2xl bg-[#FBFAF7] p-6 shadow-2xl border border-[#E6E1D8] text-[#1C211E]">
-            <div className="flex items-center justify-between pb-3 border-b border-[#E6E1D8]">
-              <h3 className="text-lg font-serif font-bold text-[#1C211E]">
+          <div className="w-full max-w-md rounded-2xl bg-[#FBFAF7] p-6 shadow-2xl border border-[#E6E1D8] text-[#1C211E] dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E6E1D8] dark:border-[#243B2F]">
+              <h3 className="text-lg font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                 {payMethod} Tahsilat Girişi
               </h3>
               <button
                 onClick={() => setIsPaymentModalOpen(false)}
-                className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer"
+                className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -675,25 +675,25 @@ export default function PatientHesapPage() {
 
             <form onSubmit={handleAddPayment} className="mt-4 space-y-4 text-xs sm:text-sm">
               <div>
-                <label className="block font-semibold mb-1.5 text-[#5F665F]">Tahsil Edilen Tutar (₺)</label>
+                <label className="block font-semibold mb-1.5 text-[#5F665F] dark:text-[#A2B5A8]">Tahsil Edilen Tutar (₺)</label>
                 <input
                   type="number"
                   placeholder="0.00"
                   step="any"
                   value={payAmount}
                   onChange={(e) => setPayAmount(e.target.value)}
-                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 font-mono font-bold text-base text-[#1C211E] outline-none focus:border-[#1F3327]"
+                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 font-mono font-bold text-base text-[#1C211E] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   autoFocus
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-1.5 text-[#5F665F]">Ödeme Yöntemi</label>
+                <label className="block font-semibold mb-1.5 text-[#5F665F] dark:text-[#A2B5A8]">Ödeme Yöntemi</label>
                 <select
                   value={payMethod}
                   onChange={(e) => setPayMethod(e.target.value as any)}
-                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 text-[#3F4540] outline-none focus:border-[#1F3327]"
+                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 text-[#3F4540] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="Nakit">Nakit</option>
                   <option value="Kredi Kartı">Kredi Kartı / POS</option>
@@ -702,11 +702,11 @@ export default function PatientHesapPage() {
               </div>
 
               <div>
-                <label className="block font-semibold mb-1.5 text-[#5F665F]">Tahsilatı Alan Hekim</label>
+                <label className="block font-semibold mb-1.5 text-[#5F665F] dark:text-[#A2B5A8]">Tahsilatı Alan Hekim</label>
                 <select
                   value={payDentist}
                   onChange={(e) => setPayDentist(e.target.value)}
-                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 text-[#3F4540] outline-none focus:border-[#1F3327]"
+                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 text-[#3F4540] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="Dr. Selin Yılmaz">Dr. Selin Yılmaz</option>
                   <option value="Dr. Mahir Açıkalın">Dr. Mahir Açıkalın</option>
@@ -718,7 +718,7 @@ export default function PatientHesapPage() {
                 <button
                   type="button"
                   onClick={() => setIsPaymentModalOpen(false)}
-                  className="px-4 py-2.5 rounded-xl border border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA] font-medium cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl border border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA] font-medium cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   İptal
                 </button>
@@ -737,14 +737,14 @@ export default function PatientHesapPage() {
       {/* 2. Tedavi Ekleme Modalı */}
       {isTreatmentModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-md rounded-2xl bg-[#FBFAF7] p-6 shadow-2xl border border-[#E6E1D8] text-[#1C211E]">
-            <div className="flex items-center justify-between pb-3 border-b border-[#E6E1D8]">
-              <h3 className="text-lg font-serif font-bold text-[#1C211E]">
+          <div className="w-full max-w-md rounded-2xl bg-[#FBFAF7] p-6 shadow-2xl border border-[#E6E1D8] text-[#1C211E] dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E6E1D8] dark:border-[#243B2F]">
+              <h3 className="text-lg font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                 Yeni Tedavi Kaydı Ekle
               </h3>
               <button
                 onClick={() => setIsTreatmentModalOpen(false)}
-                className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer"
+                className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -753,47 +753,47 @@ export default function PatientHesapPage() {
             <form onSubmit={handleAddTreatment} className="mt-4 space-y-4 text-xs sm:text-sm">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold mb-1.5 text-[#5F665F]">Diş Numarası</label>
+                  <label className="block font-semibold mb-1.5 text-[#5F665F] dark:text-[#A2B5A8]">Diş Numarası</label>
                   <input
                     type="number"
                     placeholder="ör. 16, 21, 36"
                     value={treatmentTooth}
                     onChange={(e) => setTreatmentTooth(e.target.value)}
-                    className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 font-mono font-medium text-[#1C211E] outline-none focus:border-[#1F3327]"
+                    className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 font-mono font-medium text-[#1C211E] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   />
                 </div>
                 <div>
-                  <label className="block font-semibold mb-1.5 text-[#5F665F]">Tedavi Bedeli (₺)</label>
+                  <label className="block font-semibold mb-1.5 text-[#5F665F] dark:text-[#A2B5A8]">Tedavi Bedeli (₺)</label>
                   <input
                     type="number"
                     placeholder="0.00"
                     step="any"
                     value={treatmentFee}
                     onChange={(e) => setTreatmentFee(e.target.value)}
-                    className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 font-mono font-bold text-[#1C211E] outline-none focus:border-[#1F3327]"
+                    className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 font-mono font-bold text-[#1C211E] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-semibold mb-1.5 text-[#5F665F]">Tedavi Adı</label>
+                <label className="block font-semibold mb-1.5 text-[#5F665F] dark:text-[#A2B5A8]">Tedavi Adı</label>
                 <input
                   type="text"
                   placeholder="ör. Kompozit Dolgu, Kanal Tedavisi, Zirkonyum..."
                   value={treatmentName}
                   onChange={(e) => setTreatmentName(e.target.value)}
-                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 text-[#1C211E] outline-none focus:border-[#1F3327]"
+                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 text-[#1C211E] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-1.5 text-[#5F665F]">Uygulayan Dişhekimi</label>
+                <label className="block font-semibold mb-1.5 text-[#5F665F] dark:text-[#A2B5A8]">Uygulayan Dişhekimi</label>
                 <select
                   value={treatmentDoctor}
                   onChange={(e) => setTreatmentDoctor(e.target.value)}
-                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 text-[#3F4540] outline-none focus:border-[#1F3327]"
+                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 text-[#3F4540] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   <option value="Dr. Selin Yılmaz">Dr. Selin Yılmaz</option>
                   <option value="Dr. Mahir Açıkalın">Dr. Mahir Açıkalın</option>
@@ -805,7 +805,7 @@ export default function PatientHesapPage() {
                 <button
                   type="button"
                   onClick={() => setIsTreatmentModalOpen(false)}
-                  className="px-4 py-2.5 rounded-xl border border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA] font-medium cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl border border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA] font-medium cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   İptal
                 </button>
@@ -824,14 +824,14 @@ export default function PatientHesapPage() {
       {/* 3. İndirim Modalı */}
       {isDiscountModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="w-full max-w-sm rounded-2xl bg-[#FBFAF7] p-6 shadow-2xl border border-[#E6E1D8] text-[#1C211E]">
-            <div className="flex items-center justify-between pb-3 border-b border-[#E6E1D8]">
-              <h3 className="text-lg font-serif font-bold text-[#1C211E]">
+          <div className="w-full max-w-sm rounded-2xl bg-[#FBFAF7] p-6 shadow-2xl border border-[#E6E1D8] text-[#1C211E] dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE]">
+            <div className="flex items-center justify-between pb-3 border-b border-[#E6E1D8] dark:border-[#243B2F]">
+              <h3 className="text-lg font-serif font-bold text-[#1C211E] dark:text-[#ECF3EE]">
                 Özel İndirim Uygula
               </h3>
               <button
                 onClick={() => setIsDiscountModalOpen(false)}
-                className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer"
+                className="text-[#5F665F] hover:text-[#1C211E] cursor-pointer dark:text-[#A2B5A8] dark:hover:text-[#ECF3EE]"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -839,18 +839,18 @@ export default function PatientHesapPage() {
 
             <form onSubmit={handleApplyDiscount} className="mt-4 space-y-4 text-xs sm:text-sm">
               <div>
-                <label className="block font-semibold mb-1.5 text-[#5F665F]">İndirim Tutarı (₺)</label>
+                <label className="block font-semibold mb-1.5 text-[#5F665F] dark:text-[#A2B5A8]">İndirim Tutarı (₺)</label>
                 <input
                   type="number"
                   placeholder="0.00"
                   step="any"
                   value={discountInput}
                   onChange={(e) => setDiscountInput(e.target.value)}
-                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 font-mono font-bold text-[#1C211E] outline-none focus:border-[#1F3327]"
+                  className="w-full h-11 rounded-xl border border-[#E6E1D8] bg-white px-3 font-mono font-bold text-[#1C211E] outline-none focus:border-[#1F3327] dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                   autoFocus
                   required
                 />
-                <p className="mt-1.5 text-xs text-[#5F665F]">
+                <p className="mt-1.5 text-xs text-[#5F665F] dark:text-[#A2B5A8]">
                   Mevcut İndirim: {formatCurrency(discount)} TL
                 </p>
               </div>
@@ -859,7 +859,7 @@ export default function PatientHesapPage() {
                 <button
                   type="button"
                   onClick={() => setIsDiscountModalOpen(false)}
-                  className="px-4 py-2.5 rounded-xl border border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA] font-medium cursor-pointer"
+                  className="px-4 py-2.5 rounded-xl border border-[#E6E1D8] bg-white text-[#3F4540] hover:bg-[#F3F0EA] font-medium cursor-pointer dark:bg-[#1A2C23] dark:border-[#243B2F] dark:text-[#ECF3EE]"
                 >
                   İptal
                 </button>
