@@ -20,6 +20,7 @@ import {
   Receipt,
   CheckCircle2,
   AlertCircle,
+  FileOutput,
 } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { TreatmentRecord, Payment } from "@/lib/types";

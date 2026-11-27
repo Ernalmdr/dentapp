@@ -22,6 +22,7 @@ import {
   X,
   FileText,
   ImageIcon,
+  Mic,
 } from "lucide-react";
 import { Note } from "@/lib/types";
 import { cn } from "@/lib/utils";

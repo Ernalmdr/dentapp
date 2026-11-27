@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useParams } from "next/navigation";
 import {
@@ -12,6 +12,11 @@ import {
   MoreHorizontal,
   Pencil,
   Calendar,
+  Activity,
+  HelpCircle,
+  ShieldCheck,
+  AlertTriangle,
+  BarChart3,
 } from "lucide-react";
 import { patients } from "@/lib/mock-data";
 import { cn, formatPhone } from "@/lib/utils";
@@ -59,6 +64,44 @@ function PatientLayoutContent({
     patients[0];
 
   const { openAppointmentModal, showToast } = useModal();
+
+  // --- Anamnesis risk data (hardcoded demo) ---
+  const [riskPopoverOpen, setRiskPopoverOpen] = useState(false);
+
+  type RiskLevel = "high" | "safe" | "unknown";
+  const anamnesisRiskMap: Record<string, { level: RiskLevel; details?: string }> = {
+    "2": { level: "high", details: "Penisilin Alerjisi, Hipertansiyon (Coraspin 100mg)" },
+    "1": { level: "safe" },
+  };
+
+  const riskInfo = anamnesisRiskMap[patientId] || { level: "unknown" as RiskLevel };
+
+  const riskConfig = {
+    high: {
+      icon: AlertTriangle,
+      label: "Yüksek Risk",
+      bg: "bg-[#FBE9E7] dark:bg-[#3B1A17]",
+      border: "border-[#E8B4AE] dark:border-[#5A2D28]",
+      text: "text-[#B3261E] dark:text-[#F2847C]",
+    },
+    safe: {
+      icon: ShieldCheck,
+      label: "Güvenli",
+      bg: "bg-[#E2EEDD] dark:bg-[#163321]",
+      border: "border-[#C5D6C0] dark:border-[#285A3B]",
+      text: "text-[#2C6A3B] dark:text-[#76D28F]",
+    },
+    unknown: {
+      icon: HelpCircle,
+      label: "Bilgi Yok",
+      bg: "bg-[#F0EDE6] dark:bg-[#1E2A23]",
+      border: "border-[#D5D0C6] dark:border-[#374840]",
+      text: "text-[#5F665F] dark:text-[#A2B5A8]",
+    },
+  };
+
+  const risk = riskConfig[riskInfo.level];
+  const RiskIcon = risk.icon;
 
   const tabs = [
     {

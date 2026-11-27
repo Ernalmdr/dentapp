@@ -1,6 +1,7 @@
 "use client";
 
 import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
+import ClinicAlertTicker from "@/components/dashboard/ClinicAlertTicker";
 import StatCards from "@/components/dashboard/StatCards";
 import AppointmentsList from "@/components/dashboard/AppointmentsList";
 import QuickActions from "@/components/dashboard/QuickActions";
@@ -14,7 +15,10 @@ export default function DashboardPage() {
       {/* 1. Welcome Section */}
       <WelcomeBanner />
 
-      {/* 2. Stat Cards Row */}
+      {/* 2. Alert Ticker Band */}
+      <ClinicAlertTicker />
+
+      {/* 3. Stat Cards Row */}
       <StatCards />
 
       {/* 3. Middle Section: Appointments (Left) + Quick Actions & Recent Images (Right) */}

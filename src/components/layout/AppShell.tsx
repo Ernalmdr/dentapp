@@ -7,6 +7,7 @@ import TopBar from "@/components/layout/TopBar";
 import { AuthProvider } from "@/lib/auth-context";
 import { SidebarProvider, useSidebar } from "@/lib/sidebar-context";
 import { DoctorProfileModal } from "@/components/modals/DoctorProfileModal";
+import HelpWidget from "@/components/layout/HelpWidget";
 import { cn } from "@/lib/utils";
 
 function AppShellInner({ children }: { children: React.ReactNode }) {
@@ -57,6 +58,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
         <main className="flex-1 overflow-y-auto p-3.5 sm:p-5 md:p-8 max-w-[1600px] w-full mx-auto relative z-10">
           {children}
         </main>
+        <HelpWidget />
       </div>
     </div>
   );
