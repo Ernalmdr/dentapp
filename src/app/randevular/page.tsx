@@ -35,6 +35,8 @@ export default function RandevularPage() {
   const [currentWeek, setCurrentWeek] = useState("24 – 29 Ekim 2026");
   const [mobileDay, setMobileDay] = useState("Per");
   const [mobileViewMode, setMobileViewMode] = useState<"agenda" | "grid">("agenda");
+  const [desktopViewMode, setDesktopViewMode] = useState<"month" | "week" | "day">("week");
+  const [monthOffset, setMonthOffset] = useState(0); // 0 = Ekim 2026
 
   // Selected Appointment for Detail / Full Edit / Delete
   const [selectedApt, setSelectedApt] = useState<CalendarAppointment | null>(null);
@@ -246,6 +248,93 @@ export default function RandevularPage() {
     return matchDentist && matchStatus;
   });
 
+  const monthNames = [
+    "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+    "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık",
+  ];
+  const baseDate = new Date(2026, 9 + monthOffset, 1); // 9 = Ekim 2026
+  const activeMonthLabel = `${monthNames[baseDate.getMonth()]} ${baseDate.getFullYear()}`;
+  const activeDayObj = days.find((d) => d.key === mobileDay) ?? days[3];
+
+  const handlePrevPeriod = () => {
+    if (desktopViewMode === "month") {
+      setMonthOffset((m) => m - 1);
+    } else if (desktopViewMode === "day") {
+      const idx = days.findIndex((d) => d.key === mobileDay);
+      setMobileDay(days[(idx - 1 + days.length) % days.length].key);
+    } else {
+      setCurrentWeek("17 – 22 Ekim 2026");
+    }
+  };
+
+  const handleNextPeriod = () => {
+    if (desktopViewMode === "month") {
+      setMonthOffset((m) => m + 1);
+    } else if (desktopViewMode === "day") {
+      const idx = days.findIndex((d) => d.key === mobileDay);
+      setMobileDay(days[(idx + 1) % days.length].key);
+    } else {
+      setCurrentWeek("31 Ekim – 5 Kasım 2026");
+    }
+  };
+
+  const handleGoToday = () => {
+    setMonthOffset(0);
+    setCurrentWeek("24 – 29 Ekim 2026");
+    setMobileDay("Per");
+  };
+
+  // Month grid cells (5 weeks x 7 days = 35 cells; for Ekim 2026, week 4 aligns Pzt 24..Cmt 29)
+  const monthGridCells = React.useMemo(() => {
+    const weekHeaders = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
+    if (monthOffset === 0) {
+      const cells: Array<{
+        dayNum: number;
+        inMonth: boolean;
+        dayKey: string;
+        isToday: boolean;
+        hasActiveWeekApts: boolean;
+      }> = [];
+      for (let i = 0; i < 35; i++) {
+        const rawDay = 3 + i;
+        const inMonth = rawDay <= 31;
+        const dayNum = inMonth ? rawDay : rawDay - 31;
+        const dayKey = weekHeaders[i % 7];
+        const isToday = inMonth && dayNum === 27;
+        const hasActiveWeekApts = inMonth && dayNum >= 24 && dayNum <= 29;
+        cells.push({ dayNum, inMonth, dayKey, isToday, hasActiveWeekApts });
+      }
+      return cells;
+    }
+
+    const year = baseDate.getFullYear();
+    const month = baseDate.getMonth();
+    const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const prevMonthDays = new Date(year, month, 0).getDate();
+    const cells: Array<{
+      dayNum: number;
+      inMonth: boolean;
+      dayKey: string;
+      isToday: boolean;
+      hasActiveWeekApts: boolean;
+    }> = [];
+    for (let i = 0; i < 35; i++) {
+      const offset = i - firstWeekday + 1;
+      const inMonth = offset >= 1 && offset <= daysInMonth;
+      const dayNum =
+        offset < 1 ? prevMonthDays + offset : offset > daysInMonth ? offset - daysInMonth : offset;
+      cells.push({
+        dayNum,
+        inMonth,
+        dayKey: weekHeaders[i % 7],
+        isToday: false,
+        hasActiveWeekApts: false,
+      });
+    }
+    return cells;
+  }, [monthOffset, baseDate]);
+
   return (
     <div className="flex flex-col gap-6">
       {/* Banner */}
@@ -273,35 +362,67 @@ export default function RandevularPage() {
       <div
         className="flex flex-wrap items-center justify-between gap-4 rounded-2xl p-4 shadow-xs bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
       >
-        {/* Week navigation */}
+        {/* Period navigation */}
         <div className="flex items-center gap-3 flex-wrap">
           <div
             className="flex items-center rounded-xl overflow-hidden shadow-2xs bg-white dark:bg-[#1A2B21] border border-[#E6E1D8] dark:border-[#243B2F]"
           >
             <button
-              onClick={() => setCurrentWeek("17 – 22 Ekim 2026")}
+              type="button"
+              onClick={handlePrevPeriod}
               className="p-2 transition-colors cursor-pointer hover:bg-[#EEEBE4] dark:hover:bg-[#243B2F] text-[#1C211E] dark:text-[#ECF3EE]"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
             <span
-              className="px-3 text-xs font-bold select-none text-[#1C211E] dark:text-[#ECF3EE]"
+              className="px-3 text-xs font-bold select-none text-[#1C211E] dark:text-[#ECF3EE] min-w-[140px] text-center"
             >
-              {currentWeek}
+              {desktopViewMode === "month"
+                ? activeMonthLabel
+                : desktopViewMode === "day"
+                ? `${activeDayObj.date} 2026 · ${activeDayObj.label.replace(" (Bugün)", "")}`
+                : currentWeek}
             </span>
             <button
-              onClick={() => setCurrentWeek("31 Ekim – 5 Kasım 2026")}
+              type="button"
+              onClick={handleNextPeriod}
               className="p-2 transition-colors cursor-pointer hover:bg-[#EEEBE4] dark:hover:bg-[#243B2F] text-[#1C211E] dark:text-[#ECF3EE]"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
 
-          <span
-            className="text-xs font-bold px-3 py-1.5 rounded-xl bg-[#DDEBD8] border border-[#C9DDC3] text-[#1F3327] dark:bg-[#1E3527] dark:border-[#2D4C3C] dark:text-[#9AB395]"
+          <button
+            type="button"
+            onClick={handleGoToday}
+            className="text-xs font-bold px-3 py-1.5 rounded-xl bg-[#DDEBD8] border border-[#C9DDC3] text-[#1F3327] hover:bg-[#C9DDC3]/70 dark:bg-[#1E3527] dark:border-[#2D4C3C] dark:text-[#9AB395] transition-colors cursor-pointer"
           >
-            Aktif Hafta
-          </span>
+            Bugün
+          </button>
+
+          {/* Desktop View Mode Switcher (Ay / Hafta / Gün) */}
+          <div className="hidden md:flex items-center p-1 rounded-xl bg-[#EEEBE4] border border-[#E6E1D8] dark:bg-[#1A2B21] dark:border-[#243B2F]">
+            {(
+              [
+                { id: "month", label: "Ay" },
+                { id: "week", label: "Hafta" },
+                { id: "day", label: "Gün" },
+              ] as const
+            ).map((mode) => (
+              <button
+                key={mode.id}
+                type="button"
+                onClick={() => setDesktopViewMode(mode.id)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  desktopViewMode === mode.id
+                    ? "bg-[#1F3327] text-white shadow-xs dark:bg-[#2D4C3C]"
+                    : "text-[#5F665F] dark:text-[#A2B5A8] hover:text-[#1C211E] dark:hover:text-[#ECF3EE]"
+                }`}
+              >
+                {mode.label}
+              </button>
+            ))}
+          </div>
 
           <button
             onClick={handleResetDefaults}
@@ -622,7 +743,8 @@ export default function RandevularPage() {
         )}
       </div>
 
-      {/* MASAÜSTÜ GÖRÜNÜM (md: ve üzeri) - 100% Orijinal Figma 7 Kolonlu Grid */}
+      {/* MASAÜSTÜ GÖRÜNÜM (md: ve üzeri) - Ay / Hafta / Gün */}
+      {desktopViewMode === "week" && (
       <div
         className="hidden md:block rounded-2xl shadow-xs overflow-x-auto bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]"
       >
@@ -733,6 +855,227 @@ export default function RandevularPage() {
           </div>
         </div>
       </div>
+      )}
+
+      {/* MASAÜSTÜ AY GÖRÜNÜMÜ (Google Takvim Tarzı) */}
+      {desktopViewMode === "month" && (
+        <div className="hidden md:block rounded-2xl shadow-xs overflow-hidden bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F]">
+          <div className="grid grid-cols-7 border-b border-[#ECE8E1] dark:border-[#182A20] bg-[#EEEBE4]/50 dark:bg-[#1A2B21]/60">
+            {["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"].map((d) => (
+              <div
+                key={d}
+                className="py-2.5 px-3 text-center text-xs font-bold text-[#5F665F] dark:text-[#A2B5A8] border-r last:border-r-0 border-[#ECE8E1] dark:border-[#182A20]"
+              >
+                {d}
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-7">
+            {monthGridCells.map((cell, idx) => {
+              const cellApts = cell.hasActiveWeekApts
+                ? filtered
+                    .filter((a) => a.day === cell.dayKey)
+                    .sort((a, b) => a.time.localeCompare(b.time))
+                : [];
+              const canCreate = cell.dayKey !== "Paz";
+
+              return (
+                <div
+                  key={`${cell.dayNum}-${idx}`}
+                  onClick={() => {
+                    if (canCreate && cell.hasActiveWeekApts) {
+                      setMobileDay(cell.dayKey);
+                      setDesktopViewMode("day");
+                    } else if (canCreate) {
+                      handleOpenSlotCreate(
+                        days.some((d) => d.key === cell.dayKey) ? cell.dayKey : "Per",
+                        "10:30"
+                      );
+                    }
+                  }}
+                  className={`min-h-[124px] p-2 border-b border-r border-[#ECE8E1] dark:border-[#182A20] flex flex-col gap-1.5 transition-colors group ${
+                    cell.inMonth
+                      ? "bg-transparent hover:bg-[#EEEBE4]/40 dark:hover:bg-[#1A2B21]/40 cursor-pointer"
+                      : "bg-[#F3F0EA]/60 dark:bg-[#0E1511]/40 opacity-55"
+                  } ${cell.isToday ? "bg-[rgba(221,235,216,0.22)] dark:bg-[rgba(31,51,39,0.28)]" : ""}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`inline-flex items-center justify-center h-6 w-6 rounded-full text-xs font-bold ${
+                        cell.isToday
+                          ? "bg-[#1F3327] text-white dark:bg-[#3F8F55]"
+                          : "text-[#1C211E] dark:text-[#ECF3EE]"
+                      }`}
+                    >
+                      {cell.dayNum}
+                    </span>
+                    {canCreate && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenSlotCreate(
+                            days.some((d) => d.key === cell.dayKey) ? cell.dayKey : "Per",
+                            "10:30"
+                          );
+                        }}
+                        title="Bu güne randevu ekle"
+                        className="opacity-0 group-hover:opacity-100 h-5 w-5 rounded-md flex items-center justify-center bg-[#EEEBE4] dark:bg-[#243B2F] text-[#1F3327] dark:text-[#9AB395] transition-opacity cursor-pointer"
+                      >
+                        <Plus className="h-3 w-3" />
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="flex flex-col gap-1 overflow-hidden">
+                    {cellApts.slice(0, 3).map((apt) => (
+                      <button
+                        key={apt.id}
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleOpenSelected(apt);
+                        }}
+                        className={`w-full text-left px-1.5 py-1 rounded-md text-[10px] font-semibold truncate border transition-all hover:shadow-xs cursor-pointer ${getAppointmentCardClasses(
+                          apt.status
+                        )}`}
+                      >
+                        <span className="font-mono mr-1 opacity-80">{apt.time}</span>
+                        <span>{apt.patientName}</span>
+                      </button>
+                    ))}
+                    {cellApts.length > 3 && (
+                      <span className="text-[10px] font-bold text-[#2F5A3D] dark:text-[#4ADE80] px-1">
+                        +{cellApts.length - 3} randevu daha
+                      </span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* MASAÜSTÜ GÜN GÖRÜNÜMÜ (Google Takvim Ajanda & Zaman Çizelgesi) */}
+      {desktopViewMode === "day" && (
+        <div className="hidden md:flex flex-col gap-4">
+          <div className="grid grid-cols-6 gap-2.5">
+            {days.map((day) => {
+              const isSelected = mobileDay === day.key;
+              const dayApts = filtered.filter((a) => a.day === day.key);
+              return (
+                <button
+                  key={day.key}
+                  type="button"
+                  onClick={() => setMobileDay(day.key)}
+                  className={`flex items-center justify-between px-4 py-3 rounded-2xl border transition-all cursor-pointer ${
+                    isSelected
+                      ? "bg-[#1F3327] text-white border-[#1F3327] shadow-sm dark:bg-[#2D4C3C] dark:border-[#345844]"
+                      : day.isToday
+                      ? "bg-[#DDEBD8]/60 border-[#C9DDC3] text-[#1F3327] dark:bg-[#1E3527] dark:border-[#2D4C3C] dark:text-[#9AB395]"
+                      : "bg-[#FBFAF7] border-[#E6E1D8] text-[#1C211E] dark:bg-[#15221B] dark:border-[#243B2F] dark:text-[#ECF3EE] hover:bg-[#EEEBE4] dark:hover:bg-[#1A2B21]"
+                  }`}
+                >
+                  <div className="text-left">
+                    <p className={`text-[11px] font-bold uppercase tracking-wider ${isSelected ? "text-white/80" : "text-[#8A8F89] dark:text-[#A2B5A8]"}`}>
+                      {day.label.replace(" (Bugün)", "")}
+                    </p>
+                    <p className="text-sm font-serif font-bold mt-0.5">{day.date}</p>
+                  </div>
+                  <span
+                    className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${
+                      isSelected
+                        ? "bg-white/20 text-white"
+                        : "bg-[#EEEBE4] dark:bg-[#1A2B21] text-[#5F665F] dark:text-[#A2B5A8]"
+                    }`}
+                  >
+                    {dayApts.length}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="rounded-2xl shadow-xs bg-[#FBFAF7] border border-[#E6E1D8] dark:bg-[#15221B] dark:border-[#243B2F] p-5">
+            <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#ECE8E1] dark:border-[#182A20]">
+              <div className="flex items-center gap-2.5">
+                <CalendarIcon className="h-4 w-4 text-[#1F3327] dark:text-[#4ADE80]" />
+                <h3 className="font-serif text-base font-bold text-[#1C211E] dark:text-[#ECF3EE]">
+                  {activeDayObj.label} — {activeDayObj.date} 2026
+                </h3>
+              </div>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-[#EEEBE4] border border-[#E6E1D8] text-[#5F665F] dark:bg-[#1A2B21] dark:border-[#243B2F] dark:text-[#A2B5A8]">
+                {filtered.filter((a) => a.day === mobileDay).length} Randevu
+              </span>
+            </div>
+
+            <div className="divide-y divide-[#ECE8E1] dark:divide-[#182A20]">
+              {timeSlots.map((time) => {
+                const slotApts = filtered.filter((a) => a.day === mobileDay && a.time === time);
+                return (
+                  <div key={time} className="flex items-stretch gap-4 py-3">
+                    <div className="w-16 pt-2 shrink-0 text-right">
+                      <span className="font-mono text-xs font-bold text-[#8A8F89] dark:text-[#A2B5A8]">
+                        {time}
+                      </span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      {slotApts.length > 0 ? (
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                          {slotApts.map((appointment) => (
+                            <div
+                              key={appointment.id}
+                              onClick={() => handleOpenSelected(appointment)}
+                              className={`p-3.5 rounded-xl shadow-2xs border transition-all cursor-pointer hover:shadow-md flex items-center justify-between gap-4 ${getAppointmentCardClasses(
+                                appointment.status
+                              )}`}
+                            >
+                              <div className="min-w-0 space-y-1">
+                                <div className="flex items-center gap-2">
+                                  <span className="font-bold text-sm truncate">
+                                    {appointment.patientName}
+                                  </span>
+                                  {renderStatusBadge(appointment.status)}
+                                </div>
+                                <p className="text-xs font-medium opacity-90 truncate">
+                                  {appointment.treatment}
+                                  {appointment.notes ? ` · ${appointment.notes}` : ""}
+                                </p>
+                              </div>
+                              <div className="text-right shrink-0 text-xs opacity-85 space-y-0.5">
+                                <p className="font-semibold flex items-center justify-end gap-1">
+                                  <User className="h-3.5 w-3.5" />
+                                  {appointment.dentist}
+                                </p>
+                                <p className="font-mono text-[11px]">{appointment.time}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleOpenSlotCreate(mobileDay, time)}
+                          className="w-full py-2.5 px-4 rounded-xl border border-dashed border-[#E6E1D8] dark:border-[#243B2F] bg-white/50 dark:bg-[#1A2B21]/30 hover:bg-[#EEEBE4] dark:hover:bg-[#1A2B21] transition-colors flex items-center justify-between text-xs text-[#8A8F89] dark:text-[#A2B5A8] group cursor-pointer"
+                        >
+                          <span className="font-medium group-hover:text-[#1C211E] dark:group-hover:text-[#ECF3EE]">
+                            Boş Saat Dilimi
+                          </span>
+                          <span className="flex items-center gap-1 font-bold text-[#1F3327] dark:text-[#4ADE80]">
+                            <Plus className="h-3.5 w-3.5" /> Randevu Ekle
+                          </span>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Appointment Detail / Edit / Status Modal */}
       {selectedApt && (
